@@ -1,0 +1,1 @@
+Для выполнения работы использовался встроенный в IDE (Visual Studio Code) Coding-агент Claude Code.
