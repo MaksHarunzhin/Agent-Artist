@@ -21,6 +21,7 @@ RECOVERY_COLUMNS = ["run", "idea", "mode", "artist", "artist_id", "iteration", "
                     "details_conveyed"]
 TRANSLATION_COLUMNS = ["idea", "artist_id", "iteration", "strategy", "english_equivalent",
                        "prompt"]
+LIMITS_COLUMNS = ["run", "idea", "generator", "artist_id", "iteration", "problem", "category"]
 TELEPHONE_COLUMNS = ["idea", "artist_id", "artist", "step", "similarity", "seen_title",
                      "refused"]
 
@@ -74,6 +75,25 @@ def translation_frame(paths: list[Path]) -> pd.DataFrame:
             rows.append({"idea": idea, "artist_id": artist_id, "iteration": int(iteration),
                          **entry})
     return pd.DataFrame(rows, columns=TRANSLATION_COLUMNS)
+
+
+def limits_frame(paths: list[Path]) -> pd.DataFrame:
+    """Замечания эксперта с категорией из кешей limits.json — строка на замечание."""
+    rows = []
+    for log_path in find_logs(paths):
+        cache_path = log_path.parent / "limits.json"
+        if not cache_path.exists():
+            continue
+        log = read_json(log_path)
+        generators = {artist["artist_id"]: artist["generator"] for artist in log["artists"]}
+        for key, entry in read_json(cache_path).items():
+            artist_id, iteration = key.split("_")
+            for problem, category in zip(entry["problems"], entry["categories"]):
+                rows.append({"run": str(log_path.parent), "idea": log["idea"],
+                             "generator": generators.get(artist_id), "artist_id": artist_id,
+                             "iteration": int(iteration), "problem": problem,
+                             "category": category})
+    return pd.DataFrame(rows, columns=LIMITS_COLUMNS)
 
 
 def telephone_frame(paths: list[Path]) -> pd.DataFrame:
