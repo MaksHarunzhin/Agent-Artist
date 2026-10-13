@@ -14,8 +14,8 @@ from .runlogs import artist_labels, find_logs, has_scores, mode_name, read_json
 
 # Колонки задаются явно, чтобы и пустая таблица (эксперимент ещё не запускался)
 # поддерживала фильтры вида frame[frame.run.str.startswith(...)]
-SCORE_COLUMNS = ["run", "idea", "mode", "expert_sees_image", "artist_id", "artist", "iteration",
-                 "score", "refused", "prompt"]
+SCORE_COLUMNS = ["run", "idea", "mode", "expert_sees_image", "experienced", "artist_id", "artist",
+                 "iteration", "score", "refused", "prompt"]
 RECOVERY_COLUMNS = ["run", "idea", "mode", "artist", "artist_id", "iteration", "image", "title",
                     "description", "idea_recognized", "idea_named", "details",
                     "details_conveyed"]
@@ -39,6 +39,7 @@ def scores_frame(paths: list[Path]) -> pd.DataFrame:
                 rows.append({
                     "run": str(log_path.parent), "idea": log["idea"], "mode": mode_name(log),
                     "expert_sees_image": log.get("expert_sees_image", False),
+                    "experienced": log.get("experienced_artists", False),
                     "artist_id": artist_id, "artist": labels.get(artist_id, artist_id),
                     "iteration": record["iteration"], "score": record["review"]["score"],
                     "refused": record.get("error") is not None, "prompt": record["prompt"],
