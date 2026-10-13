@@ -1,3 +1,4 @@
+import argparse
 import base64
 import json
 import re
@@ -797,7 +798,36 @@ class ArtStudio:
 # 8. ТОЧКА ВХОДА
 # =============================================================================
 
+def apply_command_line_arguments() -> None:
+    """Переопределить настройки из начала файла аргументами командной строки."""
+    global IDEA, SHARED_QUESTIONS, MIN_ITERATIONS, MAX_ITERATIONS
+    global TARGET_SCORE, START_QUESTION_ROUNDS, OUTPUT_DIR
+
+    parser = argparse.ArgumentParser(description="Агент-художник")
+    parser.add_argument("--idea", default=IDEA, help="идея картины")
+    parser.add_argument("--shared", action=argparse.BooleanOptionalAction,
+                        default=SHARED_QUESTIONS,
+                        help="художники видят вопросы друг друга")
+    parser.add_argument("--min-iter", type=int, default=MIN_ITERATIONS)
+    parser.add_argument("--max-iter", type=int, default=MAX_ITERATIONS)
+    parser.add_argument("--target", type=int, default=TARGET_SCORE,
+                        help="целевая оценка для остановки")
+    parser.add_argument("--start-rounds", type=int, default=START_QUESTION_ROUNDS,
+                        help="раундов вопросов до первой картины")
+    parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
+    args = parser.parse_args()
+
+    IDEA = args.idea
+    SHARED_QUESTIONS = args.shared
+    MIN_ITERATIONS = args.min_iter
+    MAX_ITERATIONS = args.max_iter
+    TARGET_SCORE = args.target
+    START_QUESTION_ROUNDS = args.start_rounds
+    OUTPUT_DIR = args.output_dir
+
+
 def main() -> None:
+    apply_command_line_arguments()
     check_settings()
     studio = ArtStudio()
     studio.run()
