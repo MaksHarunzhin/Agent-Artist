@@ -21,6 +21,7 @@ from .generators import create_image_generators
 from .llm import create_yandex_client
 from .recovery import recover_and_summarize
 from .timelapse import render_run
+from .translation import classify_and_summarize
 from .studio import ArtStudio
 
 MODE_NAMES = {True: "shared", False: "isolated"}
@@ -260,6 +261,11 @@ def main(argv: list[str] | None = None) -> None:
     recover_parser.add_argument("paths", type=Path, nargs="+",
                                 help="папки с прогонами (log.json ищется рекурсивно)")
 
+    translation_parser = commands.add_parser(
+        "translation", help="как художники с английским промптом перенесли русскую идею")
+    translation_parser.add_argument("paths", type=Path, nargs="+",
+                                    help="папки с прогонами (log.json ищется рекурсивно)")
+
     timelapse_parser = commands.add_parser(
         "timelapse", help="таймлапс эволюции картин: timelapse.webp/.gif и evolution.png")
     timelapse_parser.add_argument("paths", type=Path, nargs="+",
@@ -283,11 +289,14 @@ def main(argv: list[str] | None = None) -> None:
 
     load_environment()
 
-    if args.command == "recover":
+    if args.command in ("recover", "translation"):
         settings = Settings(yandex_api_key=os.environ.get("YANDEX_API_KEY", ""),
                             yandex_folder_id=os.environ.get("YANDEX_FOLDER_ID", ""))
         settings.check()
-        print(recover_and_summarize(args.paths, settings))
+        if args.command == "recover":
+            print(recover_and_summarize(args.paths, settings))
+        else:
+            print(classify_and_summarize(args.paths, settings))
         return
 
     # Все прогоны одной длины: min = max, ранней остановки по оценке нет
