@@ -83,6 +83,12 @@ class Settings:
     artist_llm_name: str = "deepseek-v4.1-flash"   # модель, которая думает за художников
     expert_llm_name: str = "deepseek-v4.1-flash"   # модель эксперта
 
+    # True  — эксперт оценивает саму картинку (мультимодальная модель в Яндексе),
+    #         описание от локальной VLM получает как подсказку.
+    # False — эксперт видит только описание от локальной VLM.
+    expert_sees_image: bool = True
+    expert_vision_llm_name: str = "qwen3.6-35b-a3b"
+
     # --- Локальная VLM в Ollama ---
     ollama_host: str = "http://127.0.0.1:11434"
     vision_model_name: str = "qwen3-vl:8b"

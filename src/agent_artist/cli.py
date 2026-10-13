@@ -19,6 +19,9 @@ def parse_settings(argv: list[str] | None = None) -> Settings:
     parser.add_argument("--shared", action=argparse.BooleanOptionalAction,
                         default=defaults.shared_questions,
                         help="художники видят вопросы друг друга")
+    parser.add_argument("--expert-sees-image", action=argparse.BooleanOptionalAction,
+                        default=defaults.expert_sees_image,
+                        help="эксперт оценивает саму картинку, а не только её описание")
     parser.add_argument("--min-iter", type=int, default=defaults.min_iterations)
     parser.add_argument("--max-iter", type=int, default=defaults.max_iterations)
     parser.add_argument("--target", type=int, default=defaults.target_score,
@@ -33,6 +36,7 @@ def parse_settings(argv: list[str] | None = None) -> Settings:
     return Settings(
         idea=args.idea,
         shared_questions=args.shared,
+        expert_sees_image=args.expert_sees_image,
         min_iterations=args.min_iter,
         max_iterations=args.max_iter,
         target_score=args.target,

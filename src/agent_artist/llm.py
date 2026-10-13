@@ -1,9 +1,13 @@
 """Языковые модели в Yandex AI Studio и разбор их JSON-ответов."""
 
+import base64
 import json
 import re
+from io import BytesIO
+from pathlib import Path
 
 from openai import OpenAI
+from PIL import Image
 
 from .config import YANDEX_BASE_URL
 
@@ -32,6 +36,14 @@ def extract_json(text: str) -> dict:
     return json.loads(json_text)
 
 
+def image_to_data_url(image_path: Path) -> str:
+    """Картинка в виде data URL. JPEG в несколько раз легче PNG, а для оценки его хватает."""
+    buffer = BytesIO()
+    Image.open(image_path).convert("RGB").save(buffer, format="JPEG", quality=90)
+    image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return f"data:image/jpeg;base64,{image_base64}"
+
+
 def create_yandex_client(api_key: str, folder_id: str) -> OpenAI:
     """Клиент Yandex AI Studio: через него работают LLM и Yandex ART."""
     return OpenAI(
@@ -49,13 +61,28 @@ class YandexLLM:
         self.client = client
         self.model_uri = f"gpt://{folder_id}/{model_name}"
 
-    def ask_json(self, system_prompt: str, user_message: str, attempts: int = 3) -> dict:
-        """Отправить запрос и получить ответ в виде словаря из JSON."""
+    def ask_json(self, system_prompt: str, user_message: str, attempts: int = 3,
+                 image_path: Path | None = None) -> dict:
+        """
+        Отправить запрос и получить ответ в виде словаря из JSON.
+        С image_path к сообщению прикладывается картинка (нужна мультимодальная модель).
+        """
+        if image_path is None:
+            model_input = user_message
+        else:
+            model_input = [{
+                "role": "user",
+                "content": [
+                    {"type": "input_text", "text": user_message},
+                    {"type": "input_image", "image_url": image_to_data_url(image_path)},
+                ],
+            }]
+
         for attempt in range(1, attempts + 1):
             response = self.client.responses.create(
                 model=self.model_uri,
                 instructions=system_prompt,
-                input=user_message,
+                input=model_input,
                 temperature=0.7,
             )
             try:

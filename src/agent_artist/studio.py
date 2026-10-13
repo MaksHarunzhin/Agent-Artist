@@ -33,6 +33,8 @@ class ArtStudio:
 
         self.artist_llm = YandexLLM(yandex_client, folder_id, settings.artist_llm_name)
         self.expert_llm = YandexLLM(yandex_client, folder_id, settings.expert_llm_name)
+        self.expert_vision_llm = YandexLLM(yandex_client, folder_id,
+                                           settings.expert_vision_llm_name)
         self.vision_model = LocalVisionModel(settings.ollama_host, settings.vision_model_name)
 
         self.image_generators = {}
@@ -195,19 +197,33 @@ class ArtStudio:
 
     # ----- Шаг 4. Оценка экспертом -----
 
-    def review_image(self, artist: ArtistConfig, prompt: str, description: str) -> Review:
-        """Эксперт оценивает картину по её описанию."""
+    def review_image(self, artist: ArtistConfig, prompt: str, image_path: Path,
+                     description: str) -> Review:
+        """
+        Эксперт оценивает картину: по самому изображению или только по описанию.
+
+        Описание от локальной VLM эксперту, который видит картину, не передаётся:
+        проверка показала, что модель верит тексту больше, чем изображению,
+        и повторяет ошибки описания (например, путаницу «лево/право»).
+        """
         agreed_details = self.dialogue.visible_to(artist.artist_id)
+        sees_image = self.settings.expert_sees_image
 
         user_message = (
             f"Идея картины: {self.settings.idea}\n\n"
             f"Художник: {artist.artist_id}\n"
             f"Детали, согласованные с ним:\n{Dialogue.to_text(agreed_details)}\n\n"
-            f"Промпт художника:\n{prompt}\n\n"
-            f"Объективное описание получившейся картины:\n{description}"
+            f"Промпт художника:\n{prompt}"
         )
+        if not sees_image:
+            user_message += f"\n\nОбъективное описание получившейся картины:\n{description}"
 
-        response = self.expert_llm.ask_json(build_expert_review_system_prompt(self.settings.expert_taste), user_message)
+        system_prompt = build_expert_review_system_prompt(self.settings.expert_taste, sees_image)
+        if sees_image:
+            response = self.expert_vision_llm.ask_json(system_prompt, user_message,
+                                                       image_path=image_path)
+        else:
+            response = self.expert_llm.ask_json(system_prompt, user_message)
         return parse_review(response)
 
     @staticmethod
@@ -270,7 +286,8 @@ class ArtStudio:
             if errors[artist_id] is not None:
                 review = self.review_for_failed_generation(errors[artist_id])
             else:
-                review = self.review_image(artist, prompts[artist_id], descriptions[artist_id])
+                review = self.review_image(artist, prompts[artist_id], image_paths[artist_id],
+                                           descriptions[artist_id])
 
             print(f"[Эксперт → Художник {artist_id}] {review.score}/10: {review.instructions}")
 
@@ -314,6 +331,7 @@ class ArtStudio:
             "idea": self.settings.idea,
             "shared_questions": self.settings.shared_questions,
             "seed": self.settings.seed,
+            "expert_sees_image": self.settings.expert_sees_image,
             "expert_taste": self.settings.expert_taste,
             "artists": [asdict(artist) for artist in self.artists],
             "dialogue": dialogue_as_dicts,
