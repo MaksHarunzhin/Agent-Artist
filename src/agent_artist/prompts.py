@@ -64,7 +64,10 @@ def build_prompt_writer_system_prompt(artist: ArtistConfig, prompt_limit: str) -
         "Формат кадра в промпт не пиши — генератор и так рисует квадрат.\n"
         + limit_note
         + JSON_ONLY_INSTRUCTION +
-        '{"reasoning": "по-русски: что учёл и что изменил", "prompt": "текст промпта"}'
+        # prompt идёт первым: с длинным reasoning впереди модель иногда закрывала JSON,
+        # так и не написав промпт
+        '{"prompt": "текст промпта", '
+        '"reasoning": "по-русски, 1–2 предложения: что учёл и что изменил"}'
     )
 
 
