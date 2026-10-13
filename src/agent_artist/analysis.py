@@ -12,6 +12,18 @@ import pandas as pd
 
 from .runlogs import artist_labels, find_logs, has_scores, mode_name, read_json
 
+# Колонки задаются явно, чтобы и пустая таблица (эксперимент ещё не запускался)
+# поддерживала фильтры вида frame[frame.run.str.startswith(...)]
+SCORE_COLUMNS = ["run", "idea", "mode", "expert_sees_image", "artist_id", "artist", "iteration",
+                 "score", "refused", "prompt"]
+RECOVERY_COLUMNS = ["run", "idea", "mode", "artist", "artist_id", "iteration", "image", "title",
+                    "description", "idea_recognized", "idea_named", "details",
+                    "details_conveyed"]
+TRANSLATION_COLUMNS = ["idea", "artist_id", "iteration", "strategy", "english_equivalent",
+                       "prompt"]
+TELEPHONE_COLUMNS = ["idea", "artist_id", "artist", "step", "similarity", "seen_title",
+                     "refused"]
+
 
 def scores_frame(paths: list[Path]) -> pd.DataFrame:
     """Строка на картину: идея, режим, художник, итерация, оценка эксперта, отказ генератора."""
@@ -30,7 +42,7 @@ def scores_frame(paths: list[Path]) -> pd.DataFrame:
                     "iteration": record["iteration"], "score": record["review"]["score"],
                     "refused": record.get("error") is not None, "prompt": record["prompt"],
                 })
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=SCORE_COLUMNS)
 
 
 def recovery_frame(paths: list[Path]) -> pd.DataFrame:
@@ -46,7 +58,7 @@ def recovery_frame(paths: list[Path]) -> pd.DataFrame:
             rows.append({"run": str(log_path.parent), "idea": log["idea"],
                          "mode": mode_name(log), "artist": labels.get(result["artist_id"]),
                          **result})
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=RECOVERY_COLUMNS)
 
 
 def translation_frame(paths: list[Path]) -> pd.DataFrame:
@@ -61,7 +73,7 @@ def translation_frame(paths: list[Path]) -> pd.DataFrame:
             artist_id, iteration = key.split("_")
             rows.append({"idea": idea, "artist_id": artist_id, "iteration": int(iteration),
                          **entry})
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=TRANSLATION_COLUMNS)
 
 
 def telephone_frame(paths: list[Path]) -> pd.DataFrame:
@@ -77,4 +89,4 @@ def telephone_frame(paths: list[Path]) -> pd.DataFrame:
                              "artist": label, "step": step["step"],
                              "similarity": step["similarity"], "seen_title": step["seen_title"],
                              "refused": step.get("error") is not None})
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows, columns=TELEPHONE_COLUMNS)
