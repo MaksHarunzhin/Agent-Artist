@@ -21,6 +21,10 @@ dependencies = [
     "transformers",
 ]
 
+[project.optional-dependencies]
+# Для ноутбука с анализом: pip install -e ".[analysis]"
+analysis = ["ipykernel", "matplotlib", "nbconvert", "nbformat", "pandas"]
+
 [project.scripts]
 agent-artist = "agent_artist.cli:main"
 agent-artist-experiment = "agent_artist.experiment:main"
