@@ -33,6 +33,8 @@ class Recovery:
     idea_recognized: bool
     details: list[str]          # yes / partial / no для каждого пункта заказа
     details_conveyed: float     # доля переданных пунктов, partial считается за половину
+    # Назвал ли зритель идею почти дословно. None — в кешах, посчитанных до этого поля
+    idea_named: bool | None = None
 
 
 class BriefRecovery:
@@ -103,6 +105,7 @@ def recover_run(log_path: Path, recovery: BriefRecovery) -> list[Recovery]:
                     title=str(seen["title"]),
                     description=str(seen["description"]),
                     idea_recognized=bool(verdict["idea_recognized"]),
+                    idea_named=bool(verdict.get("idea_named")),
                     details=details,
                     details_conveyed=conveyed / len(brief) if brief else 0.0,
                 ))
@@ -144,8 +147,8 @@ def recover_and_summarize(paths: list[Path], settings: Settings) -> str:
     artist_ids = sorted({artist_id for row in table.values() for artist_id in row})
     lines = [
         "## Угадай заказ\n",
-        "Слепой зритель видит только картину. В ячейке: доля картин, по которым он узнал идею · "
-        "средняя доля переданных пунктов заказа.\n",
+        "Слепой зритель видит только картину. В ячейке: доля картин, по которым он узнал идею "
+        "(в скобках — назвал почти дословно) · средняя доля переданных пунктов заказа.\n",
         "| Идея | Режим | " + " | ".join(labels.get(a, a) for a in artist_ids) + " |",
         "|---|---|" + "---|" * len(artist_ids),
     ]
@@ -157,7 +160,8 @@ def recover_and_summarize(paths: list[Path], settings: Settings) -> str:
                 cells.append("—")
                 continue
             recognized = percent([float(r.idea_recognized) for r in results])
+            named = percent([float(r.idea_named) for r in results if r.idea_named is not None])
             conveyed = percent([r.details_conveyed for r in results])
-            cells.append(f"{recognized} · {conveyed} (n={len(results)})")
+            cells.append(f"{recognized} ({named}) · {conveyed} (n={len(results)})")
         lines.append(f"| {idea} | {mode} | " + " | ".join(cells) + " |")
     return "\n".join(lines) + "\n"
