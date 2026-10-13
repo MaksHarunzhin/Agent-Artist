@@ -17,6 +17,7 @@ for expert in cinematic minimalist baroque child peredvizhnik; do
     --idea "$IDEA" \
     --expert "$expert" \
     --artists A,B \
+    --no-describe \
     --start-rounds 2 \
     --min-iter "$ITERATIONS" --max-iter "$ITERATIONS" \
     --output-dir "$ROOT/$expert"
