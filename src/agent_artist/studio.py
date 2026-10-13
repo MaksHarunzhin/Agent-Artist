@@ -16,6 +16,7 @@ from .prompts import (
     build_shorten_prompt_message,
 )
 from .records import IterationRecord, Review, parse_review
+from .timelapse import render_run
 from .vision import LocalVisionModel
 
 
@@ -385,4 +386,12 @@ class ArtStudio:
                 break
 
         self.print_summary()
+
+        try:
+            rendered = render_run(self.settings.output_dir)
+            if rendered:
+                print(f"Таймлапс: {rendered[0]}")
+        except Exception as error:
+            # Таймлапс — приятное дополнение, из-за него прогон не должен падать
+            print(f"  ! Не удалось собрать таймлапс: {error}")
 

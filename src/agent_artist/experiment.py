@@ -20,6 +20,7 @@ from .config import Settings
 from .generators import create_image_generators
 from .llm import create_yandex_client
 from .recovery import recover_and_summarize
+from .timelapse import render_run
 from .studio import ArtStudio
 
 MODE_NAMES = {True: "shared", False: "isolated"}
@@ -259,7 +260,22 @@ def main(argv: list[str] | None = None) -> None:
     recover_parser.add_argument("paths", type=Path, nargs="+",
                                 help="папки с прогонами (log.json ищется рекурсивно)")
 
+    timelapse_parser = commands.add_parser(
+        "timelapse", help="таймлапс эволюции картин: timelapse.webp/.gif и evolution.png")
+    timelapse_parser.add_argument("paths", type=Path, nargs="+",
+                                  help="папки с прогонами (log.json ищется рекурсивно)")
+
     args = parser.parse_args(argv)
+
+    if args.command == "timelapse":
+        for path in args.paths:
+            for log_path in sorted(path.rglob("log.json")):
+                rendered = render_run(log_path.parent)
+                if rendered is None:
+                    print(f"  ! Пропускаю {log_path}: нет итераций или старый формат лога")
+                else:
+                    print("\n".join(str(path) for path in rendered))
+        return
 
     if args.command == "summary":
         print(summarize(args.paths))
