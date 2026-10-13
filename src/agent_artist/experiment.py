@@ -23,7 +23,7 @@ from .runlogs import find_logs
 from .studio import ArtStudio
 from .summary import summarize
 from .telephone import run_telephone
-from .timelapse import render_run
+from .timelapse import render_gallery, render_run
 from .translation import classify_and_summarize
 
 MODE_NAMES = {True: "shared", False: "isolated"}
@@ -111,11 +111,25 @@ def main(argv: list[str] | None = None) -> None:
     telephone_parser.add_argument("--output-dir", type=Path,
                                   default=Path("runs") / f"telephone_{timestamp}")
 
+    gallery_parser = commands.add_parser(
+        "gallery", help="сетка лучших картин нескольких прогонов: художники × прогоны")
+    gallery_parser.add_argument("paths", type=Path, nargs="+",
+                                help="папки с прогонами (log.json ищется рекурсивно)")
+    gallery_parser.add_argument("--label", choices=["expert", "idea", "mode"], default="idea",
+                                help="чем подписать столбцы")
+    gallery_parser.add_argument("--title", default="Лучшие картины")
+    gallery_parser.add_argument("--output", type=Path, default=Path("gallery.png"))
+
     for name, (help_text, _, _) in ANALYSIS_COMMANDS.items():
         commands.add_parser(name, help=help_text).add_argument(
             "paths", type=Path, nargs="+", help="папки с прогонами (log.json ищется рекурсивно)")
 
     args = parser.parse_args(argv)
+
+    if args.command == "gallery":
+        render_gallery(find_logs(args.paths), args.output, args.label, args.title)
+        print(f"Галерея: {args.output}")
+        return
 
     if args.command in ANALYSIS_COMMANDS:
         _, needs_keys, action = ANALYSIS_COMMANDS[args.command]

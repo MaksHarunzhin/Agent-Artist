@@ -229,3 +229,66 @@ def render_run(run_dir: Path) -> list[Path] | None:
     renderer.save_timelapse(paths[0], paths[1])
     renderer.save_evolution_sheet(paths[2])
     return paths
+
+
+EXPERT_NAMES = {"cinematic": "кинематографист", "minimalist": "минималист",
+                "baroque": "любитель барокко", "child": "ребёнок 6 лет",
+                "peredvizhnik": "передвижник"}
+
+
+def column_title(log: dict, label: str) -> str:
+    """Подпись столбца галереи: эксперт, идея или режим прогона."""
+    if label == "expert":
+        name = log.get("expert", "cinematic")
+        return EXPERT_NAMES.get(name, name)
+    if label == "mode":
+        return "общий контекст" if log.get("shared_questions") else "раздельный контекст"
+    return log["idea"]
+
+
+def render_gallery(log_paths: list[Path], output_path: Path, label: str, title: str) -> None:
+    """Сетка лучших картин: строки — художники, столбцы — прогоны с подписью label."""
+    logs = [(path.parent, read_json(path)) for path in log_paths]
+    logs = [(run_dir, log) for run_dir, log in logs if has_scores(log)]
+    artists = {artist["artist_id"]: artist for _, log in logs for artist in log["artists"]}
+
+    thumb, caption = 320, 34
+    title_font, label_font, text_font = load_font(26), load_font(19), load_font(16)
+    labels = [artist_caption(artist) for artist in artists.values()]
+    label_width = text_column_width(labels, label_font)
+    header = 64 + 56
+    width = label_width + len(logs) * (thumb + PADDING) + PADDING
+    height = header + len(artists) * (thumb + caption + PADDING)
+
+    gallery = Image.new("RGB", (width, height), BACKGROUND)
+    draw = ImageDraw.Draw(gallery)
+    draw.text((PADDING, 32), title, font=title_font, fill=TEXT, anchor="lm")
+
+    for column, (run_dir, log) in enumerate(logs):
+        x = label_width + column * (thumb + PADDING)
+        title_lines = textwrap.wrap(column_title(log, label), width=28)[:2]
+        draw.multiline_text((x + thumb // 2, header - 30), "\n".join(title_lines),
+                            font=label_font, fill=TEXT, anchor="mm", align="center", spacing=4)
+        for row, artist_id in enumerate(artists):
+            y = header + row * (thumb + caption + PADDING)
+            if column == 0:
+                draw.multiline_text((PADDING, y + thumb // 2), labels[row], font=label_font,
+                                    fill=TEXT, anchor="lm", spacing=6)
+            records = log["history"].get(artist_id, [])
+            drawn = [record for record in records if record.get("image_path")]
+            if not drawn:
+                if records:
+                    draw.rectangle((x, y, x + thumb, y + thumb), fill=PANEL_BACKGROUND)
+                    draw.text((x + thumb // 2, y + thumb // 2), "генератор отказал",
+                              font=label_font, fill=MUTED_TEXT, anchor="mm")
+                continue
+            best = max(drawn, key=lambda record: record["review"]["score"])
+            picture = Image.open(run_dir / Path(best["image_path"]).name).convert("RGB")
+            gallery.paste(picture.resize((thumb, thumb)), (x, y))
+            score = best["review"]["score"]
+            draw.text((x, y + thumb + 8), f"итерация {best['iteration']}", font=text_font,
+                      fill=MUTED_TEXT)
+            draw.text((x + thumb, y + thumb + 6), f"{score}/10", font=label_font,
+                      fill=score_color(score), anchor="ra")
+
+    gallery.save(output_path)
