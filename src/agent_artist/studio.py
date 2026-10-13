@@ -1,6 +1,5 @@
 """Мастерская: основной цикл работы художников с экспертом."""
 
-import json
 from dataclasses import asdict
 from pathlib import Path
 
@@ -16,6 +15,7 @@ from .prompts import (
     build_shorten_prompt_message,
 )
 from .records import IterationRecord, Review, parse_review
+from .runlogs import write_json
 from .timelapse import render_run
 from .vision import LocalVisionModel
 
@@ -71,40 +71,28 @@ class ArtStudio:
         self.expert_vision_llm = YandexLLM(yandex_client, folder_id,
                                            settings.expert_vision_llm_name)
         self.vision_model = LocalVisionModel(settings.ollama_host, settings.vision_model_name)
-
-        if image_generators is None:
-            image_generators = create_image_generators(settings, yandex_client)
-        self.image_generators = image_generators
-
+        self.image_generators = image_generators or create_image_generators(settings,
+                                                                            yandex_client)
         self.dialogue = Dialogue(settings.shared_questions)
-
-        self.history: dict[str, list[IterationRecord]] = {}
-        for artist in self.artists:
-            self.history[artist.artist_id] = []
+        self.history: dict[str, list[IterationRecord]] = {a.artist_id: [] for a in self.artists}
 
     # ----- Контекст для художника -----
 
     def build_artist_context(self, artist: ArtistConfig) -> str:
         """Собрать всё, что художник знает на текущий момент."""
-        visible_entries = self.dialogue.visible_to(artist.artist_id)
-
         context = (
             f"Идея картины: {self.settings.idea}\n\n"
             f"Согласованные детали (вопросы художников и ответы эксперта):\n"
-            f"{Dialogue.to_text(visible_entries)}\n"
+            f"{Dialogue.to_text(self.dialogue.visible_to(artist.artist_id))}\n"
         )
-
-        artist_history = self.history[artist.artist_id]
-        if artist_history:
-            last_record = artist_history[-1]
-            problems_text = "; ".join(str(problem) for problem in last_record.review.problems)
+        if self.history[artist.artist_id]:
+            last = self.history[artist.artist_id][-1]
             context += (
-                f"\nТвой прошлый промпт: {last_record.prompt}\n"
-                f"Оценка эксперта: {last_record.review.score}/10\n"
-                f"Проблемы: {problems_text}\n"
-                f"Инструкции эксперта: {last_record.review.instructions}\n"
+                f"\nТвой прошлый промпт: {last.prompt}\n"
+                f"Оценка эксперта: {last.review.score}/10\n"
+                f"Проблемы: {'; '.join(str(problem) for problem in last.review.problems)}\n"
+                f"Инструкции эксперта: {last.review.instructions}\n"
             )
-
         return context
 
     # ----- Шаг 1. Уточняющие вопросы -----
@@ -115,75 +103,49 @@ class ArtStudio:
         Художник, которому больше нечего спросить, в следующих раундах не участвует.
         """
         active_artists = list(self.artists)
-
         for round_number in range(1, rounds + 1):
             if not active_artists:
                 break
-
             print(f"--- Раунд вопросов {round_number} ---")
-            still_asking = []
-
-            for artist in active_artists:
-                asked = self.ask_questions(artist, round_number, min_rounds)
-                if asked:
-                    still_asking.append(artist)
-
-            active_artists = still_asking
+            active_artists = [artist for artist in active_artists
+                              if self.ask_questions(artist, round_number, min_rounds)]
 
     def ask_questions(self, artist: ArtistConfig, round_number: int, min_rounds: int) -> bool:
         """Один художник задаёт вопросы эксперту. Возвращает True, если вопросы были."""
+        limit = self.settings.max_questions_per_round
         response = self.artist_llm.ask_json(
-            build_questions_system_prompt(artist, self.settings.shared_questions,
-                                          self.settings.max_questions_per_round),
+            build_questions_system_prompt(artist, self.settings.shared_questions, limit),
             self.build_artist_context(artist),
         )
-
-        questions = []
-        for question in response.get("questions", []):
-            if question:
-                questions.append(str(question))
-        questions = questions[:self.settings.max_questions_per_round]
+        questions = [str(question) for question in response.get("questions", []) if question][:limit]
 
         artist_is_ready = bool(response.get("ready")) and round_number > min_rounds
         if artist_is_ready or not questions:
             print(f"[Художник {artist.artist_id}] Информации достаточно.")
             return False
 
-        answers = self.get_expert_answers(artist, questions)
-
-        for question, answer in zip(questions, answers):
+        for question, answer in zip(questions, self.get_expert_answers(artist, questions)):
             self.dialogue.add(artist.artist_id, question, answer)
             print(f"[Художник {artist.artist_id}] {question}")
             print(f"[Эксперт] {answer}")
-
         return True
 
     def get_expert_answers(self, artist: ArtistConfig, questions: list[str]) -> list[str]:
         """
-        Эксперт отвечает на вопросы художника.
-        Эксперт всегда видит весь свой диалог со всеми художниками,
-        чтобы не противоречить самому себе.
+        Эксперт отвечает на вопросы художника. Он всегда видит весь свой диалог
+        со всеми художниками, чтобы не противоречить самому себе.
         """
-        numbered_questions = []
-        for number, question in enumerate(questions, start=1):
-            numbered_questions.append(f"{number}. {question}")
-
         user_message = (
             f"Идея картины: {self.settings.idea}\n\n"
             f"Все твои прежние ответы художникам:\n"
             f"{Dialogue.to_text(self.dialogue.entries)}\n\n"
             f"Сейчас спрашивает Художник {artist.artist_id}:\n"
-            + "\n".join(numbered_questions)
+            + "\n".join(f"{number}. {question}" for number, question in enumerate(questions, 1))
         )
-
         response = self.expert_llm.ask_json(
             build_expert_answers_system_prompt(self.settings.expert_taste), user_message,
             required_fields=("answers",))
-
-        answers = []
-        for answer in response.get("answers", []):
-            answers.append(str(answer))
-        return answers
+        return [str(answer) for answer in response.get("answers", [])]
 
     # ----- Шаг 2. Промпт для генерации -----
 
@@ -199,14 +161,11 @@ class ArtStudio:
                        iteration: int) -> tuple[Path | None, str | None]:
         """Сгенерировать картинку. Возвращает (путь к файлу, текст ошибки)."""
         output_path = self.settings.output_dir / f"artist_{artist.artist_id}_{iteration:02d}.png"
-        generator = self.image_generators[artist.artist_id]
-
         try:
-            generator.generate(prompt, output_path)
+            self.image_generators[artist.artist_id].generate(prompt, output_path)
         except Exception as error:
             print(f"  ! Ошибка генерации у художника {artist.artist_id}: {error}")
             return None, str(error)
-
         print(f"[Генератор {artist.artist_id}] сохранено: {output_path}")
         return output_path, None
 
@@ -221,26 +180,22 @@ class ArtStudio:
         проверка показала, что модель верит тексту больше, чем изображению,
         и повторяет ошибки описания (например, путаницу «лево/право»).
         """
-        agreed_details = self.dialogue.visible_to(artist.artist_id)
         sees_image = self.settings.expert_sees_image
-
         user_message = (
             f"Идея картины: {self.settings.idea}\n\n"
             f"Художник: {artist.artist_id}\n"
-            f"Детали, согласованные с ним:\n{Dialogue.to_text(agreed_details)}\n\n"
+            f"Детали, согласованные с ним:\n"
+            f"{Dialogue.to_text(self.dialogue.visible_to(artist.artist_id))}\n\n"
             f"Промпт художника:\n{prompt}"
         )
         if not sees_image:
             user_message += f"\n\nОбъективное описание получившейся картины:\n{description}"
 
-        system_prompt = build_expert_review_system_prompt(self.settings.expert_taste, sees_image)
-        if sees_image:
-            response = self.expert_vision_llm.ask_json(system_prompt, user_message,
-                                                       image_path=image_path,
-                                                       required_fields=("score",))
-        else:
-            response = self.expert_llm.ask_json(system_prompt, user_message,
-                                                required_fields=("score",))
+        expert = self.expert_vision_llm if sees_image else self.expert_llm
+        response = expert.ask_json(
+            build_expert_review_system_prompt(self.settings.expert_taste, sees_image),
+            user_message, image_path=image_path if sees_image else None,
+            required_fields=("score",))
         return parse_review(response)
 
     @staticmethod
@@ -265,33 +220,24 @@ class ArtStudio:
             self.run_question_rounds(self.settings.feedback_question_rounds)
 
         # 2. Каждый художник пишет промпт
-        prompts = {}
-        reasonings = {}
+        written = {}
         for artist in self.artists:
             prompt, reasoning = self.write_prompt(artist)
-            prompts[artist.artist_id] = prompt
-            reasonings[artist.artist_id] = reasoning
+            written[artist.artist_id] = (prompt, reasoning)
             print(f"[Художник {artist.artist_id}] {reasoning}")
             print(f"  промпт: {prompt}")
 
-        # 3. Генерация картин
-        image_paths = {}
-        errors = {}
-        for artist in self.artists:
-            path, error = self.generate_image(artist, prompts[artist.artist_id], iteration)
-            image_paths[artist.artist_id] = path
-            errors[artist.artist_id] = error
+        # 3. Генерация картин: artist_id → (путь или None, ошибка или None)
+        generated = {artist.artist_id: self.generate_image(artist, written[artist.artist_id][0],
+                                                           iteration)
+                     for artist in self.artists}
 
         # 4. VLM описывает картины
         descriptions = {}
-        for artist in self.artists:
-            path = image_paths[artist.artist_id]
-            if path is None:
-                descriptions[artist.artist_id] = ""
-                continue
-            description = self.vision_model.describe(path)
-            descriptions[artist.artist_id] = description
-            print(f"[VLM → Художник {artist.artist_id}] {description[:300]}...")
+        for artist_id, (path, _) in generated.items():
+            descriptions[artist_id] = self.vision_model.describe(path) if path else ""
+            if path:
+                print(f"[VLM → Художник {artist_id}] {descriptions[artist_id][:300]}...")
 
         # VLM больше не нужна до следующей итерации — освобождаем видеопамять
         self.vision_model.unload_from_memory()
@@ -299,85 +245,57 @@ class ArtStudio:
         # 5. Эксперт оценивает картины
         for artist in self.artists:
             artist_id = artist.artist_id
+            prompt, reasoning = written[artist_id]
+            image_path, error = generated[artist_id]
 
-            if errors[artist_id] is not None:
-                review = self.review_for_failed_generation(errors[artist_id])
+            if error is not None:
+                review = self.review_for_failed_generation(error)
             else:
-                review = self.review_image(artist, prompts[artist_id], image_paths[artist_id],
-                                           descriptions[artist_id])
-
+                review = self.review_image(artist, prompt, image_path, descriptions[artist_id])
             print(f"[Эксперт → Художник {artist_id}] {review.score}/10: {review.instructions}")
 
-            image_path = image_paths[artist_id]
-            record = IterationRecord(
-                iteration=iteration,
-                prompt=prompts[artist_id],
-                artist_reasoning=reasonings[artist_id],
+            self.history[artist_id].append(IterationRecord(
+                iteration=iteration, prompt=prompt, artist_reasoning=reasoning,
                 image_path=str(image_path) if image_path else None,
-                description=descriptions[artist_id],
-                review=review,
-                error=errors[artist_id],
-            )
-            self.history[artist_id].append(record)
+                description=descriptions[artist_id], review=review, error=error,
+            ))
 
     # ----- Условие остановки -----
 
     def all_artists_reached_target(self) -> bool:
-        """Проверить, что последняя оценка каждого художника не ниже целевой."""
-        for artist in self.artists:
-            last_record = self.history[artist.artist_id][-1]
-            if last_record.review.score < self.settings.target_score:
-                return False
-        return True
+        """Последняя оценка каждого художника не ниже целевой."""
+        return all(records[-1].review.score >= self.settings.target_score
+                   for records in self.history.values())
 
     # ----- Сохранение и итоги -----
 
     def save_log(self) -> None:
         """Сохранить весь ход работы в log.json."""
-        history_as_dicts = {}
-        for artist_id, records in self.history.items():
-            history_as_dicts[artist_id] = []
-            for record in records:
-                history_as_dicts[artist_id].append(asdict(record))
-
-        dialogue_as_dicts = []
-        for entry in self.dialogue.entries:
-            dialogue_as_dicts.append(asdict(entry))
-
-        log = {
+        write_json(self.settings.output_dir / "log.json", {
             "idea": self.settings.idea,
             "shared_questions": self.settings.shared_questions,
             "seed": self.settings.seed,
             "expert_sees_image": self.settings.expert_sees_image,
             "expert_taste": self.settings.expert_taste,
             "artists": [asdict(artist) for artist in self.artists],
-            "dialogue": dialogue_as_dicts,
-            "history": history_as_dicts,
-        }
-
-        log_path = self.settings.output_dir / "log.json"
-        log_path.write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding="utf-8")
+            "dialogue": [asdict(entry) for entry in self.dialogue.entries],
+            "history": {artist_id: [asdict(record) for record in records]
+                        for artist_id, records in self.history.items()},
+        })
 
     def print_summary(self) -> None:
         print("\n=== Итоги ===")
-        for artist in self.artists:
-            best_record = self.history[artist.artist_id][0]
-            for record in self.history[artist.artist_id]:
-                if record.review.score > best_record.review.score:
-                    best_record = record
-            print(f"Художник {artist.artist_id}: лучшая картина — "
-                  f"{best_record.image_path} ({best_record.review.score}/10)")
+        for artist_id, records in self.history.items():
+            best = max(records, key=lambda record: record.review.score)
+            print(f"Художник {artist_id}: лучшая картина — "
+                  f"{best.image_path} ({best.review.score}/10)")
 
     # ----- Запуск -----
 
     def run(self) -> None:
         self.settings.output_dir.mkdir(parents=True, exist_ok=True)
-
-        if self.settings.shared_questions:
-            mode_text = "видят вопросы друг друга"
-        else:
-            mode_text = "НЕ видят вопросы друг друга"
-        print(f"Идея: {self.settings.idea}. Художники {mode_text}.\n")
+        mode_text = "видят" if self.settings.shared_questions else "НЕ видят"
+        print(f"Идея: {self.settings.idea}. Художники {mode_text} вопросы друг друга.\n")
 
         print("=== Согласование деталей ===")
         self.run_question_rounds(self.settings.start_question_rounds, min_rounds=1)
@@ -386,7 +304,6 @@ class ArtStudio:
         for iteration in range(1, self.settings.max_iterations + 1):
             self.run_iteration(iteration)
             self.save_log()
-
             if iteration >= self.settings.min_iterations and self.all_artists_reached_target():
                 print("\nВсе художники достигли целевой оценки.")
                 break
@@ -400,4 +317,3 @@ class ArtStudio:
         except Exception as error:
             # Таймлапс — приятное дополнение, из-за него прогон не должен падать
             print(f"  ! Не удалось собрать таймлапс: {error}")
-
