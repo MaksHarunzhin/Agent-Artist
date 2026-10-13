@@ -20,6 +20,7 @@ from .config import Settings
 from .generators import create_image_generators
 from .llm import create_yandex_client
 from .recovery import recover_and_summarize
+from .telephone import run_telephone
 from .timelapse import render_run
 from .translation import classify_and_summarize
 from .studio import ArtStudio
@@ -252,6 +253,14 @@ def main(argv: list[str] | None = None) -> None:
     run_parser.add_argument("--output-dir", type=Path,
                             default=Path("runs") / f"experiment_{time.strftime('%Y%m%d_%H%M%S')}")
 
+    telephone_parser = commands.add_parser(
+        "telephone", help="«испорченный телефон»: рисуют по пересказу предыдущей картины")
+    add_experiment_arguments(telephone_parser, defaults)
+    telephone_parser.add_argument("--steps", type=int, default=6, help="длина цепочки")
+    telephone_parser.add_argument(
+        "--output-dir", type=Path,
+        default=Path("runs") / f"telephone_{time.strftime('%Y%m%d_%H%M%S')}")
+
     summary_parser = commands.add_parser("summary", help="сводка по готовым прогонам")
     summary_parser.add_argument("paths", type=Path, nargs="+",
                                 help="папки с прогонами (log.json ищется рекурсивно)")
@@ -288,6 +297,12 @@ def main(argv: list[str] | None = None) -> None:
         return
 
     load_environment()
+
+    if args.command == "telephone":
+        settings = settings_from_arguments(args)
+        settings.check()
+        print(f"Лента: {run_telephone(settings, args.steps, args.output_dir)}")
+        return
 
     if args.command in ("recover", "translation"):
         settings = Settings(yandex_api_key=os.environ.get("YANDEX_API_KEY", ""),

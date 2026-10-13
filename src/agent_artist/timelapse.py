@@ -51,6 +51,20 @@ def load_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     return ImageFont.load_default(size)
 
 
+def artist_caption(artist: dict) -> str:
+    """Подпись художника в три строки: имя, генератор, язык промпта."""
+    generator = GENERATOR_NAMES.get(artist["generator"], artist["generator"])
+    return (f"Художник {artist['artist_id']}\n{generator}\n"
+            f"промпт на {artist.get('prompt_language', '')}")
+
+
+def text_column_width(texts: list[str], font) -> int:
+    """Ширина колонки подписей — по самой длинной подписи, с отступами."""
+    measure = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+    return 2 * PADDING + max(
+        measure.multiline_textbbox((0, 0), text, font=font, spacing=6)[2] for text in texts)
+
+
 def score_color(score: int) -> tuple[int, int, int]:
     """От красного (плохо) через жёлтый к зелёному (хорошо)."""
     if score >= 8:
@@ -176,16 +190,8 @@ class TimelapseRenderer:
     def save_evolution_sheet(self, path: Path) -> None:
         """Сетка: строки — художники, столбцы — итерации."""
         thumb = 256
-        labels = []
-        for artist in self.artists:
-            generator = GENERATOR_NAMES.get(artist["generator"], artist["generator"])
-            labels.append(f"Художник {artist['artist_id']}\n{generator}\n"
-                          f"промпт на {artist.get('prompt_language', '')}")
-        # Колонка подписей — по самой длинной подписи
-        measure = ImageDraw.Draw(Image.new("RGB", (1, 1)))
-        label_width = 2 * PADDING + max(
-            measure.multiline_textbbox((0, 0), label, font=self.label_font, spacing=6)[2]
-            for label in labels)
+        labels = [artist_caption(artist) for artist in self.artists]
+        label_width = text_column_width(labels, self.label_font)
 
         sheet = Image.new("RGB", (label_width + self.iterations * (thumb + PADDING) + PADDING,
                                   HEADER_HEIGHT + len(self.artists) * (thumb + 40 + PADDING)),
