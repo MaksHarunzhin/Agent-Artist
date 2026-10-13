@@ -1,10 +1,14 @@
 import os
-os.environ["HF_HUB_OFFLINE"] = "1"   # ДО импорта diffusers, иначе не сработает
+# Офлайн-режим Hugging Face нужно включить ДО импорта diffusers,
+# иначе библиотека его не увидит и будет обращаться к интернету.
+os.environ["HF_HUB_OFFLINE"] = "1"
 
 import base64
 import json
 import re
 import time
+from dataclasses import asdict, dataclass
+from io import BytesIO
 from pathlib import Path
 
 import httpx
@@ -12,323 +16,782 @@ import ollama
 import torch
 from diffusers import AutoPipelineForText2Image
 from openai import OpenAI
+from PIL import Image
+from dotenv import load_dotenv
+import os
 
-# ---------------- Настройки ----------------
-IDEA = "Золотистый ретривер"                 # идея картины
+if load_dotenv(override=True):
+    print("Переменные окружения загружены")
 
+IDEA = "Золотистый ретривер"
+
+# True  — художники видят вопросы друг друга и ответы эксперта на них.
+# False — каждый художник видит только свой диалог с экспертом.
+SHARED_QUESTIONS = False
+
+# --- Продолжительность работы ---
+MIN_ITERATIONS = 2     # минимум итераций (у каждого художника столько же картин)
+MAX_ITERATIONS = 8     # жёсткий предел итераций
+TARGET_SCORE = 8       # цикл завершается, когда у всех художников оценка не ниже этой
+
+# --- Уточняющие вопросы ---
+START_QUESTION_ROUNDS = 3       # раундов вопросов до первой картины
+FEEDBACK_QUESTION_ROUNDS = 1    # раундов вопросов после каждой критики
+MAX_QUESTIONS_PER_ROUND = 4     # максимум вопросов от одного художника за раунд
+
+# --- Yandex AI Studio ---
+YANDEX_API_KEY = os.environ.get("YANDEX_API_KEY", "")
+YANDEX_FOLDER_ID = os.environ.get("YANDEX_FOLDER_ID", "")
+YANDEX_BASE_URL = "https://ai.api.cloud.yandex.net/v1"
+
+ARTIST_LLM_NAME = "deepseek-v4.1-flash"   # модель, которая думает за художников
+EXPERT_LLM_NAME = "deepseek-v4.1-flash"   # модель эксперта
+
+# --- Локальная VLM в Ollama ---
 OLLAMA_HOST = "http://127.0.0.1:11434"
-TEXT_MODEL = "qwen3:8b"              # художник и эксперт
-VISION_MODEL = "qwen3-vl:8b"         # описание картинок
-IMAGE_MODEL = "stabilityai/sdxl-turbo"
+VISION_MODEL_NAME = "qwen3-vl:8b"
 
-MIN_IMAGES = 5          # минимум картин
-MAX_IMAGES = 8          # жёсткий предел
-TARGET_SCORE = 8        # 0 = остановиться ровно на MIN_IMAGES
-START_ROUNDS = 3        # раундов вопросов до первой картины
-ITER_ROUNDS = 1         # раундов вопросов после каждой критики
-MAX_QUESTIONS = 4       # вопросов за один раунд
-DISABLE_THINKING = True # добавлять /no_think для моделей qwen3
-OUT_DIR = Path("runs") / time.strftime("%Y%m%d_%H%M%S")
+# --- Куда сохранять результаты ---
+OUTPUT_DIR = Path("runs") / time.strftime("%Y%m%d_%H%M%S")
 
-# Клиенты: Responses API (OpenAI-совместимый) и нативный Ollama.
-# trust_env=False — игнорировать системный прокси для локальных запросов.
-client = OpenAI(
-    base_url=f"{OLLAMA_HOST}/v1/",
-    api_key="ollama",   # обязателен для клиента, Ollama его игнорирует
-    http_client=httpx.Client(trust_env=False, timeout=600),
-)
-native = ollama.Client(host=OLLAMA_HOST, trust_env=False)
-
-# Вкусы эксперта: меняйте под себя, от них зависят все его решения
-EXPERT_TASTE = """- Любишь кинематографичные кадры с выразительным светом и глубиной.
+# --- Вкусы эксперта: от них зависят все его решения ---
+EXPERT_TASTE = """
+- Любишь кинематографичные кадры с выразительным светом и глубиной.
 - Предпочитаешь живопись и иллюстрацию фотореализму.
 - Ценишь, когда в картине есть история и напряжение момента.
 - Не любишь перегруженные сцены: один ясный главный сюжет, продуманный фон.
-- Предпочитаешь насыщенную, но гармоничную палитру."""
-
-# ---------------- Промпты ролей ----------------
-ASK_SYSTEM = """Ты художник-иллюстратор. Тебе заказали картину, но все решения о деталях
-принимает арт-эксперт (заказчик). Тебе дают идею, уже согласованные с экспертом детали
-и, возможно, его критику последней версии картины.
-Реши, хватает ли информации, чтобы написать МАКСИМАЛЬНО точный и подробный промпт.
-Если не хватает — задай эксперту конкретные вопросы о том, что ещё не согласовано:
-сюжет, персонажи и их количество, внешность, одежда, позы, эмоции, место, время суток,
-погода, стиль, палитра, освещение, ракурс, композиция, детали фона.
-Если есть критика — уточни то, что в ней неясно или требует выбора.
-Не повторяй вопросы, на которые уже есть ответ. Не больше 4 вопросов.
-Ответь ТОЛЬКО JSON-объектом, без пояснений и markdown:
-{"ready": false, "questions": ["...", "..."]}
-Если информации достаточно: {"ready": true, "questions": []}"""
-
-EXPERT_ANSWER_SYSTEM = f"""Ты арт-эксперт и заказчик картины. Твои вкусы:
-{EXPERT_TASTE}
-Художник задаёт тебе уточняющие вопросы. Отвечай на каждый конкретно и решительно,
-исходя из своих вкусов и идеи. Никогда не отвечай «на ваше усмотрение» — принимай решение сам.
-Не противоречь своим прежним ответам из диалога.
-Ответь ТОЛЬКО JSON-объектом, без пояснений и markdown, ответы в порядке вопросов:
-{{"answers": ["ответ на вопрос 1", "ответ на вопрос 2"]}}"""
-
-ARTIST_SYSTEM = """Ты художник-иллюстратор и эксперт по промптам для Stable Diffusion.
-Тебе дают идею, все согласованные с экспертом детали и, возможно, его критику прошлой версии.
-Учти КАЖДУЮ согласованную деталь. Если есть критика — исправь каждое замечание.
-Напиши промпт НА АНГЛИЙСКОМ: не длиннее 60 слов, фразы через запятую,
-самое важное (сюжет, персонажи, стиль) в начале.
-Ответь ТОЛЬКО JSON-объектом, без пояснений и markdown:
-{"reasoning": "по-русски: что учёл и что изменил",
- "prompt": "...", "negative_prompt": "..."}"""
-
-VLM_PROMPT = """Опиши изображение объективно и подробно: какие объекты есть,
-сколько их, где они расположены, цвета, стиль, освещение, фон, любой текст.
-Отдельно перечисли дефекты: искажения анатомии, лишние или слитые предметы,
-размытость, артефакты. Не додумывай того, чего на изображении нет."""
-
-EXPERT_REVIEW_SYSTEM = f"""Ты строгий арт-эксперт и заказчик картины. Твои вкусы:
-{EXPERT_TASTE}
-Тебе дают идею, детали, которые ты сам согласовал с художником, его промпт
-и объективное описание получившейся картины. Картину ты не видишь — опирайся
-только на описание. Сравни задуманное с полученным.
-Оцени соответствие согласованным деталям и качество по шкале 1–10.
-Дай художнику конкретные инструкции, что изменить в следующей версии.
-Ответь ТОЛЬКО JSON-объектом, без пояснений и markdown:
-{{"score": 7, "matches": ["..."], "problems": ["..."],
- "instructions_for_artist": "..."}}"""
+- Предпочитаешь насыщенную, но гармоничную палитру.
+"""
 
 
-# ---------------- Вызовы через Responses API ----------------
-THINK_RE = re.compile(r"<think>.*?</think>", re.DOTALL)
+@dataclass
+class ArtistConfig:
+    """Настройки одного художника."""
+
+    artist_id: str          # короткое имя: "A", "B"
+    persona: str            # особенность характера художника
+    generator: str          # "local" (SDXL-Turbo) или "yandex_art"
+    image_model: str        # имя модели генерации изображений
+    prompt_language: str    # на каком языке писать промпт
+    max_prompt_words: int   # ограничение длины промпта
 
 
-def clean_text(text: str) -> str:
-    """Убрать блок рассуждений <think>, если модель его всё же выдала."""
-    return THINK_RE.sub("", text).strip()
+ARTISTS = [
+    ArtistConfig(
+        artist_id="A",
+        persona="Ты особенно тщательно продумываешь композицию, ракурс и свет.",
+        generator="local",
+        image_model="stabilityai/sdxl-turbo",
+        prompt_language="английском",
+        max_prompt_words=60,
+    ),
+    ArtistConfig(
+        artist_id="B",
+        persona="Ты особенно тщательно продумываешь композицию, ракурс и свет.",
+        generator="yandex_art",
+        image_model="aliceai-image-art-3.0",
+        prompt_language="русском",
+        max_prompt_words=70,
+    ),
+]
+
+
+@dataclass
+class QuestionAnswer:
+    """Один уточняющий вопрос художника и ответ эксперта."""
+
+    artist_id: str
+    question: str
+    answer: str
+
+@dataclass
+class Review:
+    """Оценка картины экспертом."""
+
+    score: int
+    problems: list
+    instructions: str
+
+
+@dataclass
+class IterationRecord:
+    """Всё, что произошло с одним художником за одну итерацию."""
+
+    iteration: int
+    prompt: str
+    artist_reasoning: str
+    image_path: str | None
+    description: str
+    review: Review
+    error: str | None = None
+
+
+JSON_ONLY_INSTRUCTION = "Ответь ТОЛЬКО JSON-объектом, без пояснений и без markdown.\n"
+
+
+def build_questions_system_prompt(artist: ArtistConfig) -> str:
+    """Инструкция для художника: решить, нужны ли ещё уточнения, и задать вопросы."""
+    if SHARED_QUESTIONS:
+        visibility_note = (
+            "Ты также видишь вопросы другого художника и ответы эксперта ему. "
+            "Не дублируй эти вопросы и считай те ответы согласованными деталями.\n"
+        )
+    else:
+        visibility_note = ""
+
+    return (
+        f"Ты художник-иллюстратор по имени Художник {artist.artist_id}. {artist.persona}\n"
+        "Тебе заказали картину, но все решения о деталях принимает арт-эксперт (заказчик).\n"
+        "Тебе дают идею, уже согласованные детали и, возможно, критику твоей прошлой картины.\n"
+        + visibility_note +
+        "Реши, хватает ли информации, чтобы написать максимально точный и подробный промпт.\n"
+        "Если не хватает — задай эксперту конкретные вопросы о том, что ещё не согласовано: "
+        "сюжет, персонажи и их количество, внешность, одежда, позы, эмоции, место, "
+        "время суток, погода, стиль, палитра, освещение, ракурс, композиция, детали фона.\n"
+        "Если есть критика — уточни то, что в ней неясно или требует выбора.\n"
+        f"Не повторяй вопросы, на которые уже есть ответ. Не больше {MAX_QUESTIONS_PER_ROUND} вопросов.\n"
+        + JSON_ONLY_INSTRUCTION +
+        'Если нужны уточнения: {"ready": false, "questions": ["вопрос 1", "вопрос 2"]}\n'
+        'Если информации достаточно: {"ready": true, "questions": []}'
+    )
+
+
+def build_prompt_writer_system_prompt(artist: ArtistConfig) -> str:
+    """Инструкция для художника: написать промпт для модели генерации."""
+    return (
+        f"Ты художник-иллюстратор по имени Художник {artist.artist_id}. {artist.persona}\n"
+        "Ты пишешь промпт для модели генерации изображений.\n"
+        "Тебе дают идею, все согласованные с экспертом детали и, возможно, "
+        "его критику твоей прошлой картины.\n"
+        "Учти КАЖДУЮ согласованную деталь. Если есть критика — исправь каждое замечание.\n"
+        f"Промпт пиши на {artist.prompt_language} языке, не длиннее "
+        f"{artist.max_prompt_words} слов. Самое важное (сюжет, персонажи, стиль) — в начале.\n"
+        + JSON_ONLY_INSTRUCTION +
+        '{"reasoning": "по-русски: что учёл и что изменил", "prompt": "текст промпта"}'
+    )
+
+
+EXPERT_ANSWERS_SYSTEM_PROMPT = (
+    "Ты арт-эксперт и заказчик картины. Твои вкусы:\n"
+    + EXPERT_TASTE +
+    "С тобой работают несколько художников. Сейчас один из них задаёт уточняющие вопросы.\n"
+    "Отвечай на каждый вопрос конкретно и решительно, исходя из своих вкусов и идеи.\n"
+    "Никогда не отвечай «на ваше усмотрение» — принимай решение сам.\n"
+    "Не противоречь своим прежним ответам.\n"
+    + JSON_ONLY_INSTRUCTION +
+    'Ответы в том же порядке, что и вопросы: {"answers": ["ответ 1", "ответ 2"]}'
+)
+
+EXPERT_REVIEW_SYSTEM_PROMPT = (
+    "Ты строгий арт-эксперт и заказчик картины. Твои вкусы:\n"
+    + EXPERT_TASTE +
+    "Тебе дают идею, детали, которые ты согласовал с художником, его промпт "
+    "и объективное описание получившейся картины.\n"
+    "Саму картину ты не видишь — опирайся только на описание.\n"
+    "Сравни задуманное с полученным и оцени картину по шкале от 1 до 10.\n"
+    "Дай художнику конкретные инструкции, что изменить в следующей версии.\n"
+    + JSON_ONLY_INSTRUCTION +
+    '{"score": 7, "problems": ["проблема 1", "проблема 2"], "instructions": "что исправить"}'
+)
+
+VISION_PROMPT = (
+    "Опиши изображение объективно и подробно: какие объекты есть, сколько их, "
+    "где они расположены, цвета, стиль, освещение, фон, любой текст.\n"
+    "Отдельно перечисли дефекты: искажения анатомии, лишние или слитые предметы, "
+    "размытость, артефакты.\n"
+    "Не додумывай того, чего на изображении нет."
+)
+
+
+def remove_thinking_block(text: str) -> str:
+    """Убрать блок рассуждений <think>...</think>, если модель его выдала."""
+    without_thinking = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+    return without_thinking.strip()
 
 
 def extract_json(text: str) -> dict:
-    """Достать JSON-объект из ответа, даже если вокруг есть markdown или текст."""
-    text = clean_text(text)
-    start, end = text.find("{"), text.rfind("}")
-    if start == -1 or end <= start:
-        raise json.JSONDecodeError("JSON-объект не найден", text, 0)
-    return json.loads(text[start:end + 1])
+    """
+    Достать JSON-объект из ответа модели.
+
+    Модели иногда оборачивают JSON в markdown или добавляют текст вокруг,
+    поэтому берём всё от первой открывающей до последней закрывающей скобки.
+    """
+    clean_text = remove_thinking_block(text)
+    start = clean_text.find("{")
+    end = clean_text.rfind("}")
+
+    if start == -1 or end == -1 or end <= start:
+        raise json.JSONDecodeError("В ответе нет JSON-объекта", clean_text, 0)
+
+    json_text = clean_text[start:end + 1]
+    return json.loads(json_text)
 
 
-def chat_json(model: str, system: str, user: str, retries: int = 3) -> dict:
-    """Запрос к LLM через Responses API с JSON-ответом и повтором при ошибке."""
-    if DISABLE_THINKING:
-        user = f"{user}\n\n/no_think"
-    for attempt in range(1, retries + 1):
-        resp = client.responses.create(
-            model=model,
-            instructions=system,   # системный промпт
-            input=user,
-            temperature=0.7,
+def parse_review(data: dict) -> Review:
+    """Превратить ответ эксперта в объект Review, даже если каких-то полей нет."""
+    try:
+        score = int(data.get("score", 0))
+    except (TypeError, ValueError):
+        score = 0
+
+    problems = data.get("problems", [])
+    if not isinstance(problems, list):
+        problems = [str(problems)]
+
+    instructions = str(data.get("instructions", ""))
+    return Review(score=score, problems=problems, instructions=instructions)
+
+
+def check_settings() -> None:
+    """Проверить, что ключи Яндекса заданы, — до того, как что-то запускать."""
+    if not YANDEX_API_KEY or not YANDEX_FOLDER_ID:
+        raise RuntimeError(
+            "Не заданы переменные окружения YANDEX_API_KEY и YANDEX_FOLDER_ID. "
+            'Пример для PowerShell: $env:YANDEX_API_KEY = "..."'
         )
-        try:
-            return extract_json(resp.output_text)
-        except json.JSONDecodeError:
-            print(f"  ! невалидный JSON (попытка {attempt}), повторяю")
-    raise RuntimeError(f"{model} не вернула валидный JSON")
 
 
-_vlm_native_fallback = False
+def create_yandex_client() -> OpenAI:
+    """Клиент Yandex AI Studio: через него работают LLM и Yandex ART."""
+    return OpenAI(
+        api_key=YANDEX_API_KEY,
+        base_url=YANDEX_BASE_URL,
+        project=YANDEX_FOLDER_ID,
+        timeout=300,
+    )
 
 
-def describe(image_path: Path) -> str:
-    """Описание картинки: сначала через Responses API, при ошибке — нативно."""
-    global _vlm_native_fallback
-    prompt = f"{VLM_PROMPT}\n\n/no_think" if DISABLE_THINKING else VLM_PROMPT
+class YandexLLM:
+    """Языковая модель в Yandex AI Studio, вызываемая через Responses API."""
 
-    if not _vlm_native_fallback:
-        b64 = base64.b64encode(image_path.read_bytes()).decode()
-        try:
-            resp = client.responses.create(
-                model=VISION_MODEL,
-                input=[{
+    def __init__(self, client: OpenAI, model_name: str):
+        self.client = client
+        self.model_uri = f"gpt://{YANDEX_FOLDER_ID}/{model_name}"
+
+    def ask_json(self, system_prompt: str, user_message: str, attempts: int = 3) -> dict:
+        """Отправить запрос и получить ответ в виде словаря из JSON."""
+        for attempt in range(1, attempts + 1):
+            response = self.client.responses.create(
+                model=self.model_uri,
+                instructions=system_prompt,
+                input=user_message,
+                temperature=0.7,
+            )
+            try:
+                return extract_json(response.output_text)
+            except json.JSONDecodeError:
+                print(f"  ! Модель вернула невалидный JSON (попытка {attempt} из {attempts})")
+
+        raise RuntimeError(f"Модель {self.model_uri} не вернула валидный JSON")
+
+
+class LocalVisionModel:
+    """
+    Локальная VLM в Ollama, которая описывает картинки.
+
+    Сначала пробуем Responses API. Если Ollama не принимает через него
+    изображение, переходим на нативный API Ollama.
+    """
+
+    def __init__(self, model_name: str):
+        self.model_name = model_name
+
+        # trust_env=False — не отправлять локальные запросы через системный прокси
+        self.responses_client = OpenAI(
+            base_url=f"{OLLAMA_HOST}/v1/",
+            api_key="ollama",  # клиенту нужен ключ, Ollama его игнорирует
+            http_client=httpx.Client(trust_env=False, timeout=600),
+        )
+        self.native_client = ollama.Client(host=OLLAMA_HOST, trust_env=False)
+        self.use_native_api = False
+
+    def describe(self, image_path: Path) -> str:
+        """Получить объективное описание картинки."""
+        if not self.use_native_api:
+            try:
+                return self._describe_with_responses_api(image_path)
+            except Exception as error:
+                print(f"  ! Responses API не принял изображение ({error}). "
+                      "Дальше VLM работает через нативный API Ollama.")
+                self.use_native_api = True
+
+        return self._describe_with_native_api(image_path)
+
+    def _describe_with_responses_api(self, image_path: Path) -> str:
+        image_base64 = base64.b64encode(image_path.read_bytes()).decode("utf-8")
+        # /no_think отключает режим рассуждений у моделей семейства qwen3
+        prompt_text = VISION_PROMPT + "\n\n/no_think"
+
+        response = self.responses_client.responses.create(
+            model=self.model_name,
+            input=[
+                {
                     "role": "user",
                     "content": [
-                        {"type": "input_text", "text": prompt},
+                        {"type": "input_text", "text": prompt_text},
                         {"type": "input_image",
-                         "image_url": f"data:image/png;base64,{b64}"},
+                         "image_url": f"data:image/png;base64,{image_base64}"},
                     ],
-                }],
-                temperature=0.2,
-            )
-            text = clean_text(resp.output_text)
-            if text:
-                unload(VISION_MODEL)
-                return text
-            raise ValueError("пустой ответ")
-        except Exception as e:
-            print(f"  ! Responses API не принял изображение ({e}); "
-                  f"дальше VLM работает через нативный API Ollama")
-            _vlm_native_fallback = True
-
-    resp = native.chat(
-        model=VISION_MODEL,
-        messages=[{"role": "user", "content": VLM_PROMPT,
-                   "images": [str(image_path)]}],
-        think=False,
-        keep_alive=0,
-        options={"temperature": 0.2},
-    )
-    return clean_text(resp.message.content)
-
-
-def unload(model: str):
-    """Выгрузить модель из видеопамяти (в Responses API такой функции нет)."""
-    try:
-        native.generate(model=model, prompt="", keep_alive=0)
-    except Exception:
-        pass
-
-
-# ---------------- Общий контекст ----------------
-def format_dialogue(dialogue: list[dict], limit: int = 40) -> str:
-    if not dialogue:
-        return "пока ничего не согласовано"
-    return "\n".join(f"Художник: {d['q']}\nЭксперт: {d['a']}" for d in dialogue[-limit:])
-
-
-def build_context(history: list[dict], dialogue: list[dict]) -> str:
-    ctx = (f"Идея картины: {IDEA}\n\n"
-           f"Согласованные детали (вопросы художника и ответы эксперта):\n"
-           f"{format_dialogue(dialogue)}\n")
-    if history:
-        last = history[-1]
-        ctx += (f"\nПрошлый промпт: {last['prompt']}"
-                f"\nОценка эксперта: {last['score']}/10"
-                f"\nПроблемы: {'; '.join(map(str, last['problems']))}"
-                f"\nИнструкции эксперта: {last['instructions']}\n")
-    return ctx
-
-
-# ---------------- Роли ----------------
-def consult(history: list[dict], dialogue: list[dict], rounds: int, min_rounds: int = 0):
-    """Художник задаёт вопросы эксперту, эксперт отвечает по своим вкусам."""
-    for r in range(1, rounds + 1):
-        ask = chat_json(TEXT_MODEL, ASK_SYSTEM, build_context(history, dialogue))
-        questions = [str(q) for q in ask.get("questions", []) if q][:MAX_QUESTIONS]
-        if (ask.get("ready") and r > min_rounds) or not questions:
-            print("[Художник] Информации достаточно.")
-            return
-
-        q_text = "\n".join(f"{k}. {q}" for k, q in enumerate(questions, 1))
-        reply = chat_json(TEXT_MODEL, EXPERT_ANSWER_SYSTEM,
-                          build_context(history, dialogue)
-                          + f"\nНовые вопросы художника:\n{q_text}")
-        answers = reply.get("answers", [])
-
-        print(f"--- Раунд вопросов {r} ---")
-        for q, a in zip(questions, answers):
-            dialogue.append({"q": q, "a": str(a)})
-            print(f"[Художник] {q}\n[Эксперт]  {a}")
-
-
-def artist(history: list[dict], dialogue: list[dict]) -> dict:
-    return chat_json(TEXT_MODEL, ARTIST_SYSTEM, build_context(history, dialogue))
-
-
-def expert_review(prompt: str, description: str,
-                  history: list[dict], dialogue: list[dict]) -> dict:
-    scores = ", ".join(str(h["score"]) for h in history) or "нет"
-    msg = (f"Идея картины: {IDEA}\n\n"
-           f"Согласованные детали:\n{format_dialogue(dialogue)}\n\n"
-           f"Промпт художника:\n{prompt}\n\n"
-           f"Описание получившейся картины:\n{description}\n\n"
-           f"Оценки прошлых версий: {scores}")
-    return chat_json(TEXT_MODEL, EXPERT_REVIEW_SYSTEM, msg)
-
-
-# ---------------- Генерация изображений ----------------
-class ImageGenerator:
-    def __init__(self):
-        if torch.cuda.is_available():
-            self.device, dtype = "cuda", torch.float16
-        elif torch.backends.mps.is_available():
-            self.device, dtype = "mps", torch.float16
-        else:
-            self.device, dtype = "cpu", torch.float32
-        self.pipe = AutoPipelineForText2Image.from_pretrained(
-            IMAGE_MODEL, dtype=dtype,
-            variant="fp16" if dtype == torch.float16 else None,
+                }
+            ],
+            temperature=0.2,
         )
-        if self.device == "cuda":
-            self.pipe.enable_model_cpu_offload()  # экономия VRAM
+        description = remove_thinking_block(response.output_text)
+        if not description:
+            raise ValueError("пустой ответ")
+        return description
+
+    def _describe_with_native_api(self, image_path: Path) -> str:
+        response = self.native_client.chat(
+            model=self.model_name,
+            messages=[
+                {"role": "user", "content": VISION_PROMPT, "images": [str(image_path)]}
+            ],
+            think=False,
+            options={"temperature": 0.2},
+        )
+        return remove_thinking_block(response.message.content)
+
+    def unload_from_memory(self) -> None:
+        """Выгрузить VLM из видеопамяти, чтобы освободить место для SDXL."""
+        try:
+            self.native_client.generate(model=self.model_name, prompt="", keep_alive=0)
+        except Exception:
+            pass
+
+
+class LocalImageGenerator:
+    """Локальная генерация изображений через diffusers (SDXL-Turbo)."""
+
+    def __init__(self, model_name: str):
+        self.uses_gpu = torch.cuda.is_available()
+
+        if self.uses_gpu:
+            print(f"[{model_name}] работает на GPU: {torch.cuda.get_device_name(0)}")
+            dtype = torch.float16
         else:
-            self.pipe.to(self.device)
+            print(f"[{model_name}] видеокарта не найдена, работает на CPU (будет медленно)")
+            dtype = torch.float32
 
-    def generate(self, prompt: str, negative: str, path: Path, seed: int):
-        g = torch.Generator("cpu").manual_seed(seed)
-        image = self.pipe(
+        self.pipeline = AutoPipelineForText2Image.from_pretrained(
+            model_name,
+            dtype=dtype,
+            variant="fp16",
+        )
+
+        if self.uses_gpu:
+            # Части модели переносятся на видеокарту только на время работы
+            self.pipeline.enable_model_cpu_offload()
+
+    def generate(self, prompt: str, output_path: Path) -> None:
+        result = self.pipeline(
             prompt=prompt,
-            negative_prompt=negative or None,  # SDXL-Turbo его игнорирует
-            num_inference_steps=4,
-            guidance_scale=0.0,     # для SDXL-Turbo; для SDXL base ставьте ~7
-            width=512, height=512,
-            generator=g,
-        ).images[0]
-        image.save(path)
+            num_inference_steps=4,   # SDXL-Turbo рассчитана на 1–4 шага
+            guidance_scale=0.0,      # turbo-модели работают без guidance
+            width=512,
+            height=512,
+        )
+        image = result.images[0]
+        image.save(output_path)
 
 
-# ---------------- Оркестратор ----------------
-def save_log(history: list[dict], dialogue: list[dict]):
-    (OUT_DIR / "log.json").write_text(
-        json.dumps({"idea": IDEA, "expert_taste": EXPERT_TASTE,
-                    "dialogue": dialogue, "history": history},
-                   ensure_ascii=False, indent=2), encoding="utf-8")
+class YandexArtGenerator:
+    """Облачная генерация изображений через Yandex ART."""
+
+    MAX_PROMPT_CHARACTERS = 500
+
+    def __init__(self, client: OpenAI, model_name: str):
+        self.client = client
+        self.model_uri = f"art://{YANDEX_FOLDER_ID}/{model_name}"
+
+    def generate(self, prompt: str, output_path: Path) -> None:
+        if len(prompt) > self.MAX_PROMPT_CHARACTERS:
+            print(f"  ! Промпт длиннее {self.MAX_PROMPT_CHARACTERS} символов, обрезаю")
+            prompt = prompt[:self.MAX_PROMPT_CHARACTERS]
+
+        response = self.client.images.generate(
+            model=self.model_uri,
+            prompt=prompt,
+            size="1024x1024",
+        )
+        image_bytes = base64.b64decode(response.data[0].b64_json)
+        image = Image.open(BytesIO(image_bytes))
+        image.save(output_path)
 
 
-def run():
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    history: list[dict] = []
-    dialogue: list[dict] = []
+def create_image_generator(artist: ArtistConfig, yandex_client: OpenAI):
+    """Создать генератор изображений, указанный в настройках художника."""
+    if artist.generator == "local":
+        return LocalImageGenerator(artist.image_model)
+    if artist.generator == "yandex_art":
+        return YandexArtGenerator(yandex_client, artist.image_model)
+    raise ValueError(f"Неизвестный тип генератора: {artist.generator}")
 
-    print(f"Идея: {IDEA}\n\n=== Согласование деталей ===")
-    consult(history, dialogue, rounds=START_ROUNDS, min_rounds=1)
-    save_log(history, dialogue)
 
-    generator = ImageGenerator()
-    i = 0
-    while True:
-        i += 1
-        print(f"\n=== Итерация {i} ===")
+# =============================================================================
+# 6. ДИАЛОГ ХУДОЖНИКОВ С ЭКСПЕРТОМ
+# =============================================================================
 
-        if history:   # после критики художник может уточнить детали
-            consult(history, dialogue, rounds=ITER_ROUNDS)
+class Dialogue:
+    """Все вопросы художников и ответы эксперта за время работы."""
 
-        art = artist(history, dialogue)
-        print(f"[Художник] {art.get('reasoning', '')}\n  prompt: {art['prompt']}")
+    def __init__(self):
+        self.entries: list[QuestionAnswer] = []
 
-        unload(TEXT_MODEL)   # освободить VRAM под генерацию
-        img_path = OUT_DIR / f"image_{i:02d}.png"
-        seed = 1000 + i
-        generator.generate(art["prompt"], art.get("negative_prompt", ""), img_path, seed)
-        print(f"[Генератор] {img_path}")
+    def add(self, artist_id: str, question: str, answer: str) -> None:
+        self.entries.append(QuestionAnswer(artist_id, question, answer))
 
-        description = describe(img_path)
-        print(f"[VLM] {description[:300]}...")
+    def visible_to(self, artist_id: str) -> list[QuestionAnswer]:
+        """Что видит конкретный художник — зависит от SHARED_QUESTIONS."""
+        if SHARED_QUESTIONS:
+            return list(self.entries)
 
-        review = expert_review(art["prompt"], description, history, dialogue)
-        score = int(review.get("score", 0))
-        print(f"[Эксперт] {score}/10: {review.get('instructions_for_artist', '')}")
+        own_entries = []
+        for entry in self.entries:
+            if entry.artist_id == artist_id:
+                own_entries.append(entry)
+        return own_entries
 
-        history.append({
-            "iteration": i, "seed": seed, "image": str(img_path),
-            "prompt": art["prompt"],
-            "negative_prompt": art.get("negative_prompt", ""),
-            "artist_reasoning": art.get("reasoning", ""),
-            "description": description, "score": score,
-            "problems": review.get("problems", []),
-            "instructions": review.get("instructions_for_artist", ""),
-        })
-        save_log(history, dialogue)
+    @staticmethod
+    def to_text(entries: list[QuestionAnswer]) -> str:
+        """Превратить записи диалога в читаемый текст для промпта."""
+        if not entries:
+            return "Пока ничего не согласовано."
 
-        if i >= MIN_IMAGES and (score >= TARGET_SCORE or i >= MAX_IMAGES):
-            break
+        lines = []
+        for entry in entries:
+            lines.append(f"Художник {entry.artist_id}: {entry.question}")
+            lines.append(f"Эксперт: {entry.answer}")
+        return "\n".join(lines)
 
-    best = max(history, key=lambda h: h["score"])
-    print(f"\nГотово: {i} картин. Лучшая — {best['image']} ({best['score']}/10)")
+
+# =============================================================================
+# 7. МАСТЕРСКАЯ: ОСНОВНОЙ ЦИКЛ РАБОТЫ
+# =============================================================================
+
+class ArtStudio:
+    """Связывает всех участников и проводит цикл работы над картинами."""
+
+    def __init__(self):
+        yandex_client = create_yandex_client()
+
+        self.artist_llm = YandexLLM(yandex_client, ARTIST_LLM_NAME)
+        self.expert_llm = YandexLLM(yandex_client, EXPERT_LLM_NAME)
+        self.vision_model = LocalVisionModel(VISION_MODEL_NAME)
+
+        self.image_generators = {}
+        for artist in ARTISTS:
+            self.image_generators[artist.artist_id] = create_image_generator(artist, yandex_client)
+
+        self.dialogue = Dialogue()
+
+        self.history: dict[str, list[IterationRecord]] = {}
+        for artist in ARTISTS:
+            self.history[artist.artist_id] = []
+
+    # ----- Контекст для художника -----
+
+    def build_artist_context(self, artist: ArtistConfig) -> str:
+        """Собрать всё, что художник знает на текущий момент."""
+        visible_entries = self.dialogue.visible_to(artist.artist_id)
+
+        context = (
+            f"Идея картины: {IDEA}\n\n"
+            f"Согласованные детали (вопросы художников и ответы эксперта):\n"
+            f"{Dialogue.to_text(visible_entries)}\n"
+        )
+
+        artist_history = self.history[artist.artist_id]
+        if artist_history:
+            last_record = artist_history[-1]
+            problems_text = "; ".join(str(problem) for problem in last_record.review.problems)
+            context += (
+                f"\nТвой прошлый промпт: {last_record.prompt}\n"
+                f"Оценка эксперта: {last_record.review.score}/10\n"
+                f"Проблемы: {problems_text}\n"
+                f"Инструкции эксперта: {last_record.review.instructions}\n"
+            )
+
+        return context
+
+    # ----- Шаг 1. Уточняющие вопросы -----
+
+    def run_question_rounds(self, rounds: int, min_rounds: int = 0) -> None:
+        """
+        Несколько раундов вопросов. В каждом раунде художники спрашивают по очереди.
+        Художник, которому больше нечего спросить, в следующих раундах не участвует.
+        """
+        active_artists = list(ARTISTS)
+
+        for round_number in range(1, rounds + 1):
+            if not active_artists:
+                break
+
+            print(f"--- Раунд вопросов {round_number} ---")
+            still_asking = []
+
+            for artist in active_artists:
+                asked = self.ask_questions(artist, round_number, min_rounds)
+                if asked:
+                    still_asking.append(artist)
+
+            active_artists = still_asking
+
+    def ask_questions(self, artist: ArtistConfig, round_number: int, min_rounds: int) -> bool:
+        """Один художник задаёт вопросы эксперту. Возвращает True, если вопросы были."""
+        response = self.artist_llm.ask_json(
+            build_questions_system_prompt(artist),
+            self.build_artist_context(artist),
+        )
+
+        questions = []
+        for question in response.get("questions", []):
+            if question:
+                questions.append(str(question))
+        questions = questions[:MAX_QUESTIONS_PER_ROUND]
+
+        artist_is_ready = bool(response.get("ready")) and round_number > min_rounds
+        if artist_is_ready or not questions:
+            print(f"[Художник {artist.artist_id}] Информации достаточно.")
+            return False
+
+        answers = self.get_expert_answers(artist, questions)
+
+        for question, answer in zip(questions, answers):
+            self.dialogue.add(artist.artist_id, question, answer)
+            print(f"[Художник {artist.artist_id}] {question}")
+            print(f"[Эксперт] {answer}")
+
+        return True
+
+    def get_expert_answers(self, artist: ArtistConfig, questions: list[str]) -> list[str]:
+        """
+        Эксперт отвечает на вопросы художника.
+        Эксперт всегда видит весь свой диалог со всеми художниками,
+        чтобы не противоречить самому себе.
+        """
+        numbered_questions = []
+        for number, question in enumerate(questions, start=1):
+            numbered_questions.append(f"{number}. {question}")
+
+        user_message = (
+            f"Идея картины: {IDEA}\n\n"
+            f"Все твои прежние ответы художникам:\n"
+            f"{Dialogue.to_text(self.dialogue.entries)}\n\n"
+            f"Сейчас спрашивает Художник {artist.artist_id}:\n"
+            + "\n".join(numbered_questions)
+        )
+
+        response = self.expert_llm.ask_json(EXPERT_ANSWERS_SYSTEM_PROMPT, user_message)
+
+        answers = []
+        for answer in response.get("answers", []):
+            answers.append(str(answer))
+        return answers
+
+    # ----- Шаг 2. Промпт для генерации -----
+
+    def write_prompt(self, artist: ArtistConfig) -> tuple[str, str]:
+        """Художник пишет промпт. Возвращает (промпт, пояснение художника)."""
+        response = self.artist_llm.ask_json(
+            build_prompt_writer_system_prompt(artist),
+            self.build_artist_context(artist),
+        )
+        prompt = str(response.get("prompt", ""))
+        reasoning = str(response.get("reasoning", ""))
+        return prompt, reasoning
+
+    # ----- Шаг 3. Генерация изображения -----
+
+    def generate_image(self, artist: ArtistConfig, prompt: str,
+                       iteration: int) -> tuple[Path | None, str | None]:
+        """Сгенерировать картинку. Возвращает (путь к файлу, текст ошибки)."""
+        output_path = OUTPUT_DIR / f"artist_{artist.artist_id}_{iteration:02d}.png"
+        generator = self.image_generators[artist.artist_id]
+
+        try:
+            generator.generate(prompt, output_path)
+        except Exception as error:
+            print(f"  ! Ошибка генерации у художника {artist.artist_id}: {error}")
+            return None, str(error)
+
+        print(f"[Генератор {artist.artist_id}] сохранено: {output_path}")
+        return output_path, None
+
+    # ----- Шаг 4. Оценка экспертом -----
+
+    def review_image(self, artist: ArtistConfig, prompt: str, description: str) -> Review:
+        """Эксперт оценивает картину по её описанию."""
+        agreed_details = self.dialogue.visible_to(artist.artist_id)
+
+        user_message = (
+            f"Идея картины: {IDEA}\n\n"
+            f"Художник: {artist.artist_id}\n"
+            f"Детали, согласованные с ним:\n{Dialogue.to_text(agreed_details)}\n\n"
+            f"Промпт художника:\n{prompt}\n\n"
+            f"Объективное описание получившейся картины:\n{description}"
+        )
+
+        response = self.expert_llm.ask_json(EXPERT_REVIEW_SYSTEM_PROMPT, user_message)
+        return parse_review(response)
+
+    @staticmethod
+    def review_for_failed_generation(error: str) -> Review:
+        """Оценка, которую получает художник, если картинку не удалось создать."""
+        return Review(
+            score=0,
+            problems=[f"Генерация не удалась: {error}"],
+            instructions=(
+                "Перепиши промпт: генератор отклонил запрос или произошла ошибка. "
+                "Избегай формулировок, которые могут не пройти модерацию."
+            ),
+        )
+
+    # ----- Одна итерация целиком -----
+
+    def run_iteration(self, iteration: int) -> None:
+        print(f"\n=== Итерация {iteration} ===")
+
+        # 1. После критики художники могут уточнить детали
+        if iteration > 1:
+            self.run_question_rounds(FEEDBACK_QUESTION_ROUNDS)
+
+        # 2. Каждый художник пишет промпт
+        prompts = {}
+        reasonings = {}
+        for artist in ARTISTS:
+            prompt, reasoning = self.write_prompt(artist)
+            prompts[artist.artist_id] = prompt
+            reasonings[artist.artist_id] = reasoning
+            print(f"[Художник {artist.artist_id}] {reasoning}")
+            print(f"  промпт: {prompt}")
+
+        # 3. Генерация картин
+        image_paths = {}
+        errors = {}
+        for artist in ARTISTS:
+            path, error = self.generate_image(artist, prompts[artist.artist_id], iteration)
+            image_paths[artist.artist_id] = path
+            errors[artist.artist_id] = error
+
+        # 4. VLM описывает картины
+        descriptions = {}
+        for artist in ARTISTS:
+            path = image_paths[artist.artist_id]
+            if path is None:
+                descriptions[artist.artist_id] = ""
+                continue
+            description = self.vision_model.describe(path)
+            descriptions[artist.artist_id] = description
+            print(f"[VLM → Художник {artist.artist_id}] {description[:300]}...")
+
+        # VLM больше не нужна до следующей итерации — освобождаем видеопамять
+        self.vision_model.unload_from_memory()
+
+        # 5. Эксперт оценивает картины
+        for artist in ARTISTS:
+            artist_id = artist.artist_id
+
+            if errors[artist_id] is not None:
+                review = self.review_for_failed_generation(errors[artist_id])
+            else:
+                review = self.review_image(artist, prompts[artist_id], descriptions[artist_id])
+
+            print(f"[Эксперт → Художник {artist_id}] {review.score}/10: {review.instructions}")
+
+            image_path = image_paths[artist_id]
+            record = IterationRecord(
+                iteration=iteration,
+                prompt=prompts[artist_id],
+                artist_reasoning=reasonings[artist_id],
+                image_path=str(image_path) if image_path else None,
+                description=descriptions[artist_id],
+                review=review,
+                error=errors[artist_id],
+            )
+            self.history[artist_id].append(record)
+
+    # ----- Условие остановки -----
+
+    def all_artists_reached_target(self) -> bool:
+        """Проверить, что последняя оценка каждого художника не ниже TARGET_SCORE."""
+        for artist in ARTISTS:
+            last_record = self.history[artist.artist_id][-1]
+            if last_record.review.score < TARGET_SCORE:
+                return False
+        return True
+
+    # ----- Сохранение и итоги -----
+
+    def save_log(self) -> None:
+        """Сохранить весь ход работы в log.json."""
+        history_as_dicts = {}
+        for artist_id, records in self.history.items():
+            history_as_dicts[artist_id] = []
+            for record in records:
+                history_as_dicts[artist_id].append(asdict(record))
+
+        dialogue_as_dicts = []
+        for entry in self.dialogue.entries:
+            dialogue_as_dicts.append(asdict(entry))
+
+        log = {
+            "idea": IDEA,
+            "shared_questions": SHARED_QUESTIONS,
+            "expert_taste": EXPERT_TASTE,
+            "artists": [asdict(artist) for artist in ARTISTS],
+            "dialogue": dialogue_as_dicts,
+            "history": history_as_dicts,
+        }
+
+        log_path = OUTPUT_DIR / "log.json"
+        log_path.write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def print_summary(self) -> None:
+        print("\n=== Итоги ===")
+        for artist in ARTISTS:
+            best_record = self.history[artist.artist_id][0]
+            for record in self.history[artist.artist_id]:
+                if record.review.score > best_record.review.score:
+                    best_record = record
+            print(f"Художник {artist.artist_id}: лучшая картина — "
+                  f"{best_record.image_path} ({best_record.review.score}/10)")
+
+    # ----- Запуск -----
+
+    def run(self) -> None:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+        if SHARED_QUESTIONS:
+            mode_text = "видят вопросы друг друга"
+        else:
+            mode_text = "НЕ видят вопросы друг друга"
+        print(f"Идея: {IDEA}. Художники {mode_text}.\n")
+
+        print("=== Согласование деталей ===")
+        self.run_question_rounds(START_QUESTION_ROUNDS, min_rounds=1)
+        self.save_log()
+
+        for iteration in range(1, MAX_ITERATIONS + 1):
+            self.run_iteration(iteration)
+            self.save_log()
+
+            if iteration >= MIN_ITERATIONS and self.all_artists_reached_target():
+                print("\nВсе художники достигли целевой оценки.")
+                break
+
+        self.print_summary()
+
+
+# =============================================================================
+# 8. ТОЧКА ВХОДА
+# =============================================================================
+
+def main() -> None:
+    check_settings()
+    studio = ArtStudio()
+    studio.run()
 
 
 if __name__ == "__main__":
-    run()
+    main()
