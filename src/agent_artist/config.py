@@ -44,7 +44,7 @@ def default_artists() -> list[ArtistConfig]:
             generator="yandex_art",
             image_model="aliceai-image-art-3.0",
             prompt_language="русском",
-            max_prompt_words=70,
+            max_prompt_words=60,  # больше не влезет в 500 символов Yandex ART
         ),
     ]
 

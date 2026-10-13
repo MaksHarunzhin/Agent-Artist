@@ -19,10 +19,26 @@ class YandexArtGenerator(ImageGenerator):
         self.client = client
         self.model_uri = f"art://{folder_id}/{model_name}"
 
+    def prompt_limit_description(self) -> str:
+        return (
+            f"промпт не длиннее {self.MAX_PROMPT_CHARACTERS} символов с пробелами — "
+            "это примерно 60 русских слов. Более длинный промпт будет обрезан."
+        )
+
+    def check_prompt(self, prompt: str) -> str | None:
+        characters = len(prompt)
+        if characters <= self.MAX_PROMPT_CHARACTERS:
+            return None
+
+        # Символы LLM считает плохо — переводим лимит в слова с запасом 10%
+        words = len(prompt.split())
+        target_words = int(words * self.MAX_PROMPT_CHARACTERS / characters * 0.9)
+        return (f"промпт длиной {characters} символов при лимите {self.MAX_PROMPT_CHARACTERS}, "
+                f"сейчас в нём {words} слов — сократи до {target_words} слов")
+
     def generate(self, prompt: str, output_path: Path) -> None:
-        if len(prompt) > self.MAX_PROMPT_CHARACTERS:
-            print(f"  ! Промпт длиннее {self.MAX_PROMPT_CHARACTERS} символов, обрезаю")
-            prompt = prompt[:self.MAX_PROMPT_CHARACTERS]
+        # Страховка на случай прямого вызова: API не примет длинный промпт
+        prompt = self.fit_prompt(prompt)
 
         response = self.client.images.generate(
             model=self.model_uri,
