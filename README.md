@@ -51,6 +51,8 @@ YANDEX_FOLDER_ID=...
 ```bash
 agent-artist --idea "Маяк в шторм" --max-iter 3              # художники A и B
 agent-artist --idea "Масленица" --artists A,B,C --shared     # общий контекст
+agent-artist --idea "Маяк в шторм" --expert child           # другой заказчик: minimalist, baroque, child, peredvizhnik
+agent-artist --idea "Масленица" --rephrase 2 --no-describe    # переписать промпт после отказа модерации; без локальной VLM
 agent-artist --help                                           # все параметры
 ```
 
@@ -66,10 +68,14 @@ agent-artist-experiment telephone --idea "Делить шкуру неубито
 agent-artist-experiment summary runs/…       # оценки эксперта: таблицы по режимам и итерациям
 agent-artist-experiment recover runs/…       # «угадай заказ»: что из заказа дошло до картины
 agent-artist-experiment translation runs/…   # как английский промпт перенёс русскую идею
+agent-artist-experiment limits runs/…        # карта непосильных деталей: в чём промахиваются генераторы
+agent-artist-experiment gallery runs/… --label expert --output gallery.png   # лучшие картины сеткой
 agent-artist-experiment timelapse runs/…     # таймлапсы для готовых прогонов
 ```
 
-Готовые серии — в `experiments/`: `culture_language.sh`, `proverbs.sh`, `telephone.sh`.
+Готовые серии — в `experiments/`: `culture_language.sh`, `proverbs.sh`, `telephone.sh`,
+`clients.sh`. Анализ с графиками — ноутбук `Agent_Artist.ipynb`
+(`pip install -e ".[analysis]"`).
 
 ## Как устроен прогон
 
@@ -97,6 +103,10 @@ src/agent_artist/
   experiment.py    agent-artist-experiment: серии и сводки
   recovery.py      «угадай заказ»
   translation.py   стратегии перевода идеи
+  limits.py        карта непосильных деталей
+  summary.py       сводка оценок эксперта
+  analysis.py      прогоны → таблицы pandas для ноутбука
+  runlogs.py       чтение логов, кеши, markdown-таблицы
   telephone.py     «испорченный телефон»
-  timelapse.py     таймлапсы и сетки эволюции
+  timelapse.py     таймлапсы, сетки эволюции, галерея
 ```
