@@ -70,6 +70,8 @@ class ArtStudio:
         self.expert_llm = YandexLLM(yandex_client, folder_id, settings.expert_llm_name)
         self.expert_vision_llm = YandexLLM(yandex_client, folder_id,
                                            settings.expert_vision_llm_name)
+        # Без картинки эксперт оценивает по описанию — тогда описывать нужно всегда
+        self.describes_images = settings.describe_images or not settings.expert_sees_image
         self.vision_model = LocalVisionModel(settings.ollama_host, settings.vision_model_name)
         self.image_generators = image_generators or create_image_generators(settings,
                                                                             yandex_client)
@@ -233,14 +235,14 @@ class ArtStudio:
                      for artist in self.artists}
 
         # 4. VLM описывает картины
-        descriptions = {}
-        for artist_id, (path, _) in generated.items():
-            descriptions[artist_id] = self.vision_model.describe(path) if path else ""
-            if path:
-                print(f"[VLM → Художник {artist_id}] {descriptions[artist_id][:300]}...")
-
-        # VLM больше не нужна до следующей итерации — освобождаем видеопамять
-        self.vision_model.unload_from_memory()
+        descriptions = {artist_id: "" for artist_id in generated}
+        if self.describes_images:
+            for artist_id, (path, _) in generated.items():
+                if path:
+                    descriptions[artist_id] = self.vision_model.describe(path)
+                    print(f"[VLM → Художник {artist_id}] {descriptions[artist_id][:300]}...")
+            # VLM больше не нужна до следующей итерации — освобождаем видеопамять
+            self.vision_model.unload_from_memory()
 
         # 5. Эксперт оценивает картины
         for artist in self.artists:

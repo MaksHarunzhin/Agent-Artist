@@ -139,6 +139,10 @@ class Settings:
     expert_sees_image: bool = True
     expert_vision_llm_name: str = "qwen3.6-35b-a3b"
 
+    # Описывать ли картины локальной VLM. Эксперту, который видит картину, описание
+    # не нужно; без него прогон быстрее (~40 с на картину) и не занимает Ollama.
+    describe_images: bool = True
+
     # --- Локальная VLM в Ollama ---
     ollama_host: str = "http://127.0.0.1:11434"
     vision_model_name: str = "qwen3-vl:8b"
