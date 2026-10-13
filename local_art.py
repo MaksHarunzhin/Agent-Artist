@@ -30,6 +30,10 @@ MIN_ITERATIONS = 2     # минимум итераций (у каждого ху
 MAX_ITERATIONS = 8     # жёсткий предел итераций
 TARGET_SCORE = 8       # цикл завершается, когда у всех художников оценка не ниже этой
 
+# Seed локального генератора: при одном и том же промпте картинка будет той же,
+# так что разница между итерациями и прогонами зависит только от промпта.
+SEED = 42
+
 # --- Уточняющие вопросы ---
 START_QUESTION_ROUNDS = 3       # раундов вопросов до первой картины
 FEEDBACK_QUESTION_ROUNDS = 1    # раундов вопросов после каждой критики
@@ -395,8 +399,11 @@ class LocalImageGenerator:
             )
 
     def generate(self, prompt: str, output_path: Path) -> None:
+        # Генератор на CPU даёт одинаковый шум на любом устройстве
+        random_generator = torch.Generator("cpu").manual_seed(SEED)
         result = self.pipeline(
             prompt=prompt,
+            generator=random_generator,
             num_inference_steps=4,   # SDXL-Turbo рассчитана на 1–4 шага
             guidance_scale=0.0,      # turbo-модели работают без guidance
             width=512,
@@ -749,6 +756,7 @@ class ArtStudio:
         log = {
             "idea": IDEA,
             "shared_questions": SHARED_QUESTIONS,
+            "seed": SEED,
             "expert_taste": EXPERT_TASTE,
             "artists": [asdict(artist) for artist in ARTISTS],
             "dialogue": dialogue_as_dicts,
@@ -801,7 +809,7 @@ class ArtStudio:
 def apply_command_line_arguments() -> None:
     """Переопределить настройки из начала файла аргументами командной строки."""
     global IDEA, SHARED_QUESTIONS, MIN_ITERATIONS, MAX_ITERATIONS
-    global TARGET_SCORE, START_QUESTION_ROUNDS, OUTPUT_DIR
+    global TARGET_SCORE, START_QUESTION_ROUNDS, OUTPUT_DIR, SEED
 
     parser = argparse.ArgumentParser(description="Агент-художник")
     parser.add_argument("--idea", default=IDEA, help="идея картины")
@@ -815,6 +823,8 @@ def apply_command_line_arguments() -> None:
     parser.add_argument("--start-rounds", type=int, default=START_QUESTION_ROUNDS,
                         help="раундов вопросов до первой картины")
     parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR)
+    parser.add_argument("--seed", type=int, default=SEED,
+                        help="seed локального генератора")
     args = parser.parse_args()
 
     IDEA = args.idea
@@ -824,6 +834,7 @@ def apply_command_line_arguments() -> None:
     TARGET_SCORE = args.target
     START_QUESTION_ROUNDS = args.start_rounds
     OUTPUT_DIR = args.output_dir
+    SEED = args.seed
 
 
 def main() -> None:
