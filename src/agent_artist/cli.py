@@ -6,7 +6,7 @@ from pathlib import Path
 
 from dotenv import find_dotenv, load_dotenv
 
-from .config import Settings
+from .config import DEFAULT_ARTIST_IDS, Settings, artists_by_ids
 from .studio import ArtStudio
 
 
@@ -26,6 +26,9 @@ def add_experiment_arguments(parser: argparse.ArgumentParser, defaults: Settings
                         help="раундов вопросов до первой картины")
     parser.add_argument("--seed", type=int, default=defaults.seed,
                         help="seed локального генератора")
+    parser.add_argument("--artists", default=",".join(DEFAULT_ARTIST_IDS),
+                        help="художники через запятую: A — SDXL, англ.; "
+                             "B — Yandex ART, рус.; C — Yandex ART, англ.")
 
 
 def settings_from_arguments(args: argparse.Namespace, **overrides) -> Settings:
@@ -35,6 +38,7 @@ def settings_from_arguments(args: argparse.Namespace, **overrides) -> Settings:
         expert_sees_image=args.expert_sees_image,
         start_question_rounds=args.start_rounds,
         seed=args.seed,
+        artists=artists_by_ids(args.artists.split(",")),
         yandex_api_key=os.environ.get("YANDEX_API_KEY", ""),
         yandex_folder_id=os.environ.get("YANDEX_FOLDER_ID", ""),
     )

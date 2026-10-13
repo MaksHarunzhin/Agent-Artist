@@ -1,7 +1,7 @@
 """Настройки эксперимента: художники, модели, вкусы эксперта, продолжительность работы."""
 
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 YANDEX_BASE_URL = "https://ai.api.cloud.yandex.net/v1"
@@ -28,25 +28,50 @@ class ArtistConfig:
     max_prompt_words: int   # ограничение длины промпта
 
 
+ARTIST_PERSONA = "Ты особенно тщательно продумываешь композицию, ракурс и свет."
+
+# Все художники с одинаковым характером: различаются только генератором и языком промпта.
+# A и C — один язык, разные генераторы; B и C — один генератор, разные языки.
+ARTIST_PRESETS = {
+    "A": ArtistConfig(
+        artist_id="A",
+        persona=ARTIST_PERSONA,
+        generator="local",
+        image_model="stabilityai/sdxl-turbo",
+        prompt_language="английском",
+        max_prompt_words=40,  # больше не влезет в 77 токенов CLIP
+    ),
+    "B": ArtistConfig(
+        artist_id="B",
+        persona=ARTIST_PERSONA,
+        generator="yandex_art",
+        image_model="aliceai-image-art-3.0",
+        prompt_language="русском",
+        max_prompt_words=60,  # больше не влезет в 500 символов Yandex ART
+    ),
+    "C": ArtistConfig(
+        artist_id="C",
+        persona=ARTIST_PERSONA,
+        generator="yandex_art",
+        image_model="aliceai-image-art-3.0",
+        prompt_language="английском",
+        max_prompt_words=60,
+    ),
+}
+
+DEFAULT_ARTIST_IDS = ("A", "B")
+
+
+def artists_by_ids(artist_ids) -> list[ArtistConfig]:
+    """Художники из ARTIST_PRESETS по их именам, например ["A", "C"]."""
+    unknown = [artist_id for artist_id in artist_ids if artist_id not in ARTIST_PRESETS]
+    if unknown:
+        raise ValueError(f"Неизвестные художники {unknown}, есть: {list(ARTIST_PRESETS)}")
+    return [replace(ARTIST_PRESETS[artist_id]) for artist_id in artist_ids]
+
+
 def default_artists() -> list[ArtistConfig]:
-    return [
-        ArtistConfig(
-            artist_id="A",
-            persona="Ты особенно тщательно продумываешь композицию, ракурс и свет.",
-            generator="local",
-            image_model="stabilityai/sdxl-turbo",
-            prompt_language="английском",
-            max_prompt_words=40,  # больше не влезет в 77 токенов CLIP
-        ),
-        ArtistConfig(
-            artist_id="B",
-            persona="Ты особенно тщательно продумываешь композицию, ракурс и свет.",
-            generator="yandex_art",
-            image_model="aliceai-image-art-3.0",
-            prompt_language="русском",
-            max_prompt_words=60,  # больше не влезет в 500 символов Yandex ART
-        ),
-    ]
+    return artists_by_ids(DEFAULT_ARTIST_IDS)
 
 
 def default_output_dir() -> Path:

@@ -22,7 +22,7 @@ class YandexArtGenerator(ImageGenerator):
     def prompt_limit_description(self) -> str:
         return (
             f"промпт не длиннее {self.MAX_PROMPT_CHARACTERS} символов с пробелами — "
-            "это примерно 60 русских слов. Более длинный промпт будет обрезан."
+            "это примерно 60 слов. Более длинный промпт будет обрезан."
         )
 
     def check_prompt(self, prompt: str) -> str | None:
