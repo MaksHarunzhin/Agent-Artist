@@ -62,10 +62,13 @@ class YandexLLM:
         self.model_uri = f"gpt://{folder_id}/{model_name}"
 
     def ask_json(self, system_prompt: str, user_message: str, attempts: int = 3,
-                 image_path: Path | None = None) -> dict:
+                 image_path: Path | None = None,
+                 required_fields: tuple[str, ...] = ()) -> dict:
         """
         Отправить запрос и получить ответ в виде словаря из JSON.
         С image_path к сообщению прикладывается картинка (нужна мультимодальная модель).
+        Ответ без любого из required_fields (или с пустым значением) считается
+        невалидным, и запрос повторяется.
         """
         if image_path is None:
             model_input = user_message
@@ -86,8 +89,18 @@ class YandexLLM:
                 temperature=0.7,
             )
             try:
-                return extract_json(response.output_text)
+                data = extract_json(response.output_text)
             except json.JSONDecodeError:
                 print(f"  ! Модель вернула невалидный JSON (попытка {attempt} из {attempts})")
+                continue
+
+            missing_fields = [name for name in required_fields
+                              if data.get(name) in (None, "", [])]
+            if missing_fields:
+                print(f"  ! В ответе модели нет полей {missing_fields} "
+                      f"(попытка {attempt} из {attempts})")
+                continue
+
+            return data
 
         raise RuntimeError(f"Модель {self.model_uri} не вернула валидный JSON")

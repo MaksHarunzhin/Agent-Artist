@@ -142,7 +142,9 @@ class ArtStudio:
             + "\n".join(numbered_questions)
         )
 
-        response = self.expert_llm.ask_json(build_expert_answers_system_prompt(self.settings.expert_taste), user_message)
+        response = self.expert_llm.ask_json(
+            build_expert_answers_system_prompt(self.settings.expert_taste), user_message,
+            required_fields=("answers",))
 
         answers = []
         for answer in response.get("answers", []):
@@ -163,7 +165,8 @@ class ArtStudio:
             artist, generator.prompt_limit_description())
         context = self.build_artist_context(artist)
 
-        response = self.artist_llm.ask_json(system_prompt, context)
+        response = self.artist_llm.ask_json(system_prompt, context,
+                                            required_fields=("prompt",))
         prompt = str(response.get("prompt", ""))
         reasoning = str(response.get("reasoning", ""))
 
@@ -173,7 +176,8 @@ class ArtStudio:
                 break
             print(f"  ! [Художник {artist.artist_id}] {problem} — прошу сократить")
             response = self.artist_llm.ask_json(
-                system_prompt, context + build_shorten_prompt_message(prompt, problem))
+                system_prompt, context + build_shorten_prompt_message(prompt, problem),
+                required_fields=("prompt",))
             prompt = str(response.get("prompt", prompt))
 
         return generator.fit_prompt(prompt), reasoning
@@ -221,9 +225,11 @@ class ArtStudio:
         system_prompt = build_expert_review_system_prompt(self.settings.expert_taste, sees_image)
         if sees_image:
             response = self.expert_vision_llm.ask_json(system_prompt, user_message,
-                                                       image_path=image_path)
+                                                       image_path=image_path,
+                                                       required_fields=("score",))
         else:
-            response = self.expert_llm.ask_json(system_prompt, user_message)
+            response = self.expert_llm.ask_json(system_prompt, user_message,
+                                                required_fields=("score",))
         return parse_review(response)
 
     @staticmethod
