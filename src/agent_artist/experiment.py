@@ -27,9 +27,11 @@ MODE_NAMES = {True: "shared", False: "isolated"}
 # Серия прогонов
 # =============================================================================
 
-def run_series(base_settings: Settings, repeats: int, root: Path) -> list[Path]:
+def run_series(base_settings: Settings, repeats: int, root: Path,
+               modes: tuple[bool, ...] = (False, True)) -> list[Path]:
     """
-    Прогнать идею repeats раз в каждом режиме. Возвращает папки прогонов.
+    Прогнать идею repeats раз в каждом из режимов (shared_questions = False/True).
+    Возвращает папки прогонов.
 
     Режимы чередуются, а порядок внутри пары меняется от повтора к повтору,
     чтобы ни один режим систематически не шёл первым.
@@ -42,11 +44,11 @@ def run_series(base_settings: Settings, repeats: int, root: Path) -> list[Path]:
     run_dirs = []
     for repeat in range(1, repeats + 1):
         if repeat % 2 == 1:
-            modes = (False, True)
+            ordered_modes = modes
         else:
-            modes = (True, False)
+            ordered_modes = tuple(reversed(modes))
 
-        for shared in modes:
+        for shared in ordered_modes:
             output_dir = root / f"{repeat:02d}_{MODE_NAMES[shared]}"
             settings = replace(base_settings, shared_questions=shared, output_dir=output_dir)
             print(f"\n######## Повтор {repeat} из {repeats}, режим {MODE_NAMES[shared]} ########")
@@ -73,6 +75,7 @@ class RunScores:
     mode: str
     expert_sees_image: bool
     scores: dict[str, list[int]]
+    artist_labels: dict[str, str]   # artist_id → "B (yandex_art, рус)"
 
 
 def load_run(log_path: Path) -> RunScores | None:
@@ -92,7 +95,17 @@ def load_run(log_path: Path) -> RunScores | None:
         # До появления этого поля эксперт всегда оценивал только по описанию
         expert_sees_image=log.get("expert_sees_image", False),
         scores=scores,
+        artist_labels=artist_labels(log),
     )
+
+
+def artist_labels(log: dict) -> dict[str, str]:
+    """Подписи художников с генератором и языком промпта — чтобы таблицу можно было читать."""
+    labels = {}
+    for artist in log.get("artists", []):
+        language = artist.get("prompt_language", "")[:3]
+        labels[artist["artist_id"]] = f"{artist['artist_id']} ({artist['generator']}, {language})"
+    return labels
 
 
 def mean_and_spread(values: list[float]) -> str:
@@ -112,7 +125,14 @@ def build_summary(runs: list[RunScores]) -> str:
         key = (run.idea, run.expert_sees_image, run.mode)
         groups.setdefault(key, []).append(run)
 
+    labels = {}
+    for run in runs:
+        labels.update(run.artist_labels)
+
     lines = []
+    if len({run.idea for run in runs}) > 1:
+        lines.append(build_ideas_overview(runs, labels))
+
     for idea, expert_sees_image in sorted({key[:2] for key in groups}):
         if expert_sees_image:
             expert_note = "эксперт видит картинку"
@@ -135,7 +155,7 @@ def build_summary(runs: list[RunScores]) -> str:
                 series = [run.scores[artist_id] for run in groups[(idea, expert_sees_image, mode)]
                           if run.scores.get(artist_id)]
                 lines.append(
-                    f"| {artist_id} | {mode} | {len(series)} "
+                    f"| {labels.get(artist_id, artist_id)} | {mode} | {len(series)} "
                     f"| {mean_and_spread([s[0] for s in series])} "
                     f"| {mean_and_spread([s[-1] for s in series])} "
                     f"| {mean_and_spread([max(s) for s in series])} "
@@ -153,9 +173,38 @@ def build_summary(runs: list[RunScores]) -> str:
                 cells = []
                 for index in range(max_iterations):
                     cells.append(mean_and_spread([s[index] for s in series if len(s) > index]))
-                lines.append(f"| {artist_id} | {mode} | " + " | ".join(cells) + " |")
+                lines.append(f"| {labels.get(artist_id, artist_id)} | {mode} | "
+                             + " | ".join(cells) + " |")
         lines.append("")
 
+    return "\n".join(lines)
+
+
+def build_ideas_overview(runs: list[RunScores], labels: dict[str, str]) -> str:
+    """Общая таблица «идея × художник»: средняя первая и лучшая оценка по всем прогонам идеи."""
+    ideas = sorted({run.idea for run in runs})
+    artist_ids = sorted({artist_id for run in runs for artist_id in run.scores})
+
+    lines = ["## Сводка по идеям\n",
+             "В ячейке: средняя оценка первой картины / средняя лучшая оценка за прогон.\n"]
+    header = " | ".join(labels.get(artist_id, artist_id) for artist_id in artist_ids)
+    lines.append(f"| Идея | Прогонов | {header} |")
+    lines.append("|---|---|" + "---|" * len(artist_ids))
+
+    for idea in ideas:
+        idea_runs = [run for run in runs if run.idea == idea]
+        cells = []
+        for artist_id in artist_ids:
+            series = [run.scores[artist_id] for run in idea_runs if run.scores.get(artist_id)]
+            if series:
+                first = statistics.mean(s[0] for s in series)
+                best = statistics.mean(max(s) for s in series)
+                cells.append(f"{first:.1f} / {best:.1f}")
+            else:
+                cells.append("—")
+        lines.append(f"| {idea} | {len(idea_runs)} | " + " | ".join(cells) + " |")
+
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -194,6 +243,8 @@ def main(argv: list[str] | None = None) -> None:
                             help="повторов каждого режима")
     run_parser.add_argument("--iterations", type=int, default=3,
                             help="итераций в каждом прогоне (без ранней остановки)")
+    run_parser.add_argument("--modes", default="isolated,shared",
+                            help="режимы через запятую: isolated, shared")
     run_parser.add_argument("--output-dir", type=Path,
                             default=Path("runs") / f"experiment_{time.strftime('%Y%m%d_%H%M%S')}")
 
@@ -213,7 +264,9 @@ def main(argv: list[str] | None = None) -> None:
         args, min_iterations=args.iterations, max_iterations=args.iterations)
     settings.check()
 
-    run_series(settings, args.repeats, args.output_dir)
+    shared_by_name = {name: shared for shared, name in MODE_NAMES.items()}
+    modes = tuple(shared_by_name[name] for name in args.modes.split(","))
+    run_series(settings, args.repeats, args.output_dir, modes)
 
     summary = summarize([args.output_dir])
     (args.output_dir / "summary.md").write_text(summary, encoding="utf-8")
