@@ -33,8 +33,13 @@ def build_questions_system_prompt(artist: ArtistConfig, shared_questions: bool,
     )
 
 
-def build_prompt_writer_system_prompt(artist: ArtistConfig) -> str:
+def build_prompt_writer_system_prompt(artist: ArtistConfig, prompt_limit: str) -> str:
     """Инструкция для художника: написать промпт для модели генерации."""
+    if prompt_limit:
+        limit_note = f"Жёсткое ограничение генератора: {prompt_limit}\n"
+    else:
+        limit_note = ""
+
     return (
         f"Ты художник-иллюстратор по имени Художник {artist.artist_id}. {artist.persona}\n"
         "Ты пишешь промпт для модели генерации изображений.\n"
@@ -43,8 +48,19 @@ def build_prompt_writer_system_prompt(artist: ArtistConfig) -> str:
         "Учти КАЖДУЮ согласованную деталь. Если есть критика — исправь каждое замечание.\n"
         f"Промпт пиши на {artist.prompt_language} языке, не длиннее "
         f"{artist.max_prompt_words} слов. Самое важное (сюжет, персонажи, стиль) — в начале.\n"
+        + limit_note
         + JSON_ONLY_INSTRUCTION +
         '{"reasoning": "по-русски: что учёл и что изменил", "prompt": "текст промпта"}'
+    )
+
+
+def build_shorten_prompt_message(prompt: str, problem: str) -> str:
+    """Просьба к художнику сократить промпт, который не подходит генератору."""
+    return (
+        f"\nТвой промпт: {prompt}\n"
+        f"Он не подходит генератору: {problem}.\n"
+        "Сократи промпт так, чтобы он уложился в ограничение. Сохрани главное "
+        "(сюжет, персонажи, стиль, композицию, свет) и убери второстепенное и повторы."
     )
 
 

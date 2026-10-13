@@ -5,9 +5,15 @@ from pathlib import Path
 import torch
 from diffusers import AutoPipelineForText2Image
 
+from .base import ImageGenerator
 
-class LocalImageGenerator:
+
+class LocalImageGenerator(ImageGenerator):
     """Локальная генерация изображений через diffusers (SDXL-Turbo)."""
+
+    # Текстовый энкодер CLIP читает не больше 77 токенов, включая служебные
+    # токены начала и конца. Всё, что дальше, модель просто не видит.
+    MAX_PROMPT_TOKENS = 77
 
     def __init__(self, model_name: str, seed: int):
         self.seed = seed
@@ -45,6 +51,28 @@ class LocalImageGenerator:
             return AutoPipelineForText2Image.from_pretrained(
                 model_name, dtype=dtype, variant="fp16",
             )
+
+    def count_prompt_tokens(self, prompt: str) -> int:
+        return len(self.pipeline.tokenizer(prompt).input_ids)
+
+    def prompt_limit_description(self) -> str:
+        return (
+            f"Модель читает не больше {self.MAX_PROMPT_TOKENS} токенов CLIP — это примерно "
+            "40 английских слов. Всё, что дальше, она не увидит. Пиши короткими фразами "
+            "через запятую, без вводных слов."
+        )
+
+    def check_prompt(self, prompt: str) -> str | None:
+        tokens = self.count_prompt_tokens(prompt)
+        if tokens <= self.MAX_PROMPT_TOKENS:
+            return None
+
+        # Токены LLM считать не умеет, а слова умеет: переводим лимит в слова
+        # по фактическому соотношению для этого промпта, с запасом 10%
+        words = len(prompt.split())
+        target_words = int(words * self.MAX_PROMPT_TOKENS / tokens * 0.9)
+        return (f"промпт занимает {tokens} токенов CLIP при лимите {self.MAX_PROMPT_TOKENS}, "
+                f"сейчас в нём {words} слов — сократи до {target_words} слов")
 
     def generate(self, prompt: str, output_path: Path) -> None:
         # Генератор на CPU даёт одинаковый шум на любом устройстве

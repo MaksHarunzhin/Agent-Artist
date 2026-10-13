@@ -36,7 +36,7 @@ def default_artists() -> list[ArtistConfig]:
             generator="local",
             image_model="stabilityai/sdxl-turbo",
             prompt_language="английском",
-            max_prompt_words=60,
+            max_prompt_words=40,  # больше не влезет в 77 токенов CLIP
         ),
         ArtistConfig(
             artist_id="B",

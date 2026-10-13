@@ -7,8 +7,10 @@ from pathlib import Path
 from openai import OpenAI
 from PIL import Image
 
+from .base import ImageGenerator
 
-class YandexArtGenerator:
+
+class YandexArtGenerator(ImageGenerator):
     """Облачная генерация изображений через Yandex ART."""
 
     MAX_PROMPT_CHARACTERS = 500

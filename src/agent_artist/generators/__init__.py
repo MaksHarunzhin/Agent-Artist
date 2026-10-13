@@ -1,15 +1,9 @@
 """Генераторы изображений, которыми рисуют художники."""
 
-from pathlib import Path
-from typing import Protocol
-
 from openai import OpenAI
 
 from ..config import ArtistConfig, Settings
-
-
-class ImageGenerator(Protocol):
-    def generate(self, prompt: str, output_path: Path) -> None: ...
+from .base import ImageGenerator
 
 
 def create_image_generator(artist: ArtistConfig, settings: Settings,
