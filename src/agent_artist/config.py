@@ -146,6 +146,9 @@ class Settings:
     # Сколько раз художник переписывает промпт, если модерация генератора его отклонила
     rephrase_attempts: int = 0
 
+    # «Опытные» художники знают типичные промахи своего генератора (из карты непосильных деталей)
+    experienced_artists: bool = False
+
     # --- Локальная VLM в Ollama ---
     ollama_host: str = "http://127.0.0.1:11434"
     vision_model_name: str = "qwen3-vl:8b"

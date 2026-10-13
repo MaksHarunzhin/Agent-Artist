@@ -41,12 +41,15 @@ def build_questions_system_prompt(artist: ArtistConfig, shared_questions: bool,
     )
 
 
-def build_prompt_writer_system_prompt(artist: ArtistConfig, prompt_limit: str) -> str:
+def build_prompt_writer_system_prompt(artist: ArtistConfig, prompt_limit: str,
+                                      tips: str = "") -> str:
     """Инструкция для художника: написать промпт для модели генерации."""
     if prompt_limit:
         limit_note = f"Жёсткое ограничение генератора: {prompt_limit}\n"
     else:
         limit_note = ""
+    if tips:
+        limit_note += f"Ты хорошо знаешь этот генератор. {tips}\n"
 
     return (
         f"Ты художник-иллюстратор по имени Художник {artist.artist_id}. {artist.persona}\n"

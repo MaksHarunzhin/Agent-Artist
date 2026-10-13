@@ -28,7 +28,8 @@ MAX_SHORTEN_ATTEMPTS = 3
 
 
 def write_fitting_prompt(artist_llm: YandexLLM, artist: ArtistConfig,
-                         generator: ImageGenerator, context: str) -> tuple[str, str]:
+                         generator: ImageGenerator, context: str,
+                         experienced: bool = False) -> tuple[str, str]:
     """
     Художник пишет промпт по контексту. Возвращает (промпт, пояснение художника).
 
@@ -36,7 +37,8 @@ def write_fitting_prompt(artist_llm: YandexLLM, artist: ArtistConfig,
     сокращает его — иначе генератор молча отбросит часть деталей.
     """
     system_prompt = build_prompt_writer_system_prompt(
-        artist, generator.prompt_limit_description())
+        artist, generator.prompt_limit_description(),
+        generator.prompt_tips() if experienced else "")
 
     response = artist_llm.ask_json(system_prompt, context, required_fields=("prompt",))
     prompt = str(response.get("prompt", ""))
@@ -180,7 +182,8 @@ class ArtStudio:
         """Художник пишет промпт по всему, что знает. Возвращает (промпт, пояснение)."""
         return write_fitting_prompt(self.artist_llm, artist,
                                     self.image_generators[artist.artist_id],
-                                    self.build_artist_context(artist))
+                                    self.build_artist_context(artist),
+                                    self.settings.experienced_artists)
 
     # ----- Шаг 3. Генерация изображения -----
 
@@ -309,6 +312,7 @@ class ArtStudio:
             "seed": self.settings.seed,
             "expert_sees_image": self.settings.expert_sees_image,
             "expert": self.settings.expert_name,
+            "experienced_artists": self.settings.experienced_artists,
             "expert_taste": self.settings.expert_taste,
             "artists": [asdict(artist) for artist in self.artists],
             "dialogue": [asdict(entry) for entry in self.dialogue.entries],

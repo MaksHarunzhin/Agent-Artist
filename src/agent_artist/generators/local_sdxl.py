@@ -62,6 +62,15 @@ class LocalImageGenerator(ImageGenerator):
             "через запятую, без вводных слов."
         )
 
+    def prompt_tips(self) -> str:
+        # Из карты непосильных деталей: у SDXL-Turbo чаще всего пропадают заказанные объекты
+        return (
+            "Эта модель чаще всего теряет заказанные объекты и детали. Оставь в промпте "
+            "3–4 главных объекта, второстепенное убери. Каждый главный объект назови "
+            "коротко и конкретно, расположение — простыми словами: left, right, center, "
+            "foreground, background."
+        )
+
     def check_prompt(self, prompt: str) -> str | None:
         tokens = self.count_prompt_tokens(prompt)
         if tokens <= self.MAX_PROMPT_TOKENS:

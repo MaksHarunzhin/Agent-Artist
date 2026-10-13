@@ -27,6 +27,8 @@ def add_experiment_arguments(parser: argparse.ArgumentParser, defaults: Settings
                         help="описывать картины локальной VLM (для лога и эксперта без картинки)")
     parser.add_argument("--rephrase", type=int, default=defaults.rephrase_attempts,
                         help="сколько раз переписать промпт после отказа модерации")
+    parser.add_argument("--experienced", action="store_true",
+                        help="художники знают типичные промахи своего генератора")
     parser.add_argument("--start-rounds", type=int, default=defaults.start_question_rounds,
                         help="раундов вопросов до первой картины")
     parser.add_argument("--seed", type=int, default=defaults.seed,
@@ -45,6 +47,7 @@ def settings_from_arguments(args: argparse.Namespace, **overrides) -> Settings:
         expert_sees_image=args.expert_sees_image,
         describe_images=args.describe,
         rephrase_attempts=args.rephrase,
+        experienced_artists=args.experienced,
         start_question_rounds=args.start_rounds,
         seed=args.seed,
         artists=artists_by_ids(args.artists.split(",")),

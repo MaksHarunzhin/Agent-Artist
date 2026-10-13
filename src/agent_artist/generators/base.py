@@ -16,6 +16,10 @@ class ImageGenerator(ABC):
         """Ограничение на промпт — его сообщают художнику, когда он пишет промпт."""
         return ""
 
+    def prompt_tips(self) -> str:
+        """Типичные промахи генератора и как их обойти — для «опытного» художника."""
+        return ""
+
     def check_prompt(self, prompt: str) -> str | None:
         """Описание проблемы, если промпт не подходит генератору, иначе None."""
         return None
