@@ -18,7 +18,7 @@ from .generators import ImageGenerator, create_image_generators
 from .llm import YandexLLM, create_yandex_client
 from .prompts import BLIND_VIEWER_SYSTEM_PROMPT, TELEPHONE_JUDGE_SYSTEM_PROMPT
 from .runlogs import read_json, write_json
-from .studio import write_fitting_prompt
+from .studio import draw_with_rephrasing, write_fitting_prompt
 from .timelapse import (BACKGROUND, MUTED_TEXT, PADDING, TEXT, artist_caption, load_font,
                         score_color, text_column_width)
 
@@ -58,12 +58,13 @@ class TelephoneChain:
             print(f"[Телефон {self.artist.artist_id}] шаг {step}: {told[:120]}")
             prompt, _ = write_fitting_prompt(self.artist_llm, self.artist, self.generator, told)
             image_path = self.output_dir / f"step_{step:02d}.png"
-            try:
-                self.generator.generate(prompt, image_path)
-            except Exception as error:
+            prompt, error = draw_with_rephrasing(self.artist_llm, self.artist, self.generator,
+                                                 told, prompt, image_path,
+                                                 self.settings.rephrase_attempts)
+            if error is not None:
                 # Без картины пересказывать нечего — цепочка обрывается
                 print(f"  ! Генерация не удалась: {error}")
-                chain.append(TelephoneStep(step, told, prompt, None, "", "", 0, "", str(error)))
+                chain.append(TelephoneStep(step, told, prompt, None, "", "", 0, "", error))
                 break
 
             seen = self.viewer.ask_json(

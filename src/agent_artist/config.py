@@ -143,6 +143,9 @@ class Settings:
     # не нужно; без него прогон быстрее (~40 с на картину) и не занимает Ollama.
     describe_images: bool = True
 
+    # Сколько раз художник переписывает промпт, если модерация генератора его отклонила
+    rephrase_attempts: int = 0
+
     # --- Локальная VLM в Ollama ---
     ollama_host: str = "http://127.0.0.1:11434"
     vision_model_name: str = "qwen3-vl:8b"

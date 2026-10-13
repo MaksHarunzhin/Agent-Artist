@@ -3,6 +3,8 @@
 from dataclasses import asdict
 from pathlib import Path
 
+from openai import BadRequestError
+
 from .config import ArtistConfig, Settings
 from .dialogue import Dialogue
 from .generators import ImageGenerator, create_image_generators
@@ -12,6 +14,7 @@ from .prompts import (
     build_expert_review_system_prompt,
     build_prompt_writer_system_prompt,
     build_questions_system_prompt,
+    build_rephrase_message,
     build_shorten_prompt_message,
 )
 from .records import IterationRecord, Review, parse_review
@@ -50,6 +53,28 @@ def write_fitting_prompt(artist_llm: YandexLLM, artist: ArtistConfig,
         prompt = str(response.get("prompt", prompt))
 
     return generator.fit_prompt(prompt), reasoning
+
+
+def draw_with_rephrasing(artist_llm: YandexLLM, artist: ArtistConfig, generator: ImageGenerator,
+                        context: str, prompt: str, output_path: Path,
+                        attempts: int) -> tuple[str, str | None]:
+    """
+    Нарисовать картину. Если модерация отклонила промпт (400), художник переписывает его —
+    до attempts раз. Возвращает (промпт, по которому рисовали; текст ошибки или None).
+    """
+    for attempt in range(attempts + 1):
+        try:
+            generator.generate(prompt, output_path)
+            return prompt, None
+        except BadRequestError as error:
+            if attempt == attempts:
+                return prompt, str(error)
+            print(f"  ! [Художник {artist.artist_id}] генератор отклонил промпт — переписываю")
+            prompt, _ = write_fitting_prompt(artist_llm, artist, generator,
+                                             context + build_rephrase_message(prompt))
+        except Exception as error:
+            return prompt, str(error)
+    return prompt, None
 
 
 class ArtStudio:
@@ -160,16 +185,21 @@ class ArtStudio:
     # ----- Шаг 3. Генерация изображения -----
 
     def generate_image(self, artist: ArtistConfig, prompt: str,
-                       iteration: int) -> tuple[Path | None, str | None]:
-        """Сгенерировать картинку. Возвращает (путь к файлу, текст ошибки)."""
+                       iteration: int) -> tuple[Path | None, str | None, str]:
+        """
+        Сгенерировать картинку. Возвращает (путь или None, текст ошибки или None, промпт —
+        он мог измениться, если художник переписывал его после отказа модерации).
+        """
         output_path = self.settings.output_dir / f"artist_{artist.artist_id}_{iteration:02d}.png"
-        try:
-            self.image_generators[artist.artist_id].generate(prompt, output_path)
-        except Exception as error:
+        prompt, error = draw_with_rephrasing(
+            self.artist_llm, artist, self.image_generators[artist.artist_id],
+            self.build_artist_context(artist), prompt, output_path,
+            self.settings.rephrase_attempts)
+        if error is not None:
             print(f"  ! Ошибка генерации у художника {artist.artist_id}: {error}")
-            return None, str(error)
+            return None, error, prompt
         print(f"[Генератор {artist.artist_id}] сохранено: {output_path}")
-        return output_path, None
+        return output_path, None, prompt
 
     # ----- Шаг 4. Оценка экспертом -----
 
@@ -229,7 +259,7 @@ class ArtStudio:
             print(f"[Художник {artist.artist_id}] {reasoning}")
             print(f"  промпт: {prompt}")
 
-        # 3. Генерация картин: artist_id → (путь или None, ошибка или None)
+        # 3. Генерация картин: artist_id → (путь или None, ошибка или None, итоговый промпт)
         generated = {artist.artist_id: self.generate_image(artist, written[artist.artist_id][0],
                                                            iteration)
                      for artist in self.artists}
@@ -237,7 +267,7 @@ class ArtStudio:
         # 4. VLM описывает картины
         descriptions = {artist_id: "" for artist_id in generated}
         if self.describes_images:
-            for artist_id, (path, _) in generated.items():
+            for artist_id, (path, _, _) in generated.items():
                 if path:
                     descriptions[artist_id] = self.vision_model.describe(path)
                     print(f"[VLM → Художник {artist_id}] {descriptions[artist_id][:300]}...")
@@ -247,8 +277,8 @@ class ArtStudio:
         # 5. Эксперт оценивает картины
         for artist in self.artists:
             artist_id = artist.artist_id
-            prompt, reasoning = written[artist_id]
-            image_path, error = generated[artist_id]
+            reasoning = written[artist_id][1]
+            image_path, error, prompt = generated[artist_id]
 
             if error is not None:
                 review = self.review_for_failed_generation(error)
