@@ -8,11 +8,12 @@
 - evolution.png — статичная сетка «итерации × художники» для отчёта и сайта.
 """
 
-import json
 import textwrap
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
+
+from .runlogs import has_scores, read_json
 
 PANEL_SIZE = 512            # сторона картины на панели
 PADDING = 16
@@ -219,10 +220,8 @@ class TimelapseRenderer:
 
 def render_run(run_dir: Path) -> list[Path] | None:
     """Собрать таймлапс и evolution.png для прогона. None — если в логе нет итераций."""
-    log = json.loads((run_dir / "log.json").read_text(encoding="utf-8"))
-    records = [record for artist_records in log.get("history", {}).values()
-               for record in artist_records]
-    if not records or "review" not in records[0]:
+    log = read_json(run_dir / "log.json")
+    if not has_scores(log):
         return None
 
     renderer = TimelapseRenderer(log, run_dir)

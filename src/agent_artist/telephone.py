@@ -7,7 +7,6 @@
 Это асимметрия контекста в чистом виде: каждый знает только то, что ему пересказали.
 """
 
-import json
 import textwrap
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -18,6 +17,7 @@ from .config import ArtistConfig, Settings
 from .generators import ImageGenerator, create_image_generators
 from .llm import YandexLLM, create_yandex_client
 from .prompts import BLIND_VIEWER_SYSTEM_PROMPT, TELEPHONE_JUDGE_SYSTEM_PROMPT
+from .runlogs import read_json, write_json
 from .studio import write_fitting_prompt
 from .timelapse import (BACKGROUND, MUTED_TEXT, PADDING, TEXT, artist_caption, load_font,
                         score_color, text_column_width)
@@ -87,11 +87,9 @@ class TelephoneChain:
             told = ("Нарисуй картину по рассказу человека, который её видел:\n"
                     f"{seen['description']}")
 
-        (self.output_dir / "chain.json").write_text(
-            json.dumps({"idea": idea, "artist": asdict(self.artist),
-                        "steps": [asdict(step) for step in chain]},
-                       ensure_ascii=False, indent=2),
-            encoding="utf-8")
+        write_json(self.output_dir / "chain.json",
+                   {"idea": idea, "artist": asdict(self.artist),
+                    "steps": [asdict(step) for step in chain]})
         return chain
 
 
@@ -153,7 +151,7 @@ def run_telephone(settings: Settings, steps: int, root: Path) -> Path:
     for artist in settings.artists:
         run_dir = root / artist.artist_id
         TelephoneChain(settings, artist, generators[artist.artist_id], client, run_dir).run(steps)
-        chains[str(run_dir)] = json.loads((run_dir / "chain.json").read_text(encoding="utf-8"))
+        chains[str(run_dir)] = read_json(run_dir / "chain.json")
 
     strip_path = root / "telephone.png"
     render_strip(chains, strip_path)
