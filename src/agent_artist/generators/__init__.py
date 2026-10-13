@@ -17,3 +17,12 @@ def create_image_generator(artist: ArtistConfig, settings: Settings,
         from .yandex_art import YandexArtGenerator
         return YandexArtGenerator(yandex_client, settings.yandex_folder_id, artist.image_model)
     raise ValueError(f"Неизвестный тип генератора: {artist.generator}")
+
+
+def create_image_generators(settings: Settings,
+                            yandex_client: OpenAI) -> dict[str, ImageGenerator]:
+    """Генераторы всех художников из настроек, по artist_id."""
+    generators = {}
+    for artist in settings.artists:
+        generators[artist.artist_id] = create_image_generator(artist, settings, yandex_client)
+    return generators

@@ -23,6 +23,7 @@ dependencies = [
 
 [project.scripts]
 agent-artist = "agent_artist.cli:main"
+agent-artist-experiment = "agent_artist.experiment:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

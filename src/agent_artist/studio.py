@@ -6,7 +6,7 @@ from pathlib import Path
 
 from .config import ArtistConfig, Settings
 from .dialogue import Dialogue
-from .generators import create_image_generator
+from .generators import ImageGenerator, create_image_generators
 from .llm import YandexLLM, create_yandex_client
 from .prompts import (
     build_expert_answers_system_prompt,
@@ -25,7 +25,12 @@ class ArtStudio:
     # Сколько раз художник может переписать промпт, не уложившийся в лимит генератора
     MAX_SHORTEN_ATTEMPTS = 3
 
-    def __init__(self, settings: Settings):
+    def __init__(self, settings: Settings,
+                 image_generators: dict[str, ImageGenerator] | None = None):
+        """
+        image_generators — уже созданные генераторы по artist_id. Нужны, чтобы серия
+        прогонов не загружала SDXL заново каждый раз; по умолчанию создаются по настройкам.
+        """
         self.settings = settings
         self.artists = settings.artists
         folder_id = settings.yandex_folder_id
@@ -37,10 +42,9 @@ class ArtStudio:
                                            settings.expert_vision_llm_name)
         self.vision_model = LocalVisionModel(settings.ollama_host, settings.vision_model_name)
 
-        self.image_generators = {}
-        for artist in self.artists:
-            self.image_generators[artist.artist_id] = create_image_generator(
-                artist, settings, yandex_client)
+        if image_generators is None:
+            image_generators = create_image_generators(settings, yandex_client)
+        self.image_generators = image_generators
 
         self.dialogue = Dialogue(settings.shared_questions)
 
