@@ -20,11 +20,40 @@ from .timelapse import render_run
 from .vision import LocalVisionModel
 
 
+# Сколько раз художник может переписать промпт, не уложившийся в лимит генератора
+MAX_SHORTEN_ATTEMPTS = 3
+
+
+def write_fitting_prompt(artist_llm: YandexLLM, artist: ArtistConfig,
+                         generator: ImageGenerator, context: str) -> tuple[str, str]:
+    """
+    Художник пишет промпт по контексту. Возвращает (промпт, пояснение художника).
+
+    Если промпт не укладывается в ограничения генератора, художник сам
+    сокращает его — иначе генератор молча отбросит часть деталей.
+    """
+    system_prompt = build_prompt_writer_system_prompt(
+        artist, generator.prompt_limit_description())
+
+    response = artist_llm.ask_json(system_prompt, context, required_fields=("prompt",))
+    prompt = str(response.get("prompt", ""))
+    reasoning = str(response.get("reasoning", ""))
+
+    for _ in range(MAX_SHORTEN_ATTEMPTS):
+        problem = generator.check_prompt(prompt)
+        if problem is None:
+            break
+        print(f"  ! [Художник {artist.artist_id}] {problem} — прошу сократить")
+        response = artist_llm.ask_json(
+            system_prompt, context + build_shorten_prompt_message(prompt, problem),
+            required_fields=("prompt",))
+        prompt = str(response.get("prompt", prompt))
+
+    return generator.fit_prompt(prompt), reasoning
+
+
 class ArtStudio:
     """Связывает всех участников и проводит цикл работы над картинами."""
-
-    # Сколько раз художник может переписать промпт, не уложившийся в лимит генератора
-    MAX_SHORTEN_ATTEMPTS = 3
 
     def __init__(self, settings: Settings,
                  image_generators: dict[str, ImageGenerator] | None = None):
@@ -159,33 +188,10 @@ class ArtStudio:
     # ----- Шаг 2. Промпт для генерации -----
 
     def write_prompt(self, artist: ArtistConfig) -> tuple[str, str]:
-        """
-        Художник пишет промпт. Возвращает (промпт, пояснение художника).
-
-        Если промпт не укладывается в ограничения генератора, художник сам
-        сокращает его — иначе генератор молча отбросит часть деталей.
-        """
-        generator = self.image_generators[artist.artist_id]
-        system_prompt = build_prompt_writer_system_prompt(
-            artist, generator.prompt_limit_description())
-        context = self.build_artist_context(artist)
-
-        response = self.artist_llm.ask_json(system_prompt, context,
-                                            required_fields=("prompt",))
-        prompt = str(response.get("prompt", ""))
-        reasoning = str(response.get("reasoning", ""))
-
-        for _ in range(self.MAX_SHORTEN_ATTEMPTS):
-            problem = generator.check_prompt(prompt)
-            if problem is None:
-                break
-            print(f"  ! [Художник {artist.artist_id}] {problem} — прошу сократить")
-            response = self.artist_llm.ask_json(
-                system_prompt, context + build_shorten_prompt_message(prompt, problem),
-                required_fields=("prompt",))
-            prompt = str(response.get("prompt", prompt))
-
-        return generator.fit_prompt(prompt), reasoning
+        """Художник пишет промпт по всему, что знает. Возвращает (промпт, пояснение)."""
+        return write_fitting_prompt(self.artist_llm, artist,
+                                    self.image_generators[artist.artist_id],
+                                    self.build_artist_context(artist))
 
     # ----- Шаг 3. Генерация изображения -----
 
