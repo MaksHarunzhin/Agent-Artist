@@ -63,7 +63,8 @@ class YandexLLM:
 
     def ask_json(self, system_prompt: str, user_message: str, attempts: int = 3,
                  image_path: Path | None = None,
-                 required_fields: tuple[str, ...] = ()) -> dict:
+                 required_fields: tuple[str, ...] = (),
+                 temperature: float = 0.7) -> dict:
         """
         Отправить запрос и получить ответ в виде словаря из JSON.
         С image_path к сообщению прикладывается картинка (нужна мультимодальная модель).
@@ -86,7 +87,7 @@ class YandexLLM:
                 model=self.model_uri,
                 instructions=system_prompt,
                 input=model_input,
-                temperature=0.7,
+                temperature=temperature,
             )
             try:
                 data = extract_json(response.output_text)

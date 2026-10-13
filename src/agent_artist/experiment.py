@@ -9,6 +9,7 @@ LLM и Yandex ART недетерминированы (seed Yandex ART через
 
 import argparse
 import json
+import os
 import statistics
 import time
 from dataclasses import dataclass, replace
@@ -18,6 +19,7 @@ from .cli import add_experiment_arguments, load_environment, settings_from_argum
 from .config import Settings
 from .generators import create_image_generators
 from .llm import create_yandex_client
+from .recovery import recover_and_summarize
 from .studio import ArtStudio
 
 MODE_NAMES = {True: "shared", False: "isolated"}
@@ -252,6 +254,11 @@ def main(argv: list[str] | None = None) -> None:
     summary_parser.add_argument("paths", type=Path, nargs="+",
                                 help="папки с прогонами (log.json ищется рекурсивно)")
 
+    recover_parser = commands.add_parser(
+        "recover", help="«угадай заказ»: сколько из заказа дошло до картин")
+    recover_parser.add_argument("paths", type=Path, nargs="+",
+                                help="папки с прогонами (log.json ищется рекурсивно)")
+
     args = parser.parse_args(argv)
 
     if args.command == "summary":
@@ -259,6 +266,14 @@ def main(argv: list[str] | None = None) -> None:
         return
 
     load_environment()
+
+    if args.command == "recover":
+        settings = Settings(yandex_api_key=os.environ.get("YANDEX_API_KEY", ""),
+                            yandex_folder_id=os.environ.get("YANDEX_FOLDER_ID", ""))
+        settings.check()
+        print(recover_and_summarize(args.paths, settings))
+        return
+
     # Все прогоны одной длины: min = max, ранней остановки по оценке нет
     settings = settings_from_arguments(
         args, min_iterations=args.iterations, max_iterations=args.iterations)
