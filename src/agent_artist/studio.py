@@ -276,6 +276,7 @@ class ArtStudio:
             "shared_questions": self.settings.shared_questions,
             "seed": self.settings.seed,
             "expert_sees_image": self.settings.expert_sees_image,
+            "expert": self.settings.expert_name,
             "expert_taste": self.settings.expert_taste,
             "artists": [asdict(artist) for artist in self.artists],
             "dialogue": [asdict(entry) for entry in self.dialogue.entries],
