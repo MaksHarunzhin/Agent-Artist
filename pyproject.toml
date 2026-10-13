@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-artist"
+version = "0.1.0"
+description = "Агент-художник: художники уточняют детали у эксперта и рисуют, пока он не будет доволен"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate",
+    "diffusers",
+    "httpx",
+    "huggingface_hub",
+    "ollama",
+    "openai",
+    "pillow",
+    "python-dotenv",
+    "safetensors",
+    "torch",
+    "transformers",
+]
+
+[project.scripts]
+agent-artist = "agent_artist.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
