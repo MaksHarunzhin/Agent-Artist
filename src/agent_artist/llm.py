@@ -3,10 +3,11 @@
 import base64
 import json
 import re
+import time
 from io import BytesIO
 from pathlib import Path
 
-from openai import OpenAI
+from openai import APIConnectionError, InternalServerError, OpenAI, RateLimitError
 from PIL import Image
 
 from .config import YANDEX_BASE_URL
@@ -34,6 +35,23 @@ def extract_json(text: str) -> dict:
 
     json_text = clean_text[start:end + 1]
     return json.loads(json_text)
+
+
+# Обрыв связи, таймаут, перегрузка или сбой сервера — запрос стоит повторить.
+# Отказ модерации (400) сюда не входит: повтор того же запроса ничего не даст.
+RETRYABLE_ERRORS = (APIConnectionError, RateLimitError, InternalServerError)
+RETRY_DELAYS_SECONDS = (5, 20, 60)
+
+
+def call_with_retries(function, *args, **kwargs):
+    """Вызвать API, повторяя при сетевых сбоях с нарастающей паузой."""
+    for delay in RETRY_DELAYS_SECONDS:
+        try:
+            return function(*args, **kwargs)
+        except RETRYABLE_ERRORS as error:
+            print(f"  ! Сбой API ({type(error).__name__}: {error}), повтор через {delay} с")
+            time.sleep(delay)
+    return function(*args, **kwargs)
 
 
 def image_to_data_url(image_path: Path) -> str:
@@ -83,7 +101,8 @@ class YandexLLM:
             }]
 
         for attempt in range(1, attempts + 1):
-            response = self.client.responses.create(
+            response = call_with_retries(
+                self.client.responses.create,
                 model=self.model_uri,
                 instructions=system_prompt,
                 input=model_input,

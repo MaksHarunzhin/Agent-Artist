@@ -7,6 +7,7 @@ from pathlib import Path
 from openai import OpenAI
 from PIL import Image
 
+from ..llm import call_with_retries
 from .base import ImageGenerator
 
 
@@ -40,7 +41,8 @@ class YandexArtGenerator(ImageGenerator):
         # Страховка на случай прямого вызова: API не примет длинный промпт
         prompt = self.fit_prompt(prompt)
 
-        response = self.client.images.generate(
+        response = call_with_retries(
+            self.client.images.generate,
             model=self.model_uri,
             prompt=prompt,
             size="1024x1024",
