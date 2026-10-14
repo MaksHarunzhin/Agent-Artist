@@ -15,6 +15,7 @@ from pathlib import Path
 
 from .cli import add_experiment_arguments, load_environment, settings_from_arguments
 from .config import Settings
+from .drift import rereview_and_summarize
 from .generators import create_image_generators
 from .limits import classify_and_summarize as limits_summary
 from .llm import create_yandex_client
@@ -82,6 +83,8 @@ ANALYSIS_COMMANDS = {
                     lambda paths: print(classify_and_summarize(paths, keys_only_settings()))),
     "limits": ("карта непосильных деталей: в чём генераторы систематически промахиваются", True,
                lambda paths: print(limits_summary(paths, keys_only_settings()))),
+    "drift": ("движущаяся мишень: первая и последняя картина под одним, финальным контекстом", True,
+              lambda paths: print(rereview_and_summarize(paths, keys_only_settings()))),
     "timelapse": ("таймлапс эволюции картин: timelapse.webp/.gif и evolution.png", False,
                   render_timelapses),
 }
