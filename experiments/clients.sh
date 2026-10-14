@@ -25,4 +25,4 @@ for expert in cinematic minimalist baroque child peredvizhnik; do
 done
 
 agent-artist-experiment gallery "$ROOT" --label expert \
-  --title "«$IDEA» у пяти заказчиков" --output "$ROOT/clients.png"
+  --title "«${IDEA}» у пяти заказчиков" --output "$ROOT/clients.png"
