@@ -79,6 +79,31 @@ def draw_with_rephrasing(artist_llm: YandexLLM, artist: ArtistConfig, generator:
     return prompt, None
 
 
+def review_picture(expert: YandexLLM, expert_taste: str, sees_image: bool, idea: str,
+                   artist_id: str, agreed_details: str, prompt: str, image_path: Path | None,
+                   description: str) -> Review:
+    """
+    Эксперт оценивает картину: по самому изображению или только по описанию.
+
+    Описание от локальной VLM эксперту, который видит картину, не передаётся:
+    проверка показала, что модель верит тексту больше, чем изображению,
+    и повторяет ошибки описания (например, путаницу «лево/право»).
+    """
+    user_message = (
+        f"Идея картины: {idea}\n\n"
+        f"Художник: {artist_id}\n"
+        f"Детали, согласованные с ним:\n{agreed_details}\n\n"
+        f"Промпт художника:\n{prompt}"
+    )
+    if not sees_image:
+        user_message += f"\n\nОбъективное описание получившейся картины:\n{description}"
+
+    response = expert.ask_json(
+        build_expert_review_system_prompt(expert_taste, sees_image), user_message,
+        image_path=image_path if sees_image else None, required_fields=("score",))
+    return parse_review(response)
+
+
 class ArtStudio:
     """Связывает всех участников и проводит цикл работы над картинами."""
 
@@ -223,30 +248,13 @@ class ArtStudio:
 
     def review_image(self, artist: ArtistConfig, prompt: str, image_path: Path,
                      description: str) -> Review:
-        """
-        Эксперт оценивает картину: по самому изображению или только по описанию.
-
-        Описание от локальной VLM эксперту, который видит картину, не передаётся:
-        проверка показала, что модель верит тексту больше, чем изображению,
-        и повторяет ошибки описания (например, путаницу «лево/право»).
-        """
+        """Эксперт оценивает картину с учётом всего, что согласовано с художником."""
         sees_image = self.settings.expert_sees_image
-        user_message = (
-            f"Идея картины: {self.settings.idea}\n\n"
-            f"Художник: {artist.artist_id}\n"
-            f"Детали, согласованные с ним:\n"
-            f"{Dialogue.to_text(self.dialogue.visible_to(artist.artist_id))}\n\n"
-            f"Промпт художника:\n{prompt}"
-        )
-        if not sees_image:
-            user_message += f"\n\nОбъективное описание получившейся картины:\n{description}"
-
-        expert = self.expert_vision_llm if sees_image else self.expert_llm
-        response = expert.ask_json(
-            build_expert_review_system_prompt(self.settings.expert_taste, sees_image),
-            user_message, image_path=image_path if sees_image else None,
-            required_fields=("score",))
-        return parse_review(response)
+        return review_picture(
+            self.expert_vision_llm if sees_image else self.expert_llm,
+            self.settings.expert_taste, sees_image, self.settings.idea, artist.artist_id,
+            Dialogue.to_text(self.dialogue.visible_to(artist.artist_id)), prompt, image_path,
+            description)
 
     @staticmethod
     def review_for_failed_generation(error: str) -> Review:
