@@ -1,0 +1,79 @@
+{
+  "idea": "Баба-Яга у избушки на курьих ножках",
+  "artist": {
+    "artist_id": "C",
+    "persona": "Ты особенно тщательно продумываешь композицию, ракурс и свет.",
+    "generator": "yandex_art",
+    "image_model": "aliceai-image-art-3.0",
+    "prompt_language": "английском",
+    "max_prompt_words": 60
+  },
+  "steps": [
+    {
+      "step": 0,
+      "told": "Идея картины: Баба-Яга у избушки на курьих ножках",
+      "prompt": "Baba Yaga, wrinkled old witch in patched shawl and headscarf, stands before her log hut on giant chicken legs, glowing windows, bone fence with glowing skulls, dark pine forest, mist, full moon, warm lantern light, folk-tale illustration, painterly, dramatic low angle, moonlight rim light, deep shadows.",
+      "image": "step_00.png",
+      "seen_title": "Baba Yaga in the Forest",
+      "seen_description": "На картине изображена Баба-Яга — старая ведьма в грубом, потрёпанном капюшоне, стоящая в ночном лесу. Её отличительной чертой являются куриные ноги с чешуей и когтями, а также длинные, изогнутые пальцы. На груди у неё закреплён светящийся фонарь, а в левой руке она держит другой фонарь. Перед ней находится деревянный забор, на котором и на земле разбросаны черепа с горящими оранжевыми глазами. На заднем плане видны высокие ели и полная луна на тёмно-синем небе. Освещение контрастное: холодный лунный свет смешивается с тёплым желтым светом от фонарей. Настроение мрачное, мистическое и зловещее. Стиль напоминает цифровую иллюстрацию в жанре фэнтези. Композиция центрирована на фигуре ведьмы, которая доминирует в кадре. Ракурс прямой, чуть снизу.",
+      "similarity": 5,
+      "lost": "избушка на курьих ножках отсутствует, куриные ноги приписаны самой Бабе-Яге",
+      "error": null
+    },
+    {
+      "step": 1,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображена Баба-Яга — старая ведьма в грубом, потрёпанном капюшоне, стоящая в ночном лесу. Её отличительной чертой являются куриные ноги с чешуей и когтями, а также длинные, изогнутые пальцы. На груди у неё закреплён светящийся фонарь, а в левой руке она держит другой фонарь. Перед ней находится деревянный забор, на котором и на земле разбросаны черепа с горящими оранжевыми глазами. На заднем плане видны высокие ели и полная луна на тёмно-синем небе. Освещение контрастное: холодный лунный свет смешивается с тёплым желтым светом от фонарей. Настроение мрачное, мистическое и зловещее. Стиль напоминает цифровую иллюстрацию в жанре фэнтези. Композиция центрирована на фигуре ведьмы, которая доминирует в кадре. Ракурс прямой, чуть снизу.",
+      "prompt": "Baba Yaga, ancient witch in rough tattered hood, chicken legs with scales and claws, long curved fingers, glowing lantern on chest, another lantern in left hand. Wooden fence, skulls with burning orange eyes on it and on ground. Tall spruces, full moon, dark blue sky. Cold moonlight meets warm yellow glow, eerie fantasy digital illustration, centered low-angle composition.",
+      "image": "step_01.png",
+      "seen_title": "Баба-Яга у ворот",
+      "seen_description": "На картине изображена мистическая фигура старухи, напоминающая Бабу-Ягу из славянских сказок. У нее морщинистое лицо с желтыми глазами, она одета в рваный капюшон, напоминающий перья или мех. Вместо ног у нее птичьи лапы с когтями. Она стоит на тропинке перед деревянным забором. В правой руке она держит горящий фонарь, еще один фонарь висит у нее на груди, освещая ее лицо теплым светом. На переднем плане в траве лежат черепа со светящимися оранжевыми глазами. На заднем плане виден темный хвойный лес и полная луна на ночном небе. Композиция центрирована, освещение создает контраст между холодными синими тонами ночи и теплым оранжевым светом фонарей. Настроение картины мистическое, немного жуткое, но и сказочное. Стиль напоминает цифровую иллюстрацию в жанре фэнтези.",
+      "similarity": 4,
+      "lost": "избушка на курьих ножках отсутствует — вместо неё забор и ворота, а курьи ноги приписаны самой Бабе-Яге",
+      "error": null
+    },
+    {
+      "step": 2,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображена мистическая фигура старухи, напоминающая Бабу-Ягу из славянских сказок. У нее морщинистое лицо с желтыми глазами, она одета в рваный капюшон, напоминающий перья или мех. Вместо ног у нее птичьи лапы с когтями. Она стоит на тропинке перед деревянным забором. В правой руке она держит горящий фонарь, еще один фонарь висит у нее на груди, освещая ее лицо теплым светом. На переднем плане в траве лежат черепа со светящимися оранжевыми глазами. На заднем плане виден темный хвойный лес и полная луна на ночном небе. Композиция центрирована, освещение создает контраст между холодными синими тонами ночи и теплым оранжевым светом фонарей. Настроение картины мистическое, немного жуткое, но и сказочное. Стиль напоминает цифровую иллюстрацию в жанре фэнтези.",
+      "prompt": "Mystical crone like Baba Yaga: wrinkled face, yellow eyes, ragged feathered hood, clawed bird legs, standing on a path before a wooden fence. She holds a burning lantern in her right hand; a second lantern hangs on her chest, lighting her face. Skulls with glowing orange eyes in the grass. Dark coniferous forest, full moon, cold blue night against warm orange light, centered fantasy digital illustration.",
+      "image": "step_02.png",
+      "seen_title": "The Night Watchman",
+      "seen_description": "The painting depicts a mysterious, humanoid figure standing centrally on a dirt path at night. The character appears to be a hybrid of an old man and a bird, wearing a hooded robe made of brown feathers and possessing large, scaled bird talons for feet. He has a long, white beard, wrinkled skin, and glowing yellow eyes. In his right hand, he holds a lit lantern that emits a warm orange glow and wisps of smoke, while a smaller lantern hangs from a chain around his neck. The path is flanked by a wooden picket fence on both sides, leading into a dark forest of tall pine trees. A large, bright full moon hangs in the night sky. Scattered on the ground near the fence are several human skulls with glowing orange eyes, matching the lantern's light. The scene is illuminated by the strong contrast between the warm orange light of the lantern and the cool blue tones of the moonlit background. The style is detailed digital fantasy illustration.",
+      "similarity": 5,
+      "lost": "избушка на курьих ножках и женский облик Бабы-Яги",
+      "error": null
+    },
+    {
+      "step": 3,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nThe painting depicts a mysterious, humanoid figure standing centrally on a dirt path at night. The character appears to be a hybrid of an old man and a bird, wearing a hooded robe made of brown feathers and possessing large, scaled bird talons for feet. He has a long, white beard, wrinkled skin, and glowing yellow eyes. In his right hand, he holds a lit lantern that emits a warm orange glow and wisps of smoke, while a smaller lantern hangs from a chain around his neck. The path is flanked by a wooden picket fence on both sides, leading into a dark forest of tall pine trees. A large, bright full moon hangs in the night sky. Scattered on the ground near the fence are several human skulls with glowing orange eyes, matching the lantern's light. The scene is illuminated by the strong contrast between the warm orange light of the lantern and the cool blue tones of the moonlit background. The style is detailed digital fantasy illustration.",
+      "prompt": "Digital fantasy illustration: mysterious bird-man hybrid on a dirt path at night, hooded robe of brown feathers, scaled bird talons, long white beard, wrinkled skin, glowing yellow eyes, holding a lit lantern with warm orange glow and smoke in his right hand, small lantern chained at his neck. Wooden picket fences, dark pine forest, bright full moon, human skulls with glowing orange eyes on the ground. Warm orange lantern light against cool blue moonlight.",
+      "image": "step_03.png",
+      "seen_title": "Ночной Смотритель",
+      "seen_description": "На картине изображен антропоморфный персонаж — птица, напоминающая ворона или ворону, стоящая на земле. У него пернатое тело, птичьи лапы с острыми когтями и клюв. Он одет в капюшон, который выглядит как перьевой плащ или мантия, и держит в правой лапе горящий масляный фонарь, из которого поднимается дым. На шее у него висит цепь с маленьким фонариком. Глаза персонажа светятся ярко-желтым светом.\n\nДействие происходит в темном лесу ночью. По обе стороны от персонажа идет деревянный забор. На земле, у основания забора, лежат человеческие черепа. Глазницы черепов также светятся оранжевым светом, перекликаясь с освещением фонарей. На заднем плане видны стволы высоких сосен и полная луна на небе, освещающая сцену холодным голубым светом. Освещение контрастное: теплое от фонарей и холодное от лунного света. Композиция центрирована на фигуре птицы. Стиль — фэнтези-иллюстрация. Настроение таинственное, немного жуткое и мистическое.",
+      "similarity": 4,
+      "lost": "Баба-Яга и избушка на курьих ножках; остались лишь черепа на заборе и мрачный лес",
+      "error": null
+    },
+    {
+      "step": 4,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображен антропоморфный персонаж — птица, напоминающая ворона или ворону, стоящая на земле. У него пернатое тело, птичьи лапы с острыми когтями и клюв. Он одет в капюшон, который выглядит как перьевой плащ или мантия, и держит в правой лапе горящий масляный фонарь, из которого поднимается дым. На шее у него висит цепь с маленьким фонариком. Глаза персонажа светятся ярко-желтым светом.\n\nДействие происходит в темном лесу ночью. По обе стороны от персонажа идет деревянный забор. На земле, у основания забора, лежат человеческие черепа. Глазницы черепов также светятся оранжевым светом, перекликаясь с освещением фонарей. На заднем плане видны стволы высоких сосен и полная луна на небе, освещающая сцену холодным голубым светом. Освещение контрастное: теплое от фонарей и холодное от лунного света. Композиция центрирована на фигуре птицы. Стиль — фэнтези-иллюстрация. Настроение таинственное, немного жуткое и мистическое.",
+      "prompt": "Anthropomorphic raven in feathered hooded cloak, bird legs, sharp claws, glowing yellow eyes, holding burning oil lantern with smoke in right claw, small lantern on chain necklace. Dark night forest, wooden fences flanking him, human skulls with glowing orange eye sockets, tall pines, full moon, cold blue light. Warm lantern glow versus cool moonlight, centered fantasy illustration, eerie mystical mood.",
+      "image": "step_04.png",
+      "seen_title": "Ночной Страж",
+      "seen_description": "На картине изображен огромный антропоморфный ворон или ворона, стоящий в темном лесу ночью. Существо одето в темный плащ с капюшоном, напоминающий одежду Жнеца, который скрывает его тело, оставляя видимым только птичий клюв и светящиеся желтые глаза. У него пернатые крылья и птичьи лапы с когтями. В левой лапе он держит большой горящий фонарь, излучающий теплый оранжевый свет. На шее у него на цепи висит еще один, меньший фонарь. На переднем плане, по обе стороны от ног птицы, лежат два человеческих черепа со светящимися оранжевыми глазами. За фигурой виден деревянный забор и густой лес из сосен. На небе светит большая полная луна. Освещение контрастное: холодный синий свет луны контрастирует с теплым огнем фонарей. Настроение жуткое, мистическое, напоминающее Хэллоуин. Стиль — цифровая иллюстрация, фэнтези.",
+      "similarity": 2,
+      "lost": "Баба-Яга и избушка на курьих ножках исчезли, остался лишь мрачный птице-жнец в лесу",
+      "error": null
+    },
+    {
+      "step": 5,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображен огромный антропоморфный ворон или ворона, стоящий в темном лесу ночью. Существо одето в темный плащ с капюшоном, напоминающий одежду Жнеца, который скрывает его тело, оставляя видимым только птичий клюв и светящиеся желтые глаза. У него пернатые крылья и птичьи лапы с когтями. В левой лапе он держит большой горящий фонарь, излучающий теплый оранжевый свет. На шее у него на цепи висит еще один, меньший фонарь. На переднем плане, по обе стороны от ног птицы, лежат два человеческих черепа со светящимися оранжевыми глазами. За фигурой виден деревянный забор и густой лес из сосен. На небе светит большая полная луна. Освещение контрастное: холодный синий свет луны контрастирует с теплым огнем фонарей. Настроение жуткое, мистическое, напоминающее Хэллоуин. Стиль — цифровая иллюстрация, фэнтези.",
+      "prompt": "Anthropomorphic raven reaper in a pine forest, dark hooded cloak, visible beak, glowing yellow eyes, feathered wings, clawed bird feet, left claw holding a large burning lantern with warm orange light, smaller lantern on a chain around its neck, two skulls with glowing orange eyes, wooden fence, full moon, cold blue moonlight versus warm firelight, eerie Halloween fantasy digital illustration.",
+      "image": "step_05.png",
+      "seen_title": "The Raven Watchman",
+      "seen_description": "На картине изображен крупный антропоморфный ворон, стоящий в центре композиции. Он одет в темный, объемный капюшон, который скрывает верхнюю часть тела, но оставляет видимыми птичий клюв, светящиеся желтые глаза и оперение на груди. У ворона человеческие руки (или лапы, превратившиеся в руки), в одной из которых он держит большой масляный фонарь с ярким пламенем. На шее на металлической цепи висит еще один, меньший фонарь. Справа на земле лежат два черепа с горящими оранжевыми глазами. На заднем плане виден темный лес с высокими елями и большая полная луна на небе. Вдоль переднего плана проходит деревянный забор. Освещение контрастное: теплый оранжевый свет от фонарей освещает фигуру ворона и землю, создавая резкий контраст с холодным синим оттенком ночного леса. Стиль изображения — цифровая иллюстрация в жанре фэнтези, с элементами мистики и легкой жутковатости.",
+      "similarity": 3,
+      "lost": "Баба-Яга и избушка на курьих ножках; остались лишь мрачный лес, черепа и сказочная атмосфера.",
+      "error": null
+    }
+  ]
+}

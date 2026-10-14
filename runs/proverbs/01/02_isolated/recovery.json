@@ -1,0 +1,110 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "The Bear Warrior",
+    "description": "The image depicts a scene in a sunlit forest during autumn. A large brown bear stands on its hind legs on the left, holding a sword in its paw, appearing ready for a duel or confrontation. Facing it, slightly lower to the ground on the right, is another bear lying down, looking up at the standing bear. The forest is filled with tall, thin trees with sparse foliage, and the ground is covered with grass and fallen leaves. The lighting suggests late afternoon or early morning, with a warm, golden glow filtering through the trees from the upper right, creating a hazy, atmospheric effect. The color palette is dominated by earthy tones: browns, greens, and yellows. The style is painterly and illustrative, resembling a scene from a fairy tale or a fantasy story.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "The Bear Warrior",
+    "description": "На картине изображена сцена в осеннем лесу. В центре внимания — большой бурый медведь, стоящий на задних лапах и держащий в лапах длинный меч с голубым клинком. Он смотрит на фигуру человека вдалеке, который одет в подобие доспехов или охотничьей одежды и также вооружен. Справа на переднем плане лежит второй медведь, наблюдая за происходящим. Лес густой, деревья высокие и тонкие, листва желтеет, что указывает на осень. Освещение мягкое, золотистое, с легкой дымкой, создающей атмосферу туманного утра или вечера. Палитра состоит из теплых коричневых, зеленых и охристых тонов. Композиция построена на контрасте между крупным планом медведя-воина и удаленной фигурой человека. Настроение эпическое, с оттенком фэнтези и легкой иронии из-за вооруженного животного. Стиль живописный, напоминающий цифровую живопись.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Укротитель медведя",
+    "description": "На картине изображена осенняя лесная поляна, залитая мягким золотистым светом, пробивающимся сквозь кроны деревьев. В центре композиции находится огромный бурый медведь, идущий на четырех лапах. Рядом с ним стоят два мужчины в одежде, напоминающей народную или средневековую. Слева стоит бородатый мужчина в темной тунике и шапке, в правой руке он держит нож, а в левой — веревку. Справа от него стоит молодой человек в красной шапке и синем кафтоне, держащий длинную палку или поводок, направленный в сторону медведя. Медведь выглядит спокойным, но внимательным, его пасть слегка приоткрыта. Фон представляет собой густой лес с высокими елями и деревьями с желтой листвой, уходящий в туманную дымку. Освещение создает атмосферу таинственности и легкого напряжения.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.3333333333333333,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Укрощение медведя",
+    "description": "На картине изображена драматичная сцена в лесу: два мужчины в исторической одежде (кафтаны, шляпа) пытаются удержать крупного бурого медведя на толстой веревке. Медведь стоит на задних лапах, глядя на мужчин, его пасть слегка приоткрыта. Слева стоит бородатый мужчина в темном кафтане, в одной руке он держит большой нож, а другой сжимает веревку. Рядом с ним молодой человек в шляпе и сером плаще также держит веревку, напряженно глядя на зверя. На заднем плане видны белые стволы берез и желтеющая листва, что указывает на осеннее время. Земля мокрая, с лужами и высокой травой. Картина написана в импрессионистической манере с заметными, фактурными мазками краски. Палитра состоит из природных оттенков: коричневого, зеленого, желтого и белого. Настроение напряженное, но медведь выглядит скорее удивленным, чем агрессивным.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.3333333333333333,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Охотники и медведь",
+    "description": "На картине изображена сцена в осеннем лесу. В центре композиции находятся два мужчины и два медведя. На переднем плане лежит большой бурый медведь, его лапы связаны веревкой, которую держит молодой человек в кепке и зеленой куртке с сумкой через плечо. Рядом с ним стоит пожилой мужчина с бородой в темной куртке и сапогах, держащий в руке большой нож, готовый к действию. На заднем плане стоит еще один огромный медведь, глядящий вперед с открытым ртом. Слева видны березы с желтой листвой, справа — ели и пень. Освещение мягкое, золотистое, исходящее из-за деревьев на фоне, что создает атмосферу утра или вечера. Палитра теплая, с преобладанием коричневых, зеленых и оранжевых оттенков. Стиль живописи реалистичный, напоминающий классическую книжную иллюстрацию или советский плакат.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "The Bear's Witness",
+    "description": "The painting depicts a tense confrontation in an autumn forest. In the foreground, an older man with a grey beard and a dark jacket stands behind a rustic rope fence, holding a large knife upright in his right hand. He is facing a younger man dressed in a military tunic (resembling a Soviet WWII uniform) who has his hands open in a gesture of pleading or explanation. Behind the younger man, a large brown bear stands watching the scene intently. The background features birch trees with yellow leaves on the left and a dense pine forest fading into mist. The sun is low on the horizon, casting a warm, golden light over the scene. The mood is dramatic and suspenseful, with a realistic, illustrative style.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "yes",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": false
+  }
+}

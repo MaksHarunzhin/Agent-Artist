@@ -1,0 +1,79 @@
+{
+  "idea": "Баба-Яга у избушки на курьих ножках",
+  "artist": {
+    "artist_id": "B",
+    "persona": "Ты особенно тщательно продумываешь композицию, ракурс и свет.",
+    "generator": "yandex_art",
+    "image_model": "aliceai-image-art-3.0",
+    "prompt_language": "русском",
+    "max_prompt_words": 60
+  },
+  "steps": [
+    {
+      "step": 0,
+      "told": "Идея картины: Баба-Яга у избушки на курьих ножках",
+      "prompt": "Сказочная Баба-Яга в платке и длинном сарафане стоит у избушки на курьих ножках. Избушка поднимается на мощных птичьих лапах, бревенчатые стены, тёплый свет в окошке. Вечерний сумрак, туман в еловом лесу, низкий ракурс, контровой свет луны и огня, глубокие тени, русский фольклорный стиль, детальная живопись.",
+      "image": "step_00.png",
+      "seen_title": "Hut on Chicken Legs",
+      "seen_description": "A rustic log cabin perched atop giant, feathered chicken legs with orange claws, standing in a misty forest at dusk. An elderly woman wearing a red headscarf, blue dress, and white apron stands on the wooden porch, gesturing with her hand. Warm, golden light spills from the open doorway and the window, illuminating the porch and contrasting with the cool blue and purple tones of the twilight sky and surrounding pine trees. A crescent moon is visible in the upper left, and smoke curls from the brick chimney. The scene evokes a magical, fairy-tale atmosphere.",
+      "similarity": 9,
+      "lost": "Баба-Яга не опознана как сказочный персонаж — старушка выглядит как обычная бабушка, нет ступы, метлы и других её атрибутов",
+      "error": null
+    },
+    {
+      "step": 1,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nA rustic log cabin perched atop giant, feathered chicken legs with orange claws, standing in a misty forest at dusk. An elderly woman wearing a red headscarf, blue dress, and white apron stands on the wooden porch, gesturing with her hand. Warm, golden light spills from the open doorway and the window, illuminating the porch and contrasting with the cool blue and purple tones of the twilight sky and surrounding pine trees. A crescent moon is visible in the upper left, and smoke curls from the brick chimney. The scene evokes a magical, fairy-tale atmosphere.",
+      "prompt": "Сказочная избушка из брёвен на огромных оперённых куриных ногах с оранжевыми когтями стоит в туманном сосновом лесу в сумерках. На деревянном крыльце старушка в красном платке, синем платье и белом фартуке жестом подняла руку. Тёплый золотой свет льётся из открытой двери и окна, освещая крыльцо и контрастируя с сине-фиолетовым небом; в левом верхнем углу серп месяца, из кирпичной трубы вьётся дым.",
+      "image": "step_01.png",
+      "seen_title": "The Hut on Chicken Legs",
+      "seen_description": "A wooden log house standing on massive, feathered chicken legs with large talons, situated in a misty pine forest at twilight. An elderly woman, Baba Yaga, wearing a red headscarf, blue dress, and white apron, stands in the open doorway waving. Warm golden light glows from the open door and the window above, contrasting with the cool blue and purple hues of the evening sky where a crescent moon is visible. Smoke rises from the brick chimney. The scene has a magical, illustrative style.",
+      "similarity": 9,
+      "lost": "ничего существенного — исходная идея передана полностью, лишь утрачены второстепенные атрибуты вроде ступы и изгороди с черепами",
+      "error": null
+    },
+    {
+      "step": 2,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nA wooden log house standing on massive, feathered chicken legs with large talons, situated in a misty pine forest at twilight. An elderly woman, Baba Yaga, wearing a red headscarf, blue dress, and white apron, stands in the open doorway waving. Warm golden light glows from the open door and the window above, contrasting with the cool blue and purple hues of the evening sky where a crescent moon is visible. Smoke rises from the brick chimney. The scene has a magical, illustrative style.",
+      "prompt": "Сказочная избушка из брёвен на огромных оперённых куриных ногах с когтями, в туманном сосновом лесу в сумерках. В открытом дверном проёме стоит Баба-яга — пожилая женщина в красном платке, синем платье и белом фартуке — и машет рукой. Тёплый золотой свет льётся из двери и окна над ней, дым идёт из кирпичной трубы. Холодное сине-фиолетовое небо, месяц. Волшебный иллюстративный стиль.",
+      "image": "step_02.png",
+      "seen_title": "The Hut on Chicken Legs",
+      "seen_description": "I see a wooden log cabin perched on two giant chicken legs. An elderly woman in a red headscarf, blue dress, and white apron stands in the open doorway, waving. This is clearly the hut of Baba Yaga. Warm yellow light spills out from the door and a small window above it. Smoke rises from a brick chimney. The setting is a forest at twilight with a crescent moon in the sky and tall pine trees in the background. The style is a colorful, illustrative digital painting.",
+      "similarity": 8,
+      "lost": "Баба-Яга изображена приветливо машущей, а не колоритной зловещей хозяйкой с метлой и ступой; утрачены и жутковатые детали вроде забора с черепами",
+      "error": null
+    },
+    {
+      "step": 3,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nI see a wooden log cabin perched on two giant chicken legs. An elderly woman in a red headscarf, blue dress, and white apron stands in the open doorway, waving. This is clearly the hut of Baba Yaga. Warm yellow light spills out from the door and a small window above it. Smoke rises from a brick chimney. The setting is a forest at twilight with a crescent moon in the sky and tall pine trees in the background. The style is a colorful, illustrative digital painting.",
+      "prompt": "Цветная иллюстративная цифровая живопись: избушка на двух огромных куриных ногах в сумеречном лесу. В открытом дверном проёме стоит пожилая женщина в красном платке, синем платье и белом фартуке, машет рукой. Тёплый жёлтый свет льётся из двери и маленького окошка над ней. Из кирпичной трубы вьётся дым. Позади высокие сосны, в небе серп луны. Это избушка Бабы-Яги.",
+      "image": "step_03.png",
+      "seen_title": "Hut on Chicken Legs",
+      "seen_description": "A rustic wooden hut stands perched atop two large, orange chicken legs in the middle of a dark forest. An elderly woman wearing a blue dress, white apron, and red headscarf stands in the open doorway, waving her hand in greeting. Warm, yellow light glows from the windows and spills out from the open door, contrasting with the cool, deep blue tones of the night sky and the surrounding pine trees. A crescent moon hangs in the sky above, and grey smoke curls from a brick chimney on the roof. The scene is illuminated by the magical warmth of the hut against the cool night.",
+      "similarity": 7,
+      "lost": "Баба-Яга превратилась в безобидную старушку в дверях — потеряны её узнаваемые атрибуты (ступа, метла, костяная нога) и сказочная жуть",
+      "error": null
+    },
+    {
+      "step": 4,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nA rustic wooden hut stands perched atop two large, orange chicken legs in the middle of a dark forest. An elderly woman wearing a blue dress, white apron, and red headscarf stands in the open doorway, waving her hand in greeting. Warm, yellow light glows from the windows and spills out from the open door, contrasting with the cool, deep blue tones of the night sky and the surrounding pine trees. A crescent moon hangs in the sky above, and grey smoke curls from a brick chimney on the roof. The scene is illuminated by the magical warmth of the hut against the cool night.",
+      "prompt": "Сказочная избушка на двух больших оранжевых куриных ногах в тёмном сосновом лесу. В открытом дверном проёме стоит пожилая женщина в синем платье, белом фартуке и красном платке, приветливо машет рукой. Тёплый жёлтый свет льётся из окон и двери, контрастируя с холодным глубоким синим ночным небом. Над лесом серп луны, из кирпичной трубы вьётся серый дым. Волшебная тёплая атмосфера.",
+      "image": "step_04.png",
+      "seen_title": "The Hut on Chicken Legs",
+      "seen_description": "A wooden log cabin standing on two large orange chicken legs is situated in a dark forest. An elderly woman wearing a blue dress, white apron, and red headscarf stands in the open doorway, waving her hand. Warm yellow light spills from the windows and the door, contrasting with the deep blue night sky and the tall pine trees surrounding the hut. A crescent moon hangs above, and smoke curls from the brick chimney.",
+      "similarity": 9,
+      "lost": "исчезли каноничные атрибуты Бабы-Яги — ступа, костяная нога, изгородь с черепами",
+      "error": null
+    },
+    {
+      "step": 5,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nA wooden log cabin standing on two large orange chicken legs is situated in a dark forest. An elderly woman wearing a blue dress, white apron, and red headscarf stands in the open doorway, waving her hand. Warm yellow light spills from the windows and the door, contrasting with the deep blue night sky and the tall pine trees surrounding the hut. A crescent moon hangs above, and smoke curls from the brick chimney.",
+      "prompt": "Сказочная деревянная изба на двух больших оранжевых куриных ногах стоит в тёмном лесу. В открытом дверном проёме — пожилая женщина в синем платье, белом фартуке и красном платке, машет рукой. Тёплый жёлтый свет льётся из окон и двери, контрастируя с глубоким синим ночным небом и высокими соснами. Над избой — серп луны, из кирпичной трубы вьётся дым.",
+      "image": "step_05.png",
+      "seen_title": "Избушка на курьих ножках",
+      "seen_description": "На картине изображена сказочная деревянная избушка, которая стоит на двух огромных оранжевых куриных лапах. Она находится в темном лесу, окруженная высокими елями. В открытую дверь выходит старуха в синем платье, белом фартуке и красном платке; она приветливо машет рукой. Из кирпичной трубы идет дым. На темно-синем ночном небе виден желтый серп луны. Из окон и дверного проема льется теплый желтый свет, контрастирующий с холодными оттенками ночи. Композиция фронтальная, центрированная. Стиль — плоская векторная иллюстрация.",
+      "similarity": 8,
+      "lost": "Баба-Яга превратилась в приветливую старушку — потеряны её зловещий облик и сказочные атрибуты (ступа, костяная нога)",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "The River Titan",
+    "description": "A hyper-realistic digital painting depicts a colossal crayfish standing on a large, grey rock in the immediate foreground. The creature has a vibrant green carapace and massive, reddish-orange claws, positioned as if it is guarding the river. It faces left, looking out over a turbulent river with white, foamy rapids. The background features a dramatic landscape with steep, rocky cliffs and a dense forest of dark green coniferous trees on the left bank. Distant mountains fade into the mist. The sky is overcast with heavy, moody grey clouds, but a warm, golden light breaks through on the right horizon, suggesting either a sunset or sunrise. The lighting is soft and atmospheric, illuminating the wet texture of the rocks and the shell of the crustacean. The composition uses a low angle to emphasize the giant scale of the animal against the vast natural scenery. The mood is epic, surreal, and slightly ominous.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.4090909090909091,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Giant Lobster in Landscape",
+    "description": "The image depicts a surreal scene featuring a massive, reddish-orange and teal lobster standing on a large rock in the foreground. The crustacean is detailed with spiky textures and long antennae, appearing disproportionately large compared to the surrounding environment. It stands in shallow, calm water that reflects the sky. In the background, there is a serene landscape with a rocky shoreline, green pine trees, and distant mountains under a soft, cloudy sky. The lighting suggests either sunrise or sunset, casting a warm, golden glow on the horizon and illuminating the water with a teal hue. The composition places the giant creature as the focal point against a peaceful, natural backdrop.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.4090909090909091,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Грозовой Омар",
+    "description": "На картине изображен гигантский омар, стоящий на вершине высокого скалистого утеса. Он поднял огромные клешни вверх, словно приветствуя бурю или торжествуя. Его панцирь переливается сине-зелеными и бирюзовыми оттенками, а клешни окрашены в насыщенный красно-оранжевый цвет. Вокруг омара и краев скалы клубится белый туман или дым, закручивающийся в спирали.\n\nНа заднем плане бушует море с высокими волнами и белой пеной, на горизонте виднеются темные горы. Небо затянуто тяжелыми, зловещими серыми тучами, но справа пробивается яркий золотистый луч солнца, освещающий омара и создающий драматический контраст света и тени. Композиция построена на низком ракурсе, что подчеркивает величие и масштаб существа. Стиль картины напоминает цифровую живопись в жанре фэнтези. Настроение эпическое, торжественное и немного сюрреалистичное.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Гигантский Краб-Черепаха",
+    "description": "На переднем плане изображено фантастическое существо, напоминающее гибрид краба и черепахи. Оно обладает массивным сегментированным панцирем зеленовато-оливкового цвета с оранжевыми вкраплениями, огромными красными клешнями и длинными тонкими усиками. Существо сидит на темном скалистом уступе у самой воды. Из-под его панциря поднимается густой белый пар или дым, закручиваясь спиралью вверх. На заднем плане простирается спокойная гладь озера или моря, уходящая к силуэтам гор на горизонте. Небо драматичное: тяжелые темные облака занимают верхнюю часть, но из-за них пробиваются яркие золотистые солнечные лучи (эффект крестовых лучей), освещающие воду и панцирь существа. Освещение создает контраст между теплым золотым светом и холодными тенями. Палитра картины насыщена earthy tones (землистыми оттенками), оранжевым и серым. Композиция сбалансирована: массивное существо слева уравновешено светом справа.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.3125,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Парящий Омар на Вершине",
+    "description": "На переднем плане изображен гигантский омар, стоящий на темном скалистом утесе. Его панцирь переливается металлическим блеском: от глубокого синего и бирюзового до насыщенного оранжевого и красного. Из-за спины животного поднимается изящная спираль белого пара, словно он только что был сварен. Скала, на которой он стоит, фактурная, серая, покрыта пятнами желтого и белого лишайника. На заднем плане раскинулась бескрайняя горная долина, скрытая в густом белом тумане. Вдали угадываются силуэты других горных хребтов. Небо затянуто тяжелыми серыми облаками, но на горизонте пробивается теплый золотистый свет, указывающий на рассвет или закат. Композиция построена на контрасте масштаба: огромное ракообразное на фоне величественной природы. Стиль — гиперреализм с элементами фэнтези. Настроение картины эпическое, загадочное и слегка комичное из-за абсурдности ситуации.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Lobster on the Summit",
+    "description": "A colossal lobster stands atop a jagged rock spire, towering above a sea of clouds. The creature, detailed with teal and orange hues, faces left with long antennae stretching out. Wisps of white smoke curl upwards from its back. The background features a dramatic sky with dark clouds, pierced by golden sunbeams that illuminate the misty valleys and distant peaks. The foreground rock is textured with grey stone and patches of lichen. The low perspective emphasizes the lobster's massive scale against the vast, atmospheric landscape.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "yes",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.4583333333333333,
+    "idea_named": false
+  }
+}

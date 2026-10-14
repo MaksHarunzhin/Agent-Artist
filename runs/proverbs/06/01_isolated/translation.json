@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "Manuscripts don't burn",
+    "prompt": "Painterly realism, symbolist oil: Master crouching, tired face, grey-streaked hair, dark coat, hand extended toward hearth grate, amazed despair. Open notebook on logs, flames licking edges, intact pages, glowing amber Cyrillic handwriting. Fireplace lower-left, cold moonlight, amber, deep blue shadows."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly realism, symbolism: open notebook on hearth grate, flames licking edges, pages intact, glowing amber Cyrillic handwriting. Crouching man, forty, clean-shaven, dark coat, hand withdrawn mid-gesture, astonished despair. Fireplace lower-left, figure right, window left, cold moonlight rim, blue shadows."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting, painterly realism, thick impasto. Medium shot, low angle: an open notebook on the fireplace grate, flames licking its edge, pages intact, handwritten Cyrillic letters glowing amber. The Master, the only figure: gaunt, greying dark hair, stubble, dark 1930s house coat, crouched in profile right, right hand extended, fingers open, left fist on knee, awestruck despair. Fire lower left, cold moonlight rim light. Amber, ochre, bordeaux against deep blue-teal shadow."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting, impasto. Low angle: open notebook resting on the fireplace grate, sagging into embers, low flames licking its lower edge. Matte paper, only handwritten Cyrillic letters glowing amber from within. The Master, sole figure: gaunt, greying hair, short stubble, dark 1930s house coat, crouched in profile, right hand splayed open in air, left fist pressed on knee, awestruck despair. Fire lower left, moonlight rim. Amber, bordeaux, deep teal shadow; window, shelf dim silhouettes."
+  }
+}

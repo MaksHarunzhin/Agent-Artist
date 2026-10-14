@@ -1,0 +1,122 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "The Scholar's Night Work",
+    "description": "An elderly man with long, wavy white hair and a beard sits at a wooden desk, intently writing in a large open book with a quill pen. He is dressed in a dark coat over a white shirt. The scene is illuminated by warm light, likely from a fire or lamp, which highlights his face and the pages of the book. To the right, a brass lamp with a visible flame sits on the desk. Behind the lamp, a window reveals a cool blue exterior with swirling shapes that resemble smoke or snow. The atmosphere is quiet and focused, with a strong contrast between the warm interior lighting and the cool blue tones outside.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.1875,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "The Late Night Writer",
+    "description": "An elderly man with wild white hair and a full white beard sits at a wooden desk, deeply focused on writing in a large open book with a quill. He is dressed in a dark coat over a white shirt with a high collar. The scene is illuminated by warm, flickering candlelight from a lamp on the left and another candle on the windowsill to the right, creating a dramatic chiaroscuro effect against the dark background. Through the window, a dark blue night sky and bare tree branches are visible. The man's expression is serious and contemplative, suggesting a moment of intense intellectual labor or literary creation. The style is realistic and painterly, reminiscent of 19th-century academic art.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.125,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Burning the Manuscript",
+    "description": "The painting depicts an elderly man with a white beard and dark clothing leaning over a wooden desk. He holds a sheet of paper covered in handwriting, which is engulfed in bright orange flames. He is positioned near a fireplace where logs are burning. On the desk, there are several other sheets of paper with cursive writing, a glass inkwell with a quill pen, and a puddle of spilled black ink. To the right, a window shows a rainy night outside, with rain streaks visible against the dark blue glass, framed by heavy red curtains. A stack of books sits on a ledge near the window. The lighting is dramatic, with the warm glow of the fire and burning paper illuminating the man's face, hand, and the desk, while the rest of the room is in deep shadow. The style is painterly with visible brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.625,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Последнее письмо",
+    "description": "На картине изображен пожилой мужчина с седой бородой и морщинистым лицом, освещенный теплым светом огня. Он держит в руках лист бумаги с рукописным текстом, нижний край которого охвачен пламенем. Мужчина смотрит вниз на горящую бумагу с серьезным, задумчивым выражением. На заднем плане видно окно, по которому стекают капли дождя, что указывает на ночное время и непогоду за стеклом. Свет из окна холодный, синеватый, создавая резкий контраст с теплым оранжевым и желтым светом огня, который подсвечивает лицо и руки мужчины. Мужчина одет в темную, грубую одежду. Стиль картины импрессионистический, с заметными мазками кисти.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Горящее письмо",
+    "description": "На картине изображен пожилой мужчина с седой бородой и усами, одетый в темное пальто. Он держит в руке лист бумаги с текстом, который горит снизу ярким оранжевым пламенем. Мужчина смотрит на горящее письмо, его лицо и рука освещены теплым светом огня. На заднем плане слева видно окно, по стеклу которого стекают капли дождя, создавая атмосферу холодной, дождливой погоды. Композиция построена на резком контрасте между теплыми огненными тонами и холодными сине-серыми оттенками комнаты. Стиль картины имитирует масляную живопись с густыми, выразительными мазками.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "yes",
+      "no"
+    ],
+    "details_conveyed": 0.4166666666666667,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Burning the Letter",
+    "description": "The painting depicts an older man with a thick white beard, wearing a dark blue coat with a high collar. He stands indoors, likely in a study, as shelves filled with books are visible in the background. To the left, a window shows streaks of rain or condensation. The man is holding a piece of paper, which appears to be a letter with handwritten text, directly over a fire burning in a fireplace or brazier. The paper is curling and catching fire at the edges, illuminated by the warm, orange glow of the flames. The lighting creates a strong contrast between the bright fire and the cooler, darker tones of the room and the man's clothing. The style is impressionistic with visible, thick brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Realistic Peredvizhniki painting, Maslenitsa sunset: family, two children, accordionist, girl reaching for blin, mother holding toddler, traditional dress. Burning effigy, samovar, sleigh, flags, church haze. Warm red-gold, blue snow shadows, smoke, lanterns. Low angle, diagonal."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Realistic Peredvizhniki oil painting, Maslenitsa village square at golden sunset: father, mother with toddler, girl reaching for blin, accordionist, blurred crowd. Burning effigy, church in haze, samovar, blini, sleigh, flags, smoke, warm lanterns, blue snow shadows, low angle, diagonal."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Realist Peredvizhniki oil painting, thick brushstrokes. Frosty golden sunset, backlit sun, blue-lilac shadows on snow. Bearded father, brown sheepskin coat, scarlet sash, hands blin to laughing girl in white red-patterned shawl; rosy mother, dark-red fur-trimmed shawl, holds toddler; accordionist plays; vendor, white apron, steaming samovar stall, pancakes, lower right. Bonfire, burning effigy, smoke, flags, snowdrifts, church, silhouettes, sled runners left."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "Pancake Week",
+    "prompt": "Realist Peredvizhniki oil painting, thick brushstrokes. Frosty golden sunset, backlit sun, blue-lilac shadows on snow. Bearded father in brown sheepskin coat, scarlet sash, offers pancake to laughing girl in white red-patterned shawl; rosy mother in dark-red fur-trimmed shawl holds youngest child; accordionist plays; vendor in white apron, samovar stall, pancakes, lower right. Warm glow, haze, sparks, flags, snowdrifts, church, silhouettes."
+  }
+}

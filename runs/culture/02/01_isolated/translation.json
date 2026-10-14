@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly dark fantasy: old witch Baba Yaga on porch, hooked nose, dark headscarf, patched rags, raised hand, broom, black cat, hut on chicken legs, glowing window, bone fence, burning skulls, fly agarics, fog, twilight, moon backlight, amber glow, branches foreground."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly dark fantasy: old witch Baba Yaga standing on porch, broom, other hand raised, hooked nose, dark headscarf, layered rags, apron, black cat on railing, hut on chicken legs, bone fence, glowing skulls, fog, cold moon rim light, amber window glow."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly dark fantasy illustration, visible brushwork. Baba Yaga full-length on the porch of a hut on chicken legs, right of frame: old, wiry, hunched, hooked nose, dark headscarf, patched quilted jacket, long skirt, apron, bast shoes, leaning on a broom, one hand raised listening. Dusk, thick low fog. Cold moonlight rims her silhouette, warm amber glow from the window. Bone fence with faintly glowing skulls, fly agarics, ferns, black cat on railing. Low angle."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Folkloric fairy-tale painting, painterly brushwork. An old forest crone on the porch of a hut on tall bird legs: wiry, hunched, hooked nose, dark headscarf, quilted jacket, long skirt, apron, leaning on a broom. Dusk, thick low fog, cold moon rim-light, warm amber window glow, crooked grey pole fence with lanterns, fly agarics, ferns, black cat on railing. Low angle."
+  }
+}

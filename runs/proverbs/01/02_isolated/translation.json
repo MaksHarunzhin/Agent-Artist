@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "don't count your chickens before they hatch",
+    "prompt": "Painterly cinematic oil illustration: two bearded hunters arguing, rope, knife, left foreground; huge living brown bear crouched, snarling, lunging, right of center. Foggy autumn clearing, wet grass, backlit sun, rim light, warm ochre, deep green, cold blue shadows, low angle."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "don't count your chickens before they hatch",
+    "prompt": "Painterly oil illustration: two bearded hunters arguing left foreground, one knife, one taut rope; single living brown bear crouched snarling right background, ignored. Foggy autumn clearing, wet grass, backlit sun, rim light, warm ochre, deep green, cold blue shadows."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "don't count your chickens before they hatch",
+    "prompt": "Painterly cinematic oil realism: two hunters on a misty autumn clearing divide an unseen bear skin — taut rope and stakes in wet grass. Older bearded hunter in dark zipun raises his knife mid-argument; younger clean-shaven man in serf coat and cap measures the rope. Behind right, a huge brown bear emerges from fog, crouched, snarling, rim-lit by low sun. Warm ochre palette, blue shadows, birches, firs, stump."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic oil realism: two hunters argue over empty wet grass on a misty autumn clearing; a taut rope stretched between two wooden stakes marks an imaginary boundary. Older bearded hunter in dark zipun raises his knife; younger clean-shaven man in serf coat measures the rope. Behind right, a huge brown bear emerges from fog, crouched, snarling, rim-lit by low sun. Warm ochre palette, blue shadows, birches, firs, stump."
+  }
+}

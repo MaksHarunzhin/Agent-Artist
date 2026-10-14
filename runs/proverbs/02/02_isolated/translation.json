@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly illustration: one dark-grey Asian elephant, trunk raised curled, guilty eye, lifted foot over shards; elderly shopkeeper in vest, apron, round glasses, raised hand behind counter; tall blue-white porcelain shop, collapsing shelf, warm lamp, low sun; elephant right, destruction lower left."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly illustration: giant dark-grey elephant fills right two-thirds, trunk raised curled, guilty eye, foot over shards; tiny elderly shopkeeper, round glasses, dark vest, apron, raised hand, behind counter, left; tall blue-white porcelain shop, collapsing shelf, plates falling, dust, dramatic sunbeam."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly illustration: a huge dark-grey Asian elephant fills the right two-thirds of a narrow porcelain shop, front leg lifted over shards, trunk curled up, eye toward viewer. A tilted shelf spills plates, dust in a low sunbeam. Lower left: elderly shopkeeper in dark vest, white sleeves, apron, glasses, one raised hand, open mouth. Warm ochre, amber wood against cold blue-white porcelain. Low angle, dramatic light."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly illustration, low angle: huge dark-grey Asian elephant fills right two-thirds, front leg lifted over shards, trunk curled up, eye gazing straight at viewer. Tilted shelf spills blue-white plates; dust in a low sunbeam from the window behind right, cutting diagonally left. Lower left: elderly shopkeeper behind the counter, dark vest, apron, glasses, one hand raised, other pressed to chest, mouth open. Warm ochre, amber wood."
+  }
+}

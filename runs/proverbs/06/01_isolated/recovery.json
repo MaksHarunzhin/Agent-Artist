@@ -1,0 +1,140 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Размышления у камина",
+    "description": "На картине изображён пожилой мужчина с седыми волосами и бородой в тёмно-синем халате и серых брюках, сидящий на деревянном табурете у камина. Он держит раскрытую книгу, задумчиво прижав палец к губам. На деревянном полу вокруг него лежат ещё две открытые книги, перо и трубка. В камине горит огонь, освещая комнату тёплым светом. Над камином на полке стоят свечи, небольшие часы и висит портрет женщины в золотой раме. Справа видна деревянная рама окна, за которым угадывается сумеречный пейзаж с холмами и закатным небом. Композиция построена на контрасте тёплого оранжево-жёлтого света от камина и холодного сине-фиолетового оттенка из окна. Палитра насыщенная, с преобладанием коричневых, синих и золотистых тонов. Стиль живописи реалистичный с элементами импрессионистической мазки, передающей фактуру дерева, ткани и пламени. Настроение картины спокойное, созерцательное, наполненное уютом и интеллектуальной сосредоточенностью. Ракурс — чуть снизу, на уровне глаз сидящего персонажа. Судя по внешности и обстановке, на портрете над камином изображён Лев Толстой, а комната напоминает его кабинет в Ясной Поляне.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "no",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.125,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Winter Evening by the Fireplace",
+    "description": "The painting depicts an interior scene, likely a living room, during the evening. An older man with grey hair and a beard, wearing a dark coat and brown trousers, is crouching in front of a brick fireplace. He holds a small piece of wood or a tool near the bright, burning fire, which casts a warm, orange glow on his face and the surrounding area. On the wooden floor near his feet lies an open book. On the mantelpiece above the fireplace, there is a framed portrait of a person and two glass bottles. To the right, a large window with blue curtains reveals a cold, blue-toned exterior with a glimpse of a house, suggesting a winter night. The contrast between the warm fire and the cool window light creates a cozy, contemplative mood. The style is realistic with visible brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.20833333333333334,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Вечер у камина",
+    "description": "На картине изображен пожилой мужчина с седыми вьющимися волосами, сидящий в полумраке комнаты. Он одет в темный пиджак и белую рубашку. Мужчина расположен справа, его лицо и правая рука ярко освещены теплым светом огня. Он держит руку над камином, словно согревая её, и смотрит вниз с задумчивым выражением. Перед ним на низкой поверхности лежит открытая книга с видимым текстом. Слева виден камин с горящим огнем и металлической решеткой. На заднем плане слева находится окно, через которое видна ночная синяя высь и полная луна. Свет от окна холодный и синий, создавая резкий контраст с теплым оранжево-желтым светом камина. Палитра картины построена на сочетании темных теней, огненных оттенков и глубоких синих тонов. Композиция сбалансирована: фигура мужчины занимает правую часть, камин — левую. Стиль живописный, напоминающий масло, с заметными мазками. Настроение умиротворенное, интимное и немного меланхоличное.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.45454545454545453,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "The Burning Manuscript",
+    "description": "The painting depicts a dramatic scene where a man is watching a large, open book burn. The book rests on a metal stand or grate in front of a fireplace, engulfed in flames. The man, positioned on the right, leans forward with an expression of shock, horror, or intense fascination. His face is illuminated by the warm, flickering light of the fire, highlighting his furrowed brow and open mouth. He wears a dark, textured garment. To the left, a window reveals a cool, blue exterior, suggesting it is night or a cold day, contrasting with the warmth of the fire. Sparks fly up from the burning pages. The text on the pages is illegible, appearing as scribbled lines. The overall mood is one of destruction and perhaps regret or desperation. The style resembles an oil painting with visible brushstrokes and a focus on light and shadow.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.4090909090909091,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Ночное чтение",
+    "description": "На картине изображен пожилой мужчина с седой бородой в темном пальто, сидящий в профиль у камина. Он внимательно читает открытую книгу, лежащую на подставке. Слева ярко горит огонь, освещая страницы книги и лицо мужчины теплым оранжевым светом. Фон картины выполнен в холодных синих и бирюзовых тонах, создавая контраст с жаром камина. В верхнем правом углу видна полная луна, светящаяся сквозь окно. Мужчина держит руку над книгой, словно подчеркивая прочитанное. Стиль картины импрессионистический, с густыми, заметными мазками краски.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Рассказчик у камина",
+    "description": "На картине изображен пожилой мужчина с седыми волосами и бородой, одетый в темное пальто. Он сидит в помещении, слева от него горит яркий огонь в камине, освещающий его лицо и раскрытую книгу в левой руке. Правая рука мужчины поднята ладонью вверх в жесте, напоминающем рассказ или объяснение. Справа на заднем плане видно окно, через которое в комнату проникает холодный синий свет полной луны. На заднем плане видны полки с нечеткими предметами. Картина написана импрессионистичным стилем с заметными, густыми мазками. Цветовая палитра построена на контрасте теплых оранжевых и желтых тонов огня и холодных синих и бирюзовых оттенков ночного света. Настроение картины умиротворенное, сосредоточенное и немного таинственное.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Lighthouse Against the Storm",
+    "description": "На картине изображен высокий цилиндрический маяк, стоящий на скалистом мысу во время сильного шторма. Небо затянуто тяжелыми, мрачными серыми тучами, создавая атмосферу надвигающейся бури. Море бурлит: высокие зеленовато-синие волны с обильной белой пеной разбиваются о темные острые скалы на переднем плане и у основания берега. Сам маяк окрашен в черные и желтые горизонтальные полосы, а его верхний фонарь излучает теплый желтый свет, который ярко контрастирует с холодным и темным фоном. У основания башни видна небольшая желтая пристройка. Композиция построена на контрасте: статичный, светящийся маяк справа противостоит хаотичному движению воды слева. Освещение драматичное, преобладают холодные тона неба и океана, разбавленные теплым светом маяка. Настроение картины напряженное, но в то же время внушающее чувство безопасности благодаря маяку.",
+    "idea_recognized": true,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": true
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Lighthouse in the Storm",
+    "description": "На картине изображен маяк, стоящий на скалистом мысе во время сильного шторма. Башня маяка имеет желто-темную полосатую окраску, а его фонарь ярко светится теплым желтым светом. Рядом с маяком виден небольшой желтый домик. К маяку ведет деревянный пирс, освещенный уличным фонарем. Море бурное, волны с густой белой пеной набегают на скалистый берег. Небо затянуто тяжелыми темными тучами, что создает атмосферу грозы. Освещение контрастное: темный фон неба и воды контрастирует с ярким светом маяка и фонаря. Палитра включает оттенки темно-серого, синего, зеленого и желтого. Композиция сбалансирована: маяк находится справа, а волны занимают левую часть. Настроение драматичное и немного тревожное.",
+    "idea_recognized": true,
+    "details": [
+      "no",
+      "no",
+      "no",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.1,
+    "idea_named": true
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The image depicts a dramatic coastal scene at night, featuring a yellow lighthouse on the right side. The sky is dark and filled with heavy, grey clouds, and streaks of rain are visible falling. The lighthouse is illuminated, casting a bright beam that creates a long, golden reflection on the choppy, dark blue-green water. In the foreground, large, jagged grey rocks line the shore where white waves are crashing. A walkway or pier structure connects to the lighthouse. In the distance on the left, faint lights of ships are visible on the horizon. The composition balances the solid structure of the lighthouse against the vast, stormy sea. The mood is atmospheric and solitary. The lighthouse strongly resembles the Portland Head Light in Maine.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.35,
+    "idea_named": true
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображена бурная ночная сцена. На переднем плане слева стоит мужчина в желтом дождевике с поднятым капюшоном, он опирается рукой на перила и смотрит вдаль. За его спиной возвышается каменный маяк, из верхней части которого бьет мощный луч света, прорезающий темноту и дождь. Небо затянуто тяжелыми тучами, идет сильный ливень, изображенный белыми вертикальными штрихами. Море неспокойное, волны с белой пеной накатывают на берег. В правой части картины, вдалеке, видна вспышка молнии и маленькая лодка с горящим огнем посреди воды. Цветовая гамма построена на контрасте холодных синих и бирюзовых тонов штормового моря и неба с теплым желтым светом маяка и одежды персонажа. Стиль живописный, с заметными мазками.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен высокий маяк, стоящий на скалистом берегу посреди бушующего шторма. В верхней части маяка, на галерее, стоит фигура человека в желтом плаще, который, кажется, смотрит в сторону или прикрывается от ветра. Из фонаря исходит мощный луч теплого желтого света, прорезающий темноту и дождь. Небо затянуто тяжелыми темными тучами, слева видна яркая молния, освещающая облака. Вокруг маяка разбиваются высокие волны с белой пеной, море темно-синего и бирюзового цвета. На заднем плане, вдали на воде, виден силуэт корабля с горящим огнем. Картина написана густыми мазками, создающими эффект движения и суровой погоды. Преобладают холодные синие и серые тона, контрастирующие с теплым светом маяка.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "yes",
+      "no"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The painting depicts a dramatic night scene during a severe storm. A tall, dark lighthouse stands on the left side, emitting a powerful, warm yellow beam of light that cuts diagonally across the dark, teal sky. Heavy rain is depicted as long white streaks falling from top right to bottom left. Behind the lighthouse, jagged white lightning bolts illuminate the clouds. At the base of the lighthouse, a person wearing a bright yellow raincoat stands on the rocky shore, looking upwards towards the lantern. In the distance on the right, a small boat with a single light is visible on the choppy sea, with white foam from the waves crashing near the shore. The palette is dominated by deep blues, teals, and blacks, contrasted by the bright yellow of the lighthouse beam and the raincoat. The style is painterly with visible brushstrokes.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": true
+  }
+}

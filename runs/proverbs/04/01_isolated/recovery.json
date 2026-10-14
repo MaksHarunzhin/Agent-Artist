@@ -1,0 +1,106 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Пожилой мужчина ест спагетти",
+    "description": "На изображении крупным планом запечатлен пожилой мужчина с белыми волосами и глубокими морщинами на лбу и лице. Он одет в плотную вязаную кофту в полоску (коричневая с зеленоватым оттенком) поверх рубашки бирюзового цвета. Мужчина сидит за деревянным столом в помещении, похожем на кафе или ресторан. Перед ним на белой тарелке лежит порция спагетти. В правой руке он держит вилку, на которой намотано несколько нитей пасты, и смотрит на нее или чуть в сторону с серьезным, задумчивым, возможно, немного усталым выражением лица. Его левая рука покоится на столе. На заднем плане видно большое окно с темной рамой, за которым размыто виден городской пейзаж, вероятно, идет дождь или просто темно на улице. Справа сверху висит светильник с теплым желтым светом, который освещает лицо мужчины и создает уютную, но одинокую атмосферу. Палитра картины теплая, с преобладанием коричневых, оранжевых и бежевых тонов, контрастирующих с прохладными оттенками за окном. Композиция сбалансирована, взгляд зрителя привлекает к лицу героя и тарелке. Стиль изображения реалистичный, напоминающий высококачественную фотографию или фотореалистичную цифровую живопись.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Morning Tea",
+    "description": "На картине изображены два пожилых мужчины, сидящие за деревянным столом у окна с зелеными рамами. Мужчина слева, с белыми волосами и глубокими морщинами, одет в зеленую клетчатую рубашку и коричневый жилет; он держит в руке палочки для еды, направленные к белой чашке с синим цветочным узором. Мужчина справа, с седыми волосами и в клетчатой рубашке, смотрит на собеседника с легкой улыбкой, держа в руке небольшой предмет. На столе также стоят желтая кружка, тарелка с синим орнаментом, на которой лежат жареные хлебные изделия, и еще одна пара палочек. Через окно видна улица с зданиями и фонарным столбом. На стене в левом верхнем углу висят часы. Освещение естественное, дневное, исходящее от окна, создающее теплую атмосферу. Палитра состоит из землистых тонов: зеленого, коричневого, желтого. Стиль живописный, реалистичный, с заметными мазками, передающий уют и дружескую беседу.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Fagin and Oliver",
+    "description": "The painting depicts an intimate indoor scene featuring an older man and a young boy seated at a wooden table. The man, who resembles the actor Bob Hoskins, has grey hair and wears a textured, brownish-green tweed jacket. He is leaning forward, holding a clump of long, yellow spaghetti noodles with his hands, feeding them to the boy. The boy, dressed in a plaid shirt, brown vest, and red tie, sits on the right with a look of wide-eyed surprise or hesitation. On the table is a white plate with more spaghetti. To the left, a wall sconce emits a warm, yellow glow, illuminating the man's face. Behind them is a large window showing a rainy evening outside; the rain is depicted as long, white streaks running down the glass, blurring the blue-toned city buildings in the background. The style is impressionistic with thick, visible brushstrokes and a rich, earthy palette contrasting with the cool blues of the window.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Отец и сын за ужином",
+    "description": "На картине изображены два мужчины, сидящие за деревянным столом и радостно едящие спагетти. Слева сидит пожилой мужчина с седыми волосами, в фактурной куртке и галстуке; он широко улыбается, глядя на молодого человека, и держит вилку с пастой, его рука ласково лежит на плече собеседника. Справа сидит молодой мужчина в клетчатой рубашке и жилете; он смеется, держа в руке вилку с длинными нитями спагетти, одна из которых перекинута через ухо. На столе стоит белая тарелка с горкой пасты. Освещение теплое и желтое, исходит от висящей лампы слева, создавая уютную атмосферу. Справа видна оконная рама, за которой темнеет ночь с размытыми огнями города. Картина написана в живописном, импрессионистическом стиле с заметными, густыми мазками.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Mentor and Apprentice",
+    "description": "Two men are seated at a wooden table in a cozy cafe, sharing a large bowl of steaming noodles. On the left, an older man with a grey beard and receding hairline, dressed in a tweed jacket, green vest, and red tie, smiles warmly while lifting noodles with a fork. Opposite him, a younger man with brown hair, wearing a plaid shirt and a brown vest, looks at the older man with an attentive expression, holding a single noodle near his mouth. A cup of tea sits on the table to the left. Behind them, a large window reveals a rainy evening outside, with streaks of rain and cool blue streetlights contrasting with the warm, yellow glow of a hanging lamp inside. The painting features a rich palette of warm browns and oranges against cool blues, rendered in a realistic, painterly style with visible brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "yes",
+      "no"
+    ],
+    "details_conveyed": 0.3125,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Feeding the Apprentice",
+    "description": "An oil painting in a realistic style with visible brushstrokes. An older man with grey hair and a beard, wearing a tweed jacket and red tie, is feeding a younger man with brown hair, who is wearing a plaid shirt. The older man holds a pair of noodles to the younger man's mouth. A bowl of noodles sits on the wooden table between them. Through the large window behind them, rain is falling on a blue, dark street. A warm lamp hangs in the background, casting a yellow glow on the scene. The older man looks intently at the younger man, who looks back at him. The mood is caring and intimate.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "yes",
+      "no"
+    ],
+    "details_conveyed": 0.3125,
+    "idea_named": false
+  }
+}

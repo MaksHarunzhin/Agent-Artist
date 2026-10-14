@@ -1,0 +1,82 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображена драматичная морская сцена. Справа на скалистом основании стоит маяк с желто-белой полосатой окраской, его свет ярко горит, освещая окрестности. Слева виден высокий темный обрывистый берег. Море бурное, волны с белой пеной набегают на берег и ударяются о камни на переднем плане. Небо затянуто тяжелыми темными тучами, что создает атмосферу надвигающейся бури или ночного времени суток. Освещение контрастное: мрачный фон контрастирует с ярким светом маяка. Палитра состоит из холодных серо-синих тонов, дополненных теплым желтым светом и белыми всплесками пены. Композиция сбалансирована, скалы слева уравновешивают маяк справа. Настроение суровое, величественное и немного тревожное. Стиль реалистичный.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": true
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The image depicts a dramatic seascape at night featuring a lighthouse standing on a rocky promontory. The lighthouse, characterized by a white tower and a glowing yellow lantern room, is the central focal point. Attached to it is a keeper's house with warm light visible in the windows. The sky is filled with heavy, dark grey storm clouds, and a jagged bolt of lightning illuminates the upper right corner. The ocean is turbulent, with white-capped waves crashing against the dark, jagged rocks at the base of the cliff. In the immediate foreground, large, dark, layered rocks frame the bottom of the view. The light from the lighthouse casts a golden reflection on the churning water. The color palette is dominated by deep blues, slate greys, and blacks, contrasting sharply with the bright yellow of the artificial lights and the white of the sea foam and lightning. The style appears to be realistic digital art or a highly detailed painting. The scene strongly resembles the Portland Head Light in Maine.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "yes",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": true
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Маяк в ночном шторме",
+    "description": "На картине изображен высокий маяк, стоящий на темном скалистом утесе посреди бурного моря. Идет сильный ливень, капли дождя показаны частыми диагональными линиями, создающими ощущение движения. Маяк излучает мощный конус теплого желтого света, который прорезает темноту и дождь в правую часть картины. Вдалеке на горизонте видна вспышка молнии и силуэт небольшого корабля, плывущего навстречу шторму. Волны с белой пеной разбиваются о скалы у основания маяка, создавая динамичную пену. Цветовая гамма построена на контрасте холодных темно-синих, бирюзовых и черных тонов неба и воды с ярким теплым светом прожектора и молнии. Стиль изображения напоминает векторную графику или стилизованную иллюстрацию с четкими контурами и плоскими цветовыми пятнами. Настроение картины драматичное, напряженное, но маяк символизирует надежду и безопасность.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Маяк в ночном шторме",
+    "description": "На холсте изображена драматичная ночная сцена шторма. В центре композиции на скалистом острове стоит маяк, из которого бьет мощный луч света. Луч света золотисто-оранжевого цвета прорезает темные, бурные облака, уходя вправо вверх. Вокруг маяка бушует море: волны темно-синего и бирюзового цвета с белыми гребнями набегают на скалы. Небо затянуто грозовыми тучами, справа видна вспышка молнии. По всему полотну идут белые штрихи, изображающие сильный ливень. В левой части на горизонте виден силуэт парусного корабля. Картина написана густым, экспрессивным мазком (техника палитрного ножа), что придает изображению объем и динамику. Цветовая гамма холодная (синие, зеленые, серые тона), разбавленная теплым светом маяка.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "yes",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": true
+  }
+}

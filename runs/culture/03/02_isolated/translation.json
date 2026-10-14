@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Impressionist realism: eight-year-old girl in red puffer, knit hat, mittens, leash to small brown dog gazing up at warm orange streetlamp; mother in dark blue coat and headscarf behind; dusk snowfall, yellow windows of panel apartment block, snowdrifts, bare poplars."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Impressionist realism: girl in red puffer, beige-grey knit hat, mittens, leash to small short-legged brown mutt, gazing up at warm orange streetlamp; mother in dark blue coat and dark blue polka-dot headscarf behind; snowfall, panel khrushchyovka with yellow windows, snowdrifts"
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Impressionist realism, winter dusk: Soviet five-story panel courtyard, light snowfall, flakes glowing in orange lamplight. A girl in red puffer jacket, knit hat, mittens pulls a leash; small mongrel stands, muzzle lifted to the light. Right, mother in long dark-blue coat watches, breath steaming. Cold blue-violet snow shadows, warm yellow windows, thick soft brushstrokes, chest-height mid-shot, diagonal panel building, bare poplars, snowdrifts, trodden path, parked cars, a distant figure."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Impressionist realism, winter dusk. Girl in red puffer jacket, knit hat, mittens leans forward straining, pulling the leash; small mongrel braces, paws dug in, muzzle raised to orange lamp. Hard lamplight pool, dark blue-violet snow. Right: mother in dark-blue coat, thick breath steam. Clear empty foreground, panel khrushchyovka with balconies receding diagonally, bare poplars, snowdrifts, trodden path, parked cars."
+  }
+}

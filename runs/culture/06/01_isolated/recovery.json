@@ -1,0 +1,74 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Fox in the Birch Grove",
+    "description": "The painting depicts a red fox standing in a snowy forest, likely a birch grove given the white trunks with black markings in the background. The fox is positioned slightly to the right of the center, captured in a moment of stillness with one paw slightly raised as if mid-step. Its fur is a rich reddish-orange, contrasting with the white snow and the cool blue shadows cast on the ground. The fox has a white chest and black lower legs, typical of the species in winter. It looks directly towards the viewer with an alert, calm expression. The background is filled with vertical lines of the birch trees, creating a textured, rhythmic pattern. The lighting is bright and crisp, suggesting a sunny winter day, with the sun illuminating the fox's back and tail. The overall mood is serene and cold, emphasizing the beauty of the animal in its natural habitat.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.3125,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Лиса в снегу",
+    "description": "На картине изображена рыжая лиса, шагающая по глубокому снегу в зимнем лесу. Животное движется влево, его передняя лапа приподнята, словно она делает шаг. У лисы густой оранжево-рыжий мех, белая грудь и чёрные лапы. Хвост пушистый, лежит на снегу. На заднем плане видны тонкие стволы голых деревьев, на ветках которых лежит снег. В воздухе летят снежинки. Освещение мягкое, фон окрашен в холодные фиолетово-голубые тона, создавая атмосферу зимних сумерек. Снег на переднем плане белый с голубыми тенями. Стиль живописный, реалистичный.",
+    "idea_recognized": true,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Зимний забег",
+    "description": "На картине изображена рыжая лиса, бегущая по глубокому снегу в зимнем лесу. Лиса находится в динамичной позе, её лапы взрыхляют снег, поднимая облако снежной пыли. Справа на переднем плане видны стволы берез, покрытые инеем и снегом. На заднем плане простирается заснеженный лес с елями и соснами. Небо окрашено в пастельные тона розового, голубого и оранжевого, что указывает на закат или рассвет. Солнце светит сквозь деревья, создавая эффект золотого часа и длинные тени. В воздухе падают крупные снежинки. Палитра картины контрастна: холодные синие и белые оттенки снега и теней противопоставлены теплому оранжевому цвету шкуры лисы и небу. Композиция сбалансирована, лиса движется слева направо, привлекая внимание зрителя. Настроение картины энергичное, но при этом спокойное и умиротворенное, передающее красоту зимней природы. Стиль исполнения напоминает цифровую живопись с мягкими мазками.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Лиса в зимнем лесу",
+    "description": "На картине изображена рыжая лиса, энергично бегущая по заснеженному лесу. Животное находится в центре, движется слева направо, его пушистый хвост поднят вверх. Из пасти лисы поднимается завихрение белого пара, подчеркивающее холодный воздух. Земля покрыта глубоким снегом, написанным густыми мазками синих, белых и розовых оттенков, которые отражают цвета неба. Справа возвышаются стволы берез с белой корой и черными отметинами, их ветви голые. На заднем плане виден темный силуэт хвойного леса. Небо окрашено в теплые оранжевые и желтые тона у горизонта, переходящие в фиолетовые и синие вышине, что указывает на закат или рассвет. В воздухе падают снежинки. Освещение мягкое и теплое, подсвечивающее шерсть лисы и верхушки сугробов, в то время как тени на снегу имеют холодный синеватый оттенок. Стиль живописный, с заметной фактурой мазков, напоминающий импрессионизм.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.75,
+    "idea_named": true
+  }
+}

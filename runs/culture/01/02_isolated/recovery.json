@@ -1,0 +1,42 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Зимний уличный продавец",
+    "description": "На картине изображена зимняя улица в городе или селе. В центре композиции стоит женщина в длинном синем платье с красным узором на подоле и красном платке, повязанном на голове. Она держит в руках миску и, кажется, раздает еду. Слева от неё стоит маленькая девочка в красном пальто и синем платке, держащая в руке деревянное ведро и протягивающая руку к женщине. Справа находится деревянная телега, на которой горит яркий огонь. На телеге или рядом с ней стоит еще одна фигура в синей одежде и синей шапке, также держащая миску у огня. Рядом с телегой стоит лошадь, запряженная в повозку. На заднем плане видны двухэтажные дома: один красный, другой желтый, покрытые снегом. Крыши домов и земля заснежены. Деревья без листвы. Освещение яркое, солнечное, бросает синие тени на снег, создавая контраст с теплым светом огня и освещенных солнцем стен домов. Стиль живописи реалистичный, с насыщенной палитрой.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.125,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Winter Market Evening",
+    "description": "The painting depicts a lively winter scene on a snowy town street, likely in a Russian or Eastern European setting. In the foreground, three figures are the focal point: on the left, a woman in a green coat and red skirt carries a large metal pot; in the center, a woman in a blue coat holds a bowl; and on the right, a man in a tall hat carries a wooden bucket on a shoulder yoke. They appear to be conversing or trading. The background features wooden houses with snow-covered roofs and a church tower in the distance. Colorful triangular flags are strung across the street, suggesting a fair or holiday. The lighting is warm and golden, indicating a late afternoon sunset, which contrasts with the cool blue shadows of the snow. The atmosphere is bustling and cheerful.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  }
+}

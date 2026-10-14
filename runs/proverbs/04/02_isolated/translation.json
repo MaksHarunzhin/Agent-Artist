@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Oil-painting cinematic illustration, waist-up duel: thin smirking man in burgundy velvet jacket left, silver fork lifting one long glowing pasta ribbon arcing onto the seated businessman's ear, gripping armrests, wide-eyed. Warm green-shaded lamp left, rainy blue dusk window right."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Oil-painting illustration, medium shot: thin dark-haired stubbled man, burgundy velvet jacket, smug smirk, silver fork twirling long glowing pasta ribbon into coils around seated man's left ear; wide-eyed victim grips armrests, grey suit, tired face. Warm lamp light, rainy blue window, steaming pasta."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Painterly oil illustration: thin man, 40s, slicked dark hair, stubble, burgundy velvet jacket, leaning in, right hand silver fork trailing a glowing amber pasta ribbon winding around the ear of a tired man, 50, gray suit, seated, gripping armrests, wide eyes, parted lips, left hand raised persuasively. Dusk restaurant room, rainy window, green desk lamp, table, steaming pasta, wine glass, documents. Amber light left, teal shadows right, visible brushstrokes."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "to pull the wool over someone's eyes",
+    "prompt": "Painterly oil illustration: man, 40s, slicked dark hair, burgundy velvet jacket, leaning, right hand silver fork trailing a glowing amber pasta ribbon coiling around the ear of a seated man, 50, gray suit, hands gripping armchair armrests, wide eyes. Left hand raised in a persuading gesture. Rainy window, green desk lamp, table, plate, wine glass. Teal shadows, warm lamp light."
+  }
+}

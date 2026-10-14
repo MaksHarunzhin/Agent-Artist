@@ -1,0 +1,66 @@
+{
+  "A_01": {
+    "problems": [
+      "Избушка стоит на земле (деревянных столбах), отсутствуют курьи ножки.",
+      "Баба-Яга сидит на скамье, а не стоит на крыльце, как требовалось.",
+      "Поза пассивная: руки лежат на коленях/метле, нет поднятой руки, выражающей внимание к гостю.",
+      "Внешность и одежда не соответствуют: на ней темная мантия с капюшоном и длинная борода, а не лохмотья, фартук и седые космы.",
+      "Кот рыжий и сидит на земле, а не черный и на перилах.",
+      "Отсутствуют детали фона: нет забора из костей и черепа со светящимися глазницами.",
+      "Освещение напоминает закатное солнце, а не холодный лунный контровой свет."
+    ],
+    "categories": [
+      "missing",
+      "pose",
+      "pose",
+      "other",
+      "color",
+      "missing",
+      "light"
+    ]
+  },
+  "A_02": {
+    "problems": [
+      "The character is a male wizard with a long white beard and pointed hat, not Baba Yaga.",
+      "The clothing is a dark robe, not the specified layered rags, jacket, and apron.",
+      "The hut stands on wooden stilts, not chicken legs.",
+      "The fence is made of twisted wood/vines, not bones.",
+      "There are no skulls visible.",
+      "The black cat is missing.",
+      "The lighting is front-lit by the window, not rim-lit by the moon as requested."
+    ],
+    "categories": [
+      "other",
+      "other",
+      "other",
+      "other",
+      "missing",
+      "missing",
+      "light"
+    ]
+  },
+  "B_01": {
+    "problems": [
+      "Забор деревянный вместо костяного.",
+      "На фоне церковь вместо леса и болота.",
+      "Баба-Яга сидит, а не стоит.",
+      "Черепа лежат на земле, а не в заборе.",
+      "Не видна костяная нога Бабы-Яги под юбкой.",
+      "Отсутствует ступа у стены.",
+      "Метла в руках, а не опирается на землю.",
+      "Черты лица не такие резкие и выразительные.",
+      "Стиль слишком цифровой, мало фактуры мазка."
+    ],
+    "categories": [
+      "extra",
+      "extra",
+      "pose",
+      "placement",
+      "missing",
+      "missing",
+      "pose",
+      "style",
+      "style"
+    ]
+  }
+}

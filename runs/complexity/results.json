@@ -1,0 +1,227 @@
+{
+  "A_room_1_0": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "A_room_1_1": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "A_room_1_2": {
+    "error": null,
+    "answers": [
+      "нет"
+    ]
+  },
+  "A_room_3_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет",
+      "нет"
+    ]
+  },
+  "A_room_3_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет",
+      "нет"
+    ]
+  },
+  "A_room_3_2": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет",
+      "да"
+    ]
+  },
+  "A_room_6_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет",
+      "нет",
+      "нет",
+      "да",
+      "нет"
+    ]
+  },
+  "A_room_6_1": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет",
+      "нет",
+      "нет",
+      "да",
+      "нет"
+    ]
+  },
+  "A_room_6_2": {
+    "error": null,
+    "answers": [
+      "нет",
+      "да",
+      "да",
+      "нет",
+      "да",
+      "нет"
+    ]
+  },
+  "B_room_1_0": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "B_room_1_1": {
+    "error": null,
+    "answers": [
+      "нет"
+    ]
+  },
+  "B_room_1_2": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "B_room_3_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_room_3_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_room_3_2": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_room_6_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да",
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_room_6_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да",
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_room_6_2": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да",
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_room_1_0": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "C_room_1_1": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "C_room_1_2": {
+    "error": null,
+    "answers": [
+      "да"
+    ]
+  },
+  "C_room_3_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_room_3_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_room_3_2": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_room_6_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да",
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_room_6_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да",
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_room_6_2": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да",
+      "да",
+      "да",
+      "да"
+    ]
+  }
+}

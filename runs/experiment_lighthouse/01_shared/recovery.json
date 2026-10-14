@@ -1,0 +1,122 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Буря у берега",
+    "description": "На картине изображена суровая морская сцена. Справа на скалистом мысе возвышается каменный маяк, верхняя часть которого ярко светится теплым желтым огнем. Внизу бушует океан: мощные волны с густой белой пеной накатывают на берег, их гребни окрашены в глубокий зеленоватый цвет. Небо затянуто тяжелыми, мрачными тучами серо-фиолетового оттенка, но в верхней части просматривается яркий источник света, пробивающийся сквозь разрыв в облаках. На переднем плане видны темные, обломанные камни. Композиция сбалансирована: тяжелая масса воды слева уравновешена вертикалью маяка справа. Настроение картины драматичное и тревожное, подчеркивающее мощь стихии.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.3888888888888889
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Маяк в шторм",
+    "description": "На переднем плане бушует море с высокими изумрудными волнами и белой пеной, которые накатывают на берег. Справа на скалистом мысе стоит высокий маяк с красно-белыми полосами; его фонарь ярко светится теплым желтым светом. Рядом с маяком видна небольшая постройка. Небо затянуто тяжелыми темно-серыми грозовыми тучами, создающими мрачную атмосферу. На горизонте, за облаками, виднеется слабый оранжево-розовый отсвет заката или рассвета. Композиция построена на контрасте темных тонов воды и неба с ярким светом маяка. Стиль изображения напоминает реалистичную живопись.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.3888888888888889
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен драматичный морской пейзаж. Справа возвышается каменный маяк, верхняя часть которого освещена теплым желтым светом, пробивающимся сквозь темные облака. Внизу бушует море: огромные волны цвета морской волны и изумруда с белой пеной набегают на скалистый берег и бьются о фундамент маяка. Небо затянуто тяжелыми серо-синими тучами, что создает ощущение надвигающейся грозы или сумерек. Композиция сбалансирована: статичный маяк противопоставлен динамичному движению воды. Цветовая гамма холодная, с ярким акцентом света в маяке. Стиль напоминает живопись маслом с заметной фактурой мазков.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.4444444444444444
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Маяк в грозу",
+    "description": "На картине изображена драматическая ночная сцена шторма на побережье. Справа возвышается каменный маяк, верхняя часть которого ярко освещена; мощный луч света прорезает густой дождь и темные облака. Рядом с маяком стоит небольшой домик с горящим желтым окном. Море бурное, высокие волны с белой пеной разбиваются о скалистый берег. На заднем плане слева виден силуэт парусного корабля, плывущего сквозь грозу, где в облаках сверкает молния. В переднем плане видны обломки деревянных конструкций, возможно, разрушенного причала. Палитра состоит из холодных синих, серых и белых тонов, контрастирующих с теплым оранжевым светом маяка и дома. Стиль живописный, с выразительными мазками, передающими движение воды и ветра.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "yes",
+      "yes",
+      "yes",
+      "partial",
+      "yes",
+      "yes",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.8888888888888888
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Буря у маяка",
+    "description": "На картине изображена драматичная сцена шторма на побережье. Справа стоит высокий каменный маяк с домиком, из окна которого светится теплый желтый свет. Вокруг бушует стихия: темные, свинцовые тучи закрывают небо, идет дождь. В левой части, вдали, виден силуэт парусного корабля на фоне молнии. Из-за тяжелых облаков пробивается мощный луч золотистого света, освещающий бьющие о скалы волны. Передний план занят каменистым берегом с обломками. Картина написана густыми, фактурными мазками, передающими динамику и напряжение момента.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "yes",
+      "yes",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.7777777777777778
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The painting depicts a dramatic night scene featuring a lighthouse on a rocky coast during a fierce storm. On the right side, a tall, dark stone lighthouse stands with a glowing lantern room at the top, emitting a strong, diagonal beam of warm yellow light that cuts through the dark sky. A small, dark building is attached to the base of the tower. In the background on the left, a three-masted sailing ship is visible on the turbulent sea, illuminated by a jagged bolt of lightning striking near the horizon. The sky is filled with heavy, dark blue and teal clouds, and vertical streaks indicate heavy rain. The foreground shows crashing white waves and broken wooden beams or debris scattered on the rocks, suggesting wreckage. The palette is dominated by cool blues and teals, contrasting with the warm light of the lighthouse and the white lightning. The style is painterly with thick, visible brushstrokes, creating a sense of movement and turbulence.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "partial",
+      "yes",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.6666666666666666
+  }
+}

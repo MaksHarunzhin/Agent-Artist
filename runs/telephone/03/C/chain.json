@@ -1,0 +1,35 @@
+{
+  "idea": "Делить шкуру неубитого медведя",
+  "artist": {
+    "artist_id": "C",
+    "persona": "Ты особенно тщательно продумываешь композицию, ракурс и свет.",
+    "generator": "yandex_art",
+    "image_model": "aliceai-image-art-3.0",
+    "prompt_language": "английском",
+    "max_prompt_words": 60
+  },
+  "steps": [
+    {
+      "step": 0,
+      "told": "Идея картины: Делить шкуру неубитого медведя",
+      "prompt": "Fable illustration: a huge living brown bear stands calm in a sunlit forest clearing, unaware; around it four hunters argue and gesture, one holding a measuring tape, one a wooden peg, a chalk outline of a stretched hide drawn on the grass. Warm storybook oil painting, golden light, low angle, wide composition.",
+      "image": "step_00.png",
+      "seen_title": "Шуба меряна, да не по плечам",
+      "seen_description": "На картине изображена группа мужчин в военной форме (похожей на советскую) в лесу. В центре стоит огромный бурый медведь. Один мужчина на коленях измеряет лапу медведя рулеткой. На земле лежит медвежья шкура, обведенная мелом или веревкой. Другой мужчина жестикулирует, выражая удивление. Освещение теплое, солнечное, пробивается сквозь деревья. Палитра состоит из зеленых, коричневых и желтых оттенков. Стиль реалистичный, но с элементами сюрреализма и юмора. Настроение комичное и абсурдное.",
+      "similarity": 6,
+      "lost": "идея дележа шкуры подменена измерением живой лапы и шкуры",
+      "error": null
+    },
+    {
+      "step": 1,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображена группа мужчин в военной форме (похожей на советскую) в лесу. В центре стоит огромный бурый медведь. Один мужчина на коленях измеряет лапу медведя рулеткой. На земле лежит медвежья шкура, обведенная мелом или веревкой. Другой мужчина жестикулирует, выражая удивление. Освещение теплое, солнечное, пробивается сквозь деревья. Палитра состоит из зеленых, коричневых и желтых оттенков. Стиль реалистичный, но с элементами сюрреализма и юмора. Настроение комичное и абсурдное.",
+      "prompt": "Realist surreal humorous scene: a group of men in Soviet-style military uniforms in a forest, a giant brown bear standing at the center. One man kneels, measuring the bear's paw with a tape measure; another throws his arms up in astonishment. A bear skin lies on the ground, outlined with chalk and rope. Warm sunlight filters through trees; green, brown, yellow palette.",
+      "image": null,
+      "seen_title": "",
+      "seen_description": "",
+      "similarity": 0,
+      "lost": "",
+      "error": "Error code: 400 - {'error': {'message': 'Я не могу сгенерировать это изображение. Давайте попробуем другую тему.', 'type': 'invalid_request_error'}}"
+    }
+  ]
+}

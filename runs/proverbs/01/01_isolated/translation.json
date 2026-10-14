@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting realism: three bearded Russian hunters in 1890s coats pull a long strip of hide from a living brown bear's flank, one raising a knife; huge dark bear looms right behind them, eyes on viewer; autumn forest, golden hour."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "don't count your chickens before they hatch",
+    "prompt": "Oil painting realism: three Russian hunters in 1890s armyaks pulling long hide strip from a living brown bear's flank, elder cutting with knife; huge dark bear looming behind their backs, eyes straight at viewer; golden hour side light, rim light."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "Don't count your chickens before they hatch",
+    "prompt": "Oil painting realism: three 19th-century Russian hunters cut and tug a bear hide; living bear behind them, four-legged, head turned to viewer, massive upper right. Early autumn forest edge after rain, golden hour, low side light, wet trunks, mist, moss, ferns, fallen log, dead campfire, cart. Low-angle diagonal composition, warm ochre, rust, umber, dark green, cool blue-gray shadows, rim light."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "don't count your chickens before they hatch",
+    "prompt": "Oil painting realism: three 19th-century Russian hunters argue over a stretched bear pelt, pulling and measuring it; grey-bearded elder points a raised blade. A large unharmed bear stands calm behind them, head turned to viewer, massive upper right. Autumn forest edge after rain, golden hour, side light, wet trunks, mist, fallen log, cart. Low-angle diagonal composition, warm ochre, umber, cool blue rim light."
+  }
+}

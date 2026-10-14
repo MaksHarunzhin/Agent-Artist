@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly cinematic blue-steel river crayfish, three-quarter raised claws, tail tucked, swept antennae, wooden-bone whistle, leather cord, air-stream vapor, cliff edge, sunset backlight, storm clouds, tiny hovering bird silhouette upper right, amber-ochre light, blue-grey shadows, wet shell highlights, massive textured claws."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly illustration, blue-steel crayfish on high cliff edge, three-quarter, raised claws, right claw holding wooden bone-mouthed whistle, leather cord, air-stream vapor, tail tucked, swept antennae, amber-ochre sunset backlight, blue-grey shadows, storm clouds, tiny bird silhouette upper right, visible brushstrokes."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly illustration, cinematic light: a naturalistic river crayfish on a rocky summit cliff edge, raised on its claws, mandibles parted, a small whistle at its mouth, caught mid-whistle. Low-angle medium shot, hero off-center. Warm amber sunset breaking through leaden storm clouds, wind, mist in the gorge, long rock shadows. One tiny distant bird silhouette at the frame edge."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly illustration with visible brushstrokes: a steel-blue signal crayfish at a cliff edge, standing on walking legs, body tilted forward, claws raised, right claw lightly supporting a dark wooden whistle clamped between its parted mandibles. Low-angle medium shot, off-center. Amber sunset through leaden storm clouds, cold blue-grey shadows, mist in the gorge, one tiny bird speck at the frame edge."
+  }
+}

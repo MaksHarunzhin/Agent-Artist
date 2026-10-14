@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "meaning",
+    "english_equivalent": "",
+    "prompt": "Russian troika bursting from snowy forest, driver in honey sheepskin coat standing in sledge pulling reins, dark bay and black horses, painted arch with bells, frosted spruce branches, low golden sun, sparkling snow, blue-violet shadows, painterly impressionistic realism"
+  },
+  "A_02": {
+    "strategy": "meaning",
+    "english_equivalent": "",
+    "prompt": "Three horses, dark bay center, two black, bearded driver standing in low sledge, honey sheepskin coat, leaning back, taut reins, snow dust, flying manes; golden sun ahead, blue-violet shadows, copper harness, painted arch, bells, spruce branches, low horizon, diagonal, painterly realism"
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly realist illustration, impressionist light: Russian troika bursting from snowy forest, low backlit sun, one bearded driver in honey sheepskin coat and crimson sash standing in wooden sleigh, reins taut. Center dark-bay horse, two black side horses, painted arch with bells, gold-copper harness. Diagonal right-to-left toward viewer, low horizon, snow dust, long shadows, frosted spruce wings, frozen river, sun disk behind icy branches, sparkling hoarfrost, breath vapor."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly realist illustration: Russian troika bursting from snowy forest, low backlit sun. Bearded driver standing braced, reins taut, stern squinting face, honey sheepskin coat, crimson sash. Dark-bay center horse, black side horses, gold rim light on manes. Painted arch, bells, harness. Wooden sledge. Diagonal, low horizon, sharp sparkling hoarfrost, snow dust, shadows, frosted spruce wings, sun disk behind icy branches."
+  }
+}

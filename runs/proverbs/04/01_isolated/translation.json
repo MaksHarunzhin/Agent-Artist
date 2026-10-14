@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Painterly grotesque: portly sly older man in tweed, two fingers draping noodles onto ear of trusting wide-eyed young man in plaid shirt, evening cafe, tea, rainy window, warm lamp, amber ochre palette, deep teal shadows, cinematic contrast, low-angle diagonal composition."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Painterly grotesque: sly portly older man in tweed, two fingers draping long noodle onto ear of young man in plaid shirt facing him, youth gazes trusting wide-eyed, cafe table, tea cups, rainy window, warm lamp, amber ochre palette, teal shadows, low-angle diagonal"
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Painterly oil illustration, light grotesque: portly grey-stubbled con man in rumpled tweed jacket and loose tie leans forward, two fingers draping long cooked noodle strands onto the ear of a captivated thin young man in plaid shirt and knit vest; one strand dangles from his earlobe, another stretches from the noodle bowl. Small evening cafe, rainy window, tea, warm sconce, amber and teal palette, low angle."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "pull the wool over someone's eyes",
+    "prompt": "Painterly oil illustration, light grotesque: sly grey-stubbled portly con man in rumpled tweed jacket, loose muted-red tie, leans close, two fingers placing a long noodle strand onto the ear of a captivated wide-eyed thin young man in plaid shirt; one strand dangles from his earlobe, a second arcs from the noodle bowl to his ear. Small evening cafe, rainy window, warm sconce, amber-teal palette, low angle."
+  }
+}

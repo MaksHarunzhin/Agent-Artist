@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "disservice",
+    "prompt": "Painterly illustration: huge grey-flecked brown bear on hind legs pressing both paws onto cracking wooden cart wheel, splinters flying; stocky bearded man, fifty, vest, boots, crouched lower-left, gripping wheel, frightened, protective hands; log cabin, warm yellow window light, lantern, forest clearing, dusk, backlight, deep shadows."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "disservice",
+    "prompt": "Painterly illustration: huge grey-flecked brown bear on hind legs, forepaws pressing cracking wooden cart wheel, splinters flying; bearded man, fifty, vest, boots, crouched lower-left, gripping wheel, frightened, protective; log cabin, amber window light, lantern, forest clearing, dusk, blue-green shadows, backlight."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly illustration: huge grizzled brown bear on hind legs, both front paws pressing a wooden cart wheel's hub, wheel cracking, splinters flying; stout bearded man of fifty, warm shirt, vest, boots, crouched gripping the wheel, frightened polite face looking up. Forest edge, log cabin, wet late-autumn dusk, puddles, amber window light and lantern against cold blue-green mist, backlight, dense brushstrokes, medium shot."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly illustration: grizzled brown bear on hind legs, both front paws crushing a wooden cart wheel's hub, deep chaotic cracks, big splinters flying; stout bearded man of fifty in shirt, vest, boots, crouched low, pressed to the ground, gripping the wheel, tense pained strained face looking up. Forest edge, log cabin, wet late-autumn dusk, puddles, amber window light, lantern, cold blue-green mist, backlight, dense brushstrokes, medium shot, bear upper right, man lower left."
+  }
+}

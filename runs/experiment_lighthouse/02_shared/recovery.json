@@ -1,0 +1,92 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Шторм у маяка",
+    "description": "На переднем плане слева видны темные, грубые камни, лежащие на берегу. Море бурлит: огромные волны с густой белой пеной накатывают на берег, создавая ощущение мощи и хаоса. Небо затянуто тяжелыми, мрачными серыми тучами, что говорит о приближающемся или разразившемся шторме. Справа на скалистом мысу стоит высокий цилиндрический маяк. Он окрашен в белый цвет с одной широкой красной полосой посередине. В верхней части, в фонаре, горит яркий теплый свет, который контрастирует с холодным сумраком вокруг. Композиция сбалансирована: тяжесть неба и воды уравновешена вертикалью маяка. Настроение драматичное, тревожное, но маяк символизирует надежду и безопасность.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен высокий белый маяк с черным фонарем и горящим теплым желтым светом, стоящий на скалистом островке. Рядом с ним находится белое здание с красной крышей — дом смотрителя. Вокруг бушует море: мощные волны с белой пеной разбиваются о темные камни у основания скалы и на переднем плане. Небо затянуто тяжелыми, мрачными серыми тучами, предвещающими шторм. Освещение драматичное: яркий свет маяка контрастирует с холодными синими и серыми оттенками воды и неба. Композиция динамична благодаря движению волн на переднем плане и статичности маяка. Стиль реалистичный, напоминающий масляную живопись. Это, вероятно, знаменитый маяк Портленд-Хед в штате Мэн.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Шторм у маяка",
+    "description": "На картине изображен белый маяк с красной фонарной камерой и прилегающее к нему здание с красной черепичной крышей, расположенные на скалистом мысе. Передний план занимает бурное море: высокие волны с белой пеной разбиваются о камни и берег, создавая ощущение мощи стихии. Небо затянуто тяжелыми темно-серыми тучами, что указывает на штормовую погоду или приближение грозы. Освещение рассеянное, небо темное, но маяк и пена волн хорошо освещены, создавая контраст. Палитра картины состоит преимущественно из холодных серых, синих и зеленоватых тонов неба и воды, которые контрастируют с белым цветом маяка и красными акцентами на крышах. Композиция построена так, что маяк находится слева, служа якорем для взгляда, в то время как волны занимают значительную часть переднего плана. Ракурс выбран с уровня воды или чуть ниже, что подчеркивает высоту маяка и величие волн. Настроение картины драматичное, напряженное, но при этом маяк выглядит устойчивым и надежным. Стиль исполнения реалистичный, с тщательной проработкой деталей воды, облаков и текстуры скал. Судя по архитектуре и окружению, это знаменитый маяк Портленд-Хед (Portland Head Light) в штате Мэн.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Stormy Night at the Lighthouse",
+    "description": "A tall lighthouse stands on a dark, jagged rocky outcrop. The tower is white with a wide reddish-brown band near the top and a small cross on the very peak of the lantern room. A small, single-story building is attached to the base of the lighthouse. The lantern room emits a bright, warm yellow light, projecting a strong beam horizontally to the right. The scene depicts a violent storm at night. Heavy rain is shown as vertical white streaks falling across the image. The sea is rough and dark, with large, churning white waves crashing against the rocks in the foreground. The sky is a mix of dark blues and teals with swirling clouds. In the upper right, a pale moon is visible through the clouds. The overall mood is dramatic and intense. The painting style features visible, textured brushstrokes, particularly in the water and sky.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Маяк в штормовую ночь",
+    "description": "На картине изображен одинокий маяк, стоящий на темных скалистых уступах посреди бурного моря. Это ночная сцена, наполненная драматизмом. Небо затянуто тяжелыми, вихревыми облаками, но в верхней части видна полная луна, освещающая сцену холодным светом. Сам маяк ярко освещен изнутри, и его мощный луч света прорезает темноту, уходя вправо по диагонали. Вокруг основания маяка разбиваются высокие белые волны, ударяясь о скалы и создавая брызги. Картина написана в импрессионистическом стиле с использованием густых, заметных мазков краски (импасто). Палитра состоит преимущественно из холодных оттенков: темно-синего, бирюзового, серого и черного, которые контрастируют с теплым желто-оранжевым светом фонаря и луны. На вершине маяка виден крест, а стены кажутся потрескавшимися или покрытыми ржавчиной.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The painting depicts a lighthouse standing on a rocky outcrop during a stormy night. A powerful beam of warm, golden light shines from the lantern room, cutting through the dark, swirling clouds above. The sea is turbulent, with large, foamy waves crashing against the dark, jagged rocks in the foreground. The lighthouse itself is painted with thick, textured strokes, showing white and reddish hues, topped with a small cross. The overall palette is dominated by cool, dark blues and teals, contrasting sharply with the bright yellow light and white sea foam. The mood is dramatic and intense, capturing the raw power of nature.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625
+  }
+}

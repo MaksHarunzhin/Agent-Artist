@@ -1,0 +1,30 @@
+{
+  "C_02_judge": {
+    "scores": [
+      5,
+      6,
+      6
+    ]
+  },
+  "C_02_generator": {
+    "scores": [
+      6,
+      6,
+      8
+    ]
+  },
+  "B_01_judge": {
+    "scores": [
+      7,
+      7,
+      7
+    ]
+  },
+  "B_01_generator": {
+    "scores": [
+      6,
+      6,
+      6
+    ]
+  }
+}

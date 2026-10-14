@@ -1,0 +1,107 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Маяк в шторме",
+    "description": "На картине изображен одинокий маяк, стоящий на скалистом островке посреди бурного моря. Башня маяка окрашена горизонтальными полосами: нижняя часть оранжевая, средняя белая, верхняя темная. Фонарь на вершине ярко светится теплым желтым светом, освещая туман и отражаясь на воде. У основания маяка видна небольшая белая постройка. Вокруг бушует стихия: высокие зеленовато-синие волны с белой пеной разбиваются о скалы. Небо затянуто тяжелыми темно-серыми грозовыми тучами, создавая мрачную атмосферу. На переднем плане крупным планом показаны острые серые камни. Композиция сбалансирована, маяк служит визуальным центром. Стиль реалистичный, с акцентом на драматизм природы.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Маяк в штормовую ночь",
+    "description": "На изображении запечатлена драматическая морская сцена. На скалистом мысе справа стоит высокий белый маяк с широкой оранжево-красной полосой в верхней части. В его фонаре горит яркий желтый свет, который контрастирует с темным фоном. Небо затянуто тяжелыми серыми тучами, идет дождь. Море взволнованное, с высокими бирюзовыми и синими волнами, которые разбиваются о скалы, образуя белую пену. На переднем плане видны темные камни. Композиция сбалансирована: маяк занимает правую часть кадра, а левую — бурлящее море. Настроение картины напряженное и суровое. Стиль реалистичный, возможно, цифровая живопись.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Lighthouse in the Storm",
+    "description": "A dramatic scene featuring a tall lighthouse standing on a rocky, grassy islet amidst a turbulent sea. The lighthouse has a white lower section and a reddish-orange upper section, topped with a glowing yellow lantern room that casts a warm light. Beside the tower are small white buildings with red roofs. The sky is filled with heavy, dark grey storm clouds, suggesting a severe weather event. In the foreground, large, powerful waves with white foam crash against the dark rocks, creating a sense of motion and intensity. The water is a mix of deep greens and blues, reflecting the light from the lighthouse. The overall mood is intense and atmospheric, highlighting the resilience of the structure against nature.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": true
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Маяк в буре",
+    "description": "На картине изображена драматичная ночная сцена морской бури. В правой части композиции возвышается высокий каменный маяк с горящим фонарем наверху. От него исходит мощный луч света, прорезающий темноту и дождь в левую сторону. Вокруг маяка бушует стихия: темное небо пронзают яркие молнии, а тяжелые волны разбиваются о скалистый берег у основания башни. Справа от маяка виден небольшой домик смотрителя, из окна которого пробивается теплый желтый свет. В левой части картины, на фоне штормового моря, виден силуэт небольшого корабля, который, кажется, пытается пробиться сквозь непогоду. Небо затянуто тяжелыми тучами, идет сильный ливень, капли которого видны как вертикальные линии. Палитра картины построена на контрасте холодных синих, серых и черных оттенков бури и теплого оранжевого света маяка и окна. Стиль изображения напоминает реалистичную цифровую живопись с акцентом на освещение и динамику стихии. Настроение картины напряженное и тревожное, но свет маяка добавляет ощущение надежды и безопасности.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Маяк в шторме",
+    "description": "На картине изображена драматичная ночная сцена. Справа возвышается каменный маяк, освещенный изнутри теплым желтым светом. Из его фонаря бьет мощный луч света влево, рассекая темноту. Вокруг бушует сильная буря: идет косой дождь, небо затянуто тяжелыми темными тучами, и сверкают яркие молнии. Море неспокойное, белые гребни волн разбиваются о основание башни. Слева на заднем плане виден темный силуэт корабля, который, кажется, пытается пробиться сквозь шторм. Композиция построена на контрасте холодных синих и серых тонов бури и теплого света маяка.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.6428571428571429,
+    "idea_named": true
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "Lighthouse in the Storm",
+    "description": "A dramatic nocturnal scene featuring a stone lighthouse standing tall on the right side, its lantern room glowing with a warm, intense light that casts a broad beam across the dark sky. The lighthouse structure shows signs of age and damage, with visible cracks running down its stone facade. To the left, a ship with masts and rigging navigates the turbulent waters, its deck lights visible. The sea is rough, with large waves crashing against the base of the lighthouse and the ship. The sky is filled with dark, ominous clouds. A bright bolt of lightning strikes down on the right side of the image, illuminating the storm clouds. The overall color palette is dominated by deep blues and greys, contrasted sharply by the warm yellow of the lighthouse and the stark white of the lightning. The composition balances the verticality of the lighthouse with the horizontal movement of the waves and the ship. The mood is intense and perilous, highlighting the power of nature and the role of the lighthouse as a guide.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.42857142857142855,
+    "idea_named": true
+  }
+}
