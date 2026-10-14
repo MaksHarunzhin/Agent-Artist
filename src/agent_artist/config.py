@@ -144,7 +144,7 @@ class Settings:
     describe_images: bool = True
 
     # Сколько раз художник переписывает промпт, если модерация генератора его отклонила
-    rephrase_attempts: int = 0
+    rephrase_attempts: int = 2
 
     # «Опытные» художники знают типичные промахи своего генератора (из карты непосильных деталей)
     experienced_artists: bool = False
