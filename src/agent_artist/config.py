@@ -149,6 +149,9 @@ class Settings:
     # «Опытные» художники знают типичные промахи своего генератора (из карты непосильных деталей)
     experienced_artists: bool = False
 
+    # Художник правит лучшую попытку, а не последнюю (элитизм)
+    keep_best: bool = False
+
     # --- Локальная VLM в Ollama ---
     ollama_host: str = "http://127.0.0.1:11434"
     vision_model_name: str = "qwen3-vl:8b"

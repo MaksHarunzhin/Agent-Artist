@@ -29,6 +29,8 @@ def add_experiment_arguments(parser: argparse.ArgumentParser, defaults: Settings
                         help="сколько раз переписать промпт после отказа модерации")
     parser.add_argument("--experienced", action="store_true",
                         help="художники знают типичные промахи своего генератора")
+    parser.add_argument("--keep-best", action="store_true",
+                        help="художник правит лучшую попытку, а не последнюю")
     parser.add_argument("--start-rounds", type=int, default=defaults.start_question_rounds,
                         help="раундов вопросов до первой картины")
     parser.add_argument("--seed", type=int, default=defaults.seed,
@@ -48,6 +50,7 @@ def settings_from_arguments(args: argparse.Namespace, **overrides) -> Settings:
         describe_images=args.describe,
         rephrase_attempts=args.rephrase,
         experienced_artists=args.experienced,
+        keep_best=args.keep_best,
         start_question_rounds=args.start_rounds,
         seed=args.seed,
         artists=artists_by_ids(args.artists.split(",")),

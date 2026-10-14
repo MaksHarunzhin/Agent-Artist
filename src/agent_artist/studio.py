@@ -114,13 +114,28 @@ class ArtStudio:
             f"Согласованные детали (вопросы художников и ответы эксперта):\n"
             f"{Dialogue.to_text(self.dialogue.visible_to(artist.artist_id))}\n"
         )
-        if self.history[artist.artist_id]:
-            last = self.history[artist.artist_id][-1]
+        records = self.history[artist.artist_id]
+        if not records:
+            return context
+
+        last = records[-1]
+        # С --keep-best художник правит лучшую попытку, а не последнюю: без этого цикл
+        # критики ведёт себя как пересэмплирование — исправляя новое, теряется старое
+        base = last
+        if self.settings.keep_best:
+            base = max(reversed(records), key=lambda record: record.review.score)
+        title = "Твой прошлый промпт" if base is last else "Твой лучший промпт"
+        context += (
+            f"\n{title}: {base.prompt}\n"
+            f"Оценка эксперта: {base.review.score}/10\n"
+            f"Проблемы: {'; '.join(str(problem) for problem in base.review.problems)}\n"
+            f"Инструкции эксперта: {base.review.instructions}\n"
+        )
+        if base is not last:
             context += (
-                f"\nТвой прошлый промпт: {last.prompt}\n"
-                f"Оценка эксперта: {last.review.score}/10\n"
-                f"Проблемы: {'; '.join(str(problem) for problem in last.review.problems)}\n"
-                f"Инструкции эксперта: {last.review.instructions}\n"
+                f"\nПоследняя попытка оценена ниже ({last.review.score}/10), её промпт: "
+                f"{last.prompt}\nВернись к лучшему промпту и исправь его замечания, "
+                "не теряя того, что в нём уже удалось.\n"
             )
         return context
 
@@ -313,6 +328,7 @@ class ArtStudio:
             "expert_sees_image": self.settings.expert_sees_image,
             "expert": self.settings.expert_name,
             "experienced_artists": self.settings.experienced_artists,
+            "keep_best": self.settings.keep_best,
             "expert_taste": self.settings.expert_taste,
             "artists": [asdict(artist) for artist in self.artists],
             "dialogue": [asdict(entry) for entry in self.dialogue.entries],
