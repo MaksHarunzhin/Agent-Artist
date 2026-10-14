@@ -15,6 +15,7 @@ from pathlib import Path
 
 from .cli import add_experiment_arguments, load_environment, settings_from_arguments
 from .config import Settings
+from .controllability import run_benchmark
 from .drift import rereview_and_summarize
 from .generators import create_image_generators
 from .limits import classify_and_summarize as limits_summary
@@ -124,6 +125,12 @@ def main(argv: list[str] | None = None) -> None:
     gallery_parser.add_argument("--title", default="Лучшие картины")
     gallery_parser.add_argument("--output", type=Path, default=Path("gallery.png"))
 
+    control_parser = commands.add_parser(
+        "control", help="тест управляемости: выполняет ли генератор прямые указания промпта")
+    control_parser.add_argument("--artists", default="A,B,C")
+    control_parser.add_argument("--repeats", type=int, default=2)
+    control_parser.add_argument("--output-dir", type=Path, default=Path("runs") / "controllability")
+
     noise_parser = commands.add_parser(
         "noise", help="шумовой пол: разброс оценок той же картины и того же промпта")
     noise_parser.add_argument("paths", type=Path, nargs="+",
@@ -136,6 +143,12 @@ def main(argv: list[str] | None = None) -> None:
             "paths", type=Path, nargs="+", help="папки с прогонами (log.json ищется рекурсивно)")
 
     args = parser.parse_args(argv)
+
+    if args.command == "control":
+        load_environment()
+        print(run_benchmark(keys_only_settings(), args.artists.split(","), args.repeats,
+                            args.output_dir))
+        return
 
     if args.command == "noise":
         load_environment()
