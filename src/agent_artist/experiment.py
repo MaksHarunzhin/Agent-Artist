@@ -19,6 +19,7 @@ from .drift import rereview_and_summarize
 from .generators import create_image_generators
 from .limits import classify_and_summarize as limits_summary
 from .llm import create_yandex_client
+from .noise import measure as measure_noise
 from .recovery import recover_and_summarize
 from .runlogs import find_logs
 from .studio import ArtStudio
@@ -123,11 +124,23 @@ def main(argv: list[str] | None = None) -> None:
     gallery_parser.add_argument("--title", default="Лучшие картины")
     gallery_parser.add_argument("--output", type=Path, default=Path("gallery.png"))
 
+    noise_parser = commands.add_parser(
+        "noise", help="шумовой пол: разброс оценок той же картины и того же промпта")
+    noise_parser.add_argument("paths", type=Path, nargs="+",
+                              help="папки с прогонами (log.json ищется рекурсивно)")
+    noise_parser.add_argument("--images", type=int, default=10, help="сколько картин взять")
+    noise_parser.add_argument("--repeats", type=int, default=3, help="повторов на картину")
+
     for name, (help_text, _, _) in ANALYSIS_COMMANDS.items():
         commands.add_parser(name, help=help_text).add_argument(
             "paths", type=Path, nargs="+", help="папки с прогонами (log.json ищется рекурсивно)")
 
     args = parser.parse_args(argv)
+
+    if args.command == "noise":
+        load_environment()
+        print(measure_noise(args.paths, keys_only_settings(), args.images, args.repeats))
+        return
 
     if args.command == "gallery":
         render_gallery(find_logs(args.paths), args.output, args.label, args.title)
