@@ -4,151 +4,166 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Агент-художник</title>
-<meta name="description" content="Многоагентная система для рисования концептуальных картин: художники, VLM и эксперт в одном цикле.">
+<meta name="description" content="Многоагентная система для рисования картин: художники, эксперт и слепой зритель. Результаты экспериментов.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   Оформление. Цвета заданы переменными, чтобы их было легко менять.
+   Оформление: тёмный выставочный зал. Цвета — в переменных.
    ===================================================================== */
 :root {
-  --bg: #12110f;
-  --panel: #1c1a17;
-  --panel-2: #24211d;
-  --line: #34302a;
-  --text: #ece6dc;
-  --muted: #a39b8f;
-  --accent: #e0a458;       /* янтарь, как свет лампы на картинах */
-  --a-color: #7fb7c9;      /* художник A — холодный */
-  --b-color: #e58a6b;      /* художник B — тёплый */
-  --good: #8fbf7f;
-  --mid: #d9b85c;
-  --bad: #d97a6c;
+  --bg: #121214;
+  --panel: #1b1b1f;
+  --panel-2: #232328;
+  --line: #313138;
+  --text: #ecebe6;
+  --soft: #cfcdc5;
+  --muted: #9b9aa3;
+  --accent: #e0a458;
+  --A: #7fb7c9;
+  --B: #e58a6b;
+  --C: #b99be0;
+  --good: #8fc27f;
+  --mid: #dcbc5e;
+  --bad: #de7d70;
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 15px/1.6 var(--sans);
-}
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 var(--sans); }
 a { color: var(--accent); }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+.kicker { color: var(--accent); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 600; }
 
 /* ---------- Шапка ---------- */
-header.hero { padding: 72px 0 40px; border-bottom: 1px solid var(--line); }
-.kicker { color: var(--accent); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 600; }
-h1 { font: 600 clamp(44px, 7vw, 84px)/1 var(--serif); margin: 12px 0 18px; }
-h1 em { color: var(--accent); font-style: italic; }
-.lead { max-width: 760px; font-size: 18px; color: #d6cec2; }
-.team { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: 14px; }
+.hero { padding: 72px 0 48px; border-bottom: 1px solid var(--line); }
+.hero h1 { font: 600 clamp(48px, 8vw, 96px)/.95 var(--serif); margin: 14px 0 20px; }
+.hero h1 em { color: var(--accent); }
+.lead { max-width: 780px; font-size: 18px; color: var(--soft); margin: 0; }
+.team { margin-top: 22px; color: var(--muted); font-size: 15px; }
 .team b { color: var(--text); font-weight: 500; }
+.scheme { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 40px; }
+.scheme div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; position: relative; }
+.scheme div:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 50%; transform: translate(50%, -50%); color: var(--accent); }
+.scheme b { display: block; font: 600 21px var(--serif); }
+.scheme span { font-size: 13px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; font-size: 13px; color: var(--muted); }
+.legend i { font-style: normal; font-weight: 600; }
+@media (max-width: 760px) { .scheme { grid-template-columns: 1fr 1fr; } .scheme div::after { display: none; } }
 
-/* ---------- Схема цикла ---------- */
-.loop { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 40px 0 8px; }
-.step { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; position: relative; }
-.step .n { font: 600 12px var(--mono); color: var(--accent); }
-.step h3 { margin: 4px 0 4px; font: 600 20px var(--serif); }
-.step p { margin: 0; font-size: 13px; color: var(--muted); }
-.step:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 50%; transform: translate(50%, -50%); color: var(--accent); z-index: 1; }
-.loop-back { text-align: center; color: var(--muted); font-size: 13px; }
-@media (max-width: 760px) {
-  .loop { grid-template-columns: 1fr 1fr; }
-  .step::after { display: none; }
-}
+/* ---------- Навигация ---------- */
+nav.toc { position: sticky; top: 0; z-index: 10; background: rgba(18,18,20,.93); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+nav.toc .wrap { display: flex; gap: 4px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+nav.toc a { white-space: nowrap; text-decoration: none; color: var(--muted); font-size: 14px; padding: 6px 12px; border-radius: 999px; }
+nav.toc a:hover, nav.toc a.on { color: var(--text); background: var(--panel-2); }
 
-/* ---------- Навигация по темам ---------- */
-nav.themes { position: sticky; top: 0; z-index: 5; background: rgba(18,17,15,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-nav.themes .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; }
-nav.themes a { white-space: nowrap; text-decoration: none; color: var(--muted); padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; font-size: 14px; }
-nav.themes a:hover { color: var(--text); border-color: var(--line); }
+/* ---------- Раздел-эксперимент ---------- */
+section.exp { padding: 72px 0 32px; border-bottom: 1px solid var(--line); }
+.exp-num { font: 500 15px var(--mono); color: var(--muted); }
+.exp h2 { font: 600 clamp(38px, 5.5vw, 62px)/1 var(--serif); margin: 8px 0 12px; }
+.question { font: italic 500 clamp(22px, 2.6vw, 28px)/1.3 var(--serif); color: var(--accent); margin: 0 0 14px; max-width: 900px; }
+.how { color: var(--soft); max-width: 860px; margin: 0; }
 
-/* ---------- Блок одного запуска ---------- */
-section.run { padding: 64px 0 24px; border-bottom: 1px solid var(--line); }
-.run-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; }
-.run-head h2 { font: 600 clamp(36px, 5vw, 56px)/1 var(--serif); margin: 6px 0 0; }
-.badges { display: flex; flex-wrap: wrap; gap: 8px; }
-.badge { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
-.badge.shared { color: var(--good); border-color: #3e5537; }
-.badge.private { color: var(--b-color); border-color: #5d3a2e; }
+figure.collage { margin: 28px 0 0; }
+figure.collage img { width: 100%; display: block; border-radius: 8px; cursor: zoom-in; border: 1px solid var(--line); }
+figure.collage figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.zoomhint { display: none; }
+@media (max-width: 760px) { .zoomhint { display: inline; } }
+figure.collage.small img { width: auto; max-width: 100%; max-height: 640px; }
 
-.cover { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
-.cover figure { margin: 0; }
-.cover img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; cursor: zoom-in; display: block; }
-.cover figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
-@media (max-width: 640px) { .cover { grid-template-columns: 1fr; } }
+.verdict { margin: 28px 0 8px; background: linear-gradient(180deg, #24201a, #1d1b18); border: 1px solid #45392a; border-radius: 12px; padding: 18px 22px; }
+.verdict h3 { margin: 0 0 8px; font: 600 24px var(--serif); color: var(--accent); }
+.verdict ul { margin: 0; padding-left: 20px; }
+.verdict li { margin: 6px 0; color: #ebe3d4; }
 
-details.block { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; margin: 14px 0; }
-details.block > summary { cursor: pointer; padding: 14px 18px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
-details.block > summary::-webkit-details-marker { display: none; }
-details.block > summary::after { content: "+"; color: var(--accent); font-family: var(--mono); }
-details.block[open] > summary::after { content: "−"; }
-details.block > .inner { padding: 0 18px 18px; }
-.taste { white-space: pre-line; color: #d6cec2; font-family: var(--serif); font-size: 19px; line-height: 1.5; }
+table.nums { border-collapse: collapse; width: 100%; margin: 18px 0 4px; font-size: 14px; }
+table.nums th, table.nums td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+table.nums th { color: var(--muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+table.nums td:not(:first-child) { font-family: var(--mono); }
+.nums-cap { font-size: 13px; color: var(--muted); }
+.tablewrap { overflow-x: auto; }
 
-/* ---------- Диалог ---------- */
-.chat { display: flex; flex-direction: column; gap: 10px; }
-.qa { display: grid; gap: 6px; }
-.msg { max-width: 82%; padding: 10px 14px; border-radius: 12px; font-size: 14px; }
+/* ---------- Цепочка названий (испорченный телефон) ---------- */
+.chains { margin: 16px 0 6px; display: grid; gap: 8px; }
+.chainrow { display: grid; grid-template-columns: 110px 1fr; gap: 10px; align-items: start; }
+.chainrow .who { font-size: 13px; font-weight: 600; padding-top: 5px; }
+.titles { display: flex; flex-wrap: wrap; gap: 4px 2px; align-items: center; }
+.tchip { font-size: 13px; padding: 3px 9px; border-radius: 6px; background: var(--panel-2); border: 1px solid var(--line); }
+.tchip b { font-family: var(--mono); font-weight: 400; margin-left: 6px; font-size: 12px; }
+.arrow { color: var(--muted); font-size: 12px; padding: 0 2px; }
+@media (max-width: 640px) { .chainrow { grid-template-columns: 1fr; gap: 2px; } }
+
+/* ---------- Раскрывающиеся блоки ---------- */
+.details-title { margin: 30px 0 4px; font: 600 13px var(--sans); color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+details.drop { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; margin: 10px 0; }
+details.drop > summary { cursor: pointer; padding: 14px 18px; font-weight: 600; list-style: none; display: flex; gap: 12px; justify-content: space-between; align-items: center; }
+details.drop > summary::-webkit-details-marker { display: none; }
+details.drop > summary::after { content: "+"; color: var(--accent); font: 18px var(--mono); }
+details.drop[open] > summary::after { content: "−"; }
+details.drop > summary small { color: var(--muted); font-weight: 400; margin-left: 8px; }
+details.drop > .inner { padding: 0 18px 18px; }
+details.drop details.drop { background: var(--panel-2); }
+.taste { white-space: pre-line; font: 19px/1.5 var(--serif); color: var(--soft); margin: 0; }
+
+/* Диалог */
+.chat { display: flex; flex-direction: column; gap: 8px; }
+.msg { max-width: 84%; padding: 9px 13px; border-radius: 12px; font-size: 14px; }
 .msg .who { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; margin-bottom: 2px; }
-.msg.artist { background: var(--panel-2); border: 1px solid var(--line); border-top-left-radius: 2px; }
-.msg.artist.A .who { color: var(--a-color); }
-.msg.artist.B .who { color: var(--b-color); }
-.msg.expert { justify-self: end; background: #2c2418; border: 1px solid #4a3a22; border-top-right-radius: 2px; }
-.msg.expert .who { color: var(--accent); }
-.chat-note { color: var(--muted); font-size: 13px; margin: 0 0 10px; }
+.msg.q { background: var(--panel-2); border: 1px solid var(--line); border-top-left-radius: 3px; }
+.msg.a { align-self: flex-end; background: #2b2418; border: 1px solid #4a3c24; border-top-right-radius: 3px; }
+.msg.a .who { color: var(--accent); }
+.note { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
 
-/* ---------- Колонки художников ---------- */
-.duel { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 28px; }
-@media (max-width: 860px) { .duel { grid-template-columns: 1fr; } }
-.col-head { padding-bottom: 10px; border-bottom: 2px solid; margin-bottom: 14px; }
-.col-head.A { border-color: var(--a-color); }
-.col-head.B { border-color: var(--b-color); }
-.col-head h3 { margin: 0; font: 600 26px var(--serif); }
-.col-head p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
-
-.iter { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 18px; }
-.iter img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; cursor: zoom-in; background: #000; }
-.iter .body { padding: 14px 16px 16px; }
-.iter .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-.iter .num { font: 600 13px var(--mono); color: var(--muted); }
-.score { font: 600 15px var(--mono); padding: 3px 10px; border-radius: 6px; background: var(--panel-2); }
-.score.hi { color: var(--good); } .score.md { color: var(--mid); } .score.lo { color: var(--bad); }
-.score.none { color: var(--muted); font-weight: 400; font-size: 12px; }
-.label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; margin: 14px 0 4px; }
-.prompt { font: 13px/1.55 var(--mono); background: #0d0c0b; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; color: #cfc7bb; }
-.reason { font-size: 14px; color: #d6cec2; }
-ul.problems { margin: 0; padding-left: 18px; font-size: 14px; }
+/* Карточки картин */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.card { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.card .pic { aspect-ratio: 1; background: #0c0c0e; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; text-align: center; padding: 0; }
+.card .pic img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+.card .pic.refused { padding: 20px; color: var(--bad); }
+.card .body { padding: 12px 14px 14px; }
+.card .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.card .who { font-size: 13px; font-weight: 600; }
+.score { font: 600 14px var(--mono); padding: 2px 9px; border-radius: 6px; background: var(--panel-2); white-space: nowrap; }
+.hi { color: var(--good); } .md { color: var(--mid); } .lo { color: var(--bad); }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; margin: 12px 0 4px; }
+.prompt { font: 12.5px/1.55 var(--mono); background: #0d0d0f; border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; color: var(--soft); }
+.txt { font-size: 14px; color: var(--soft); }
+ul.problems { margin: 0; padding-left: 18px; font-size: 14px; color: var(--soft); }
 ul.problems li { margin: 3px 0; }
 .instr { font-size: 14px; border-left: 3px solid var(--accent); padding-left: 10px; color: #e6dccb; }
-details.sub { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px; }
-details.sub summary { cursor: pointer; font-size: 13px; color: var(--accent); }
-.vlm { font-size: 13px; color: #cfc7bb; }
-.vlm h4 { font-size: 13px; margin: 12px 0 4px; color: var(--text); }
-.vlm ul { padding-left: 18px; margin: 4px 0; }
-.vlm hr { border: 0; border-top: 1px solid var(--line); }
-.unrated { font-size: 13px; color: var(--muted); font-style: italic; }
-.error { color: var(--bad); font-size: 14px; }
+.seen { font-size: 14px; background: var(--panel-2); border-radius: 8px; padding: 8px 10px; }
+.seen b { color: var(--text); }
+details.more { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 8px; }
+details.more summary { cursor: pointer; font-size: 13px; color: var(--accent); }
+.A { color: var(--A); } .B { color: var(--B); } .C { color: var(--C); }
 
-/* ---------- Итоги и подвал ---------- */
-.notes { padding: 64px 0; }
-.notes h2 { font: 600 44px var(--serif); margin: 0 0 18px; }
-.notes .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.note { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; font-size: 14px; color: #d6cec2; }
-.note b { display: block; color: var(--text); font-family: var(--serif); font-size: 20px; margin-bottom: 4px; }
-footer { padding: 28px 0 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+/* Итерации: строка на круг критики */
+.iter-row { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
+.iter-row:first-of-type { border-top: 0; }
+.iter-row .n { font: 600 22px var(--serif); color: var(--muted); }
+.iter-row .cards { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+@media (max-width: 640px) { .iter-row { grid-template-columns: 1fr; } }
 
-/* ---------- Просмотр картинки на весь экран ---------- */
-#lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.92); display: none; align-items: center; justify-content: center; z-index: 50; padding: 16px; cursor: zoom-out; }
-#lightbox.on { display: flex; }
-#lightbox img { max-width: 100%; max-height: 92vh; border-radius: 6px; }
+/* ---------- Ещё находки, подвал ---------- */
+.extra { padding: 72px 0; }
+.extra h2 { font: 600 46px var(--serif); margin: 0 0 18px; }
+.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; color: var(--soft); font-size: 14px; }
+.fact b { display: block; color: var(--text); font: 600 22px/1.2 var(--serif); margin-bottom: 6px; }
+footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 14px; }
+footer b { color: var(--text); font-weight: 500; }
 
-.loading, .fail { color: var(--muted); padding: 40px 0; }
+/* ---------- Просмотр крупно ---------- */
+#lb { position: fixed; inset: 0; background: rgba(0,0,0,.94); display: none; z-index: 50; overflow: auto; cursor: zoom-out; }
+#lb.on { display: block; }
+#lb .box { min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 16px; }
+#lb img { max-width: 100%; max-height: 94vh; border-radius: 6px; }
+#lb.big img { max-width: none; max-height: none; width: 1600px; }
+#lb .close { position: fixed; top: 12px; right: 16px; color: #fff; font-size: 30px; line-height: 1; z-index: 51; }
+.loading, .fail { padding: 60px 0; color: var(--muted); }
 .fail { color: var(--bad); }
 </style>
 </head>
@@ -159,317 +174,251 @@ footer { padding: 28px 0 48px; color: var(--muted); font-size: 13px; border-top:
     <div class="kicker">Лабораторная работа · Современный NLP и большие языковые модели</div>
     <h1>Агент-<em>художник</em></h1>
     <p class="lead">
-      Многоагентная мастерская, где картины рождаются из разговора.
-      Два художника с разными «руками» — <b>Yandex ART</b> и открытой моделью <b>SDXL-Turbo</b> —
-      расспрашивают эксперта о замысле, рисуют, получают описание своей картины от VLM и критику эксперта
-      и пробуют снова. Главный вопрос эксперимента: <b>помогает ли художнику знать, о чём эксперт договорился с другим художником?</b>
+      Нейросети-художники расспрашивают нейросеть-эксперта о заказе, рисуют, получают критику и перерисовывают.
+      Мы проверяли, как асимметрия контекста — кто что знает и видит — влияет на картину:
+      помогает ли знать чужой диалог, переживает ли смысл пересказ и сколько из заказа вообще доходит до холста.
     </p>
-    <div class="team">
-      <span><b>Александр Сухарев</b> · код</span>
-      <span><b>Максим Харунжин</b> · код</span>
-      <span><b>Мария Лемещенко</b> · подбор моделей, отчёт</span>
-      <span><b>Нелли Цапко</b> · сайт, отчёт</span>
-    </div>
+    <div class="team" id="team"></div>
 
-    <div class="loop" aria-label="Схема цикла">
-      <div class="step"><div class="n">01</div><h3>Художник</h3><p>Задаёт эксперту вопросы и пишет промпт. Думает за него DeepSeek.</p></div>
-      <div class="step"><div class="n">02</div><h3>Генератор</h3><p>A рисует в SDXL-Turbo (локально), B — в Yandex ART.</p></div>
-      <div class="step"><div class="n">03</div><h3>VLM</h3><p>Qwen3-VL описывает картину, не зная замысла.</p></div>
-      <div class="step"><div class="n">04</div><h3>Эксперт</h3><p>Не видит картину — только описание. Ставит оценку и даёт указания.</p></div>
+    <div class="scheme" aria-label="Как устроен цикл">
+      <div><b>Вопросы</b><span>Художник уточняет у эксперта сюжет, стиль, свет, композицию</span></div>
+      <div><b>Промпт</b><span>Художник пишет задание для генератора картинок</span></div>
+      <div><b>Картина</b><span>Генератор рисует: SDXL-Turbo или Yandex ART</span></div>
+      <div><b>Критика</b><span>Эксперт смотрит на картину, ставит 1–10 и пишет замечания</span></div>
     </div>
-    <p class="loop-back">↺ указания эксперта уходят художнику, и круг повторяется</p>
+    <div class="legend" id="legend"></div>
   </div>
 </header>
 
-<nav class="themes"><div class="wrap" id="nav"></div></nav>
+<nav class="toc"><div class="wrap" id="toc"></div></nav>
 
-<main id="runs" class="wrap"><p class="loading">Загружаю результаты…</p></main>
-
-<section class="notes wrap">
-  <h2>Что мы заметили</h2>
-  <div class="grid">
-    <div class="note"><b>Генератор — слабое звено</b>Цикл честно передаёт каждое замечание в новый промпт, но генератор часто его не выполняет. Жест «рука над яблоком, не касаясь» не смог нарисовать ни один из двух художников.</div>
-    <div class="note"><b>Испорченный телефон</b>Эксперт судит по пересказу VLM. Чего VLM не упомянула, того для эксперта не существует, а её формулировки напрямую влияют на оценку.</div>
-    <div class="note"><b>Общий контекст экономит вопросы</b>С раздельным контекстом («Восстание машин») оба художника задали эксперту одни и те же вопросы. С общим — второй художник спрашивал уже о деталях.</div>
-    <div class="note"><b>Модели противоречат себе</b>Эксперт в отзыве сдвинул лампу «влево», хотя сам договорился о «справа». Художник B заметил это и переспросил — диалог помог поймать ошибку.</div>
-  </div>
-</section>
+<main id="main" class="wrap"><p class="loading">Загружаю выставку…</p></main>
 
 <footer>
   <div class="wrap">
-    Код: <a href="https://github.com/MaksHarunzhin/Agent-Artist">github.com/MaksHarunzhin/Agent-Artist</a> ·
-    Страница собрана coding-агентом (Claude) по файлам <code>runs/*/log.json</code>.
+    <div id="team-foot"></div>
+    <div style="margin-top:8px">
+      Код и данные: <a href="https://github.com/MaksHarunzhin/Agent-Artist">github.com/MaksHarunzhin/Agent-Artist</a> ·
+      все цифры — из <a href="https://github.com/MaksHarunzhin/Agent-Artist/blob/feature/sukharev_1/docs/results.md">docs/results.md</a>.
+      Сайт собран coding-агентом (Claude) по логам экспериментов.
+    </div>
   </div>
 </footer>
 
-<div id="lightbox"><img alt=""></div>
+<div id="lb"><span class="close">×</span><div class="box"><img alt=""></div></div>
 
 <script>
 /* =====================================================================
-   НАСТРОЙКА.
-   Сайт сам узнаёт список папок в runs/ через открытый API GitHub,
-   поэтому новые запуски появляются на нём без правок этого файла.
-   Если ветка или репозиторий поменяются — исправьте строки ниже.
+   Все данные берутся из site/data.json (его собирает site/build_data.py).
+   Картинки: сначала site/img/ (настоящие, после site/export_images.py),
+   если их нет — site/preview/ (вырезки из коллажей), иначе заглушка.
    ===================================================================== */
-const REPO = "MaksHarunzhin/Agent-Artist";
-const BRANCH = "dev";
+const DATA_URL = "site/data.json";
+const MEDIA = "docs/media/";
+let ART = {};
 
-/* Запасной список: используется, только если GitHub API недоступен
-   (например, сайт открыт без интернета или исчерпан лимит запросов). */
-const FALLBACK_RUNS = [
-  "20261013_194133",
-  "20261013_203512",
-  "20261013_204957",
-];
+/* ---------- Маленькие помощники ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const cls = s => s >= 7 ? "hi" : s >= 5 ? "md" : "lo";
+const artistName = id => `Художник ${id}`;
+const artistLine = id => ART[id] ? `${ART[id].engine}, ${ART[id].lang}` : "";
 
-/* Человеческие названия генераторов и моделей */
-const ENGINES = {
-  local: "SDXL-Turbo · open-weight модель с HuggingFace, локально",
-  yandex: "Yandex ART · aliceai-image-art-3.0",
-  yandex_art: "Yandex ART · aliceai-image-art-3.0",
-};
-
-/* ---------------------------------------------------------------------
-   Логи писались двумя версиями программы, и поля в них называются
-   по-разному. Функция normalize приводит оба формата к одному виду.
-   --------------------------------------------------------------------- */
-function normalize(log, dir) {
-  const artists = (log.artists || []).map(a => ({
-    id: a.artist_id || a.id,
-    persona: a.persona || "",
-    engine: ENGINES[a.generator || a.backend] || a.engine || a.image_model,
-    textModel: a.text_model || "DeepSeek · Yandex AI Studio",
-    lang: a.prompt_language || a.prompt_lang || "",
-  }));
-
-  const dialogue = (log.dialogue || []).map(d => ({
-    artist: d.artist_id || d.artist || "",
-    q: d.question ?? d.q,
-    a: d.answer ?? d.a,
-  }));
-
-  const history = {};
-  for (const [id, records] of Object.entries(log.history || {})) {
-    history[id] = records.map(r => {
-      const review = r.review || r;   // в старом формате оценка лежит прямо в записи
-      const rawPath = r.image_path ?? r.image ?? null;
-      return {
-        iteration: r.iteration,
-        image: rawPath ? `runs/${dir}/` + rawPath.split(/[\\/]/).pop() : null,
-        prompt: r.prompt || "",
-        reasoning: r.artist_reasoning || "",
-        description: r.description || "",
-        score: review.score,
-        problems: review.problems || [],
-        instructions: review.instructions || "",
-        error: r.error || null,
-      };
-    });
+function pic(rel, alt) {
+  if (!rel) return "";
+  return `<img src="site/img/${rel}" data-fallback="site/preview/${rel}" alt="${esc(alt)}" loading="lazy">`;
+}
+/* Если картинки нет ни в img/, ни в preview/, показываем подпись */
+document.addEventListener("error", e => {
+  const img = e.target;
+  if (img.tagName !== "IMG" || !img.dataset.fallback) return;
+  if (img.dataset.tried) {
+    img.parentElement.innerHTML = "<span style='padding:16px'>картинка пока не загружена в репозиторий</span>";
+  } else {
+    img.dataset.tried = "1";
+    img.src = img.dataset.fallback;
   }
+}, true);
 
-  return {
-    dir,
-    idea: log.idea,
-    shared: log.shared_questions,
-    taste: (log.expert_taste || "").trim(),
-    artists, dialogue, history,
-  };
+function drop(title, inner, { open = false, sub = "" } = {}) {
+  return `<details class="drop"${open ? " open" : ""}><summary><span>${title}${sub ? `<small>${sub}</small>` : ""}</span></summary><div class="inner">${inner}</div></details>`;
 }
 
-/* ---------------------------------------------------------------------
-   Программа иногда останавливалась после того, как картина нарисована,
-   но до оценки. Такие картины есть в папке, но их нет в log.json.
-   Ищем их: пробуем загрузить следующую по номеру картинку.
-   --------------------------------------------------------------------- */
-function imageExists(src) {
-  return new Promise(res => {
-    const img = new Image();
-    img.onload = () => res(true);
-    img.onerror = () => res(false);
-    img.src = src;
-  });
+function dialogue(run) {
+  if (!run.dialogue.length) return "<p class='note'>Диалог не сохранён.</p>";
+  const note = run.shared
+    ? "Общий контекст: каждый художник видит вопросы другого и ответы эксперта на них."
+    : "Каждый художник видит только свой разговор с экспертом.";
+  return `<p class="note">${note}</p><div class="chat">` + run.dialogue.map(([a, q, ans]) => `
+    <div class="msg q"><div class="who ${esc(a)}">${artistName(esc(a))}</div>${esc(q)}</div>
+    <div class="msg a"><div class="who">Эксперт</div>${esc(ans)}</div>`).join("") + "</div>";
 }
 
-async function findUnrated(run) {
-  for (const [id, records] of Object.entries(run.history)) {
-    const last = records[records.length - 1];
-    if (!last || !last.image) continue;
-    let n = last.iteration;
-    while (n < 20) {
-      n++;
-      const src = last.image.replace(/_(\d+)\.png$/, `_${String(n).padStart(2, "0")}.png`);
-      if (!(await imageExists(src))) break;
-      records.push({ iteration: n, image: src, unrated: true });
-    }
-  }
+function tasteBlock(run) {
+  return drop(`Вкусы эксперта`, `<p class="taste">${esc(run.taste)}</p>`, { sub: run.expert });
 }
 
-/* ---------- Мини-разметка: превращаем markdown от VLM в HTML ---------- */
-function esc(s) {
-  return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-}
-function inline(s) {
-  return esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
-}
-function miniMarkdown(text) {
-  const out = [];
-  let inList = false;
-  for (const raw of text.split("\n")) {
-    const line = raw.trim();
-    const item = line.match(/^(?:[-*]|\d+\.)\s+(.*)/);
-    if (item) {
-      if (!inList) { out.push("<ul>"); inList = true; }
-      out.push(`<li>${inline(item[1])}</li>`);
-      continue;
-    }
-    if (inList) { out.push("</ul>"); inList = false; }
-    if (!line) continue;
-    if (/^-{3,}$/.test(line)) out.push("<hr>");
-    else if (/^#{1,6}\s/.test(line)) out.push(`<h4>${inline(line.replace(/^#+\s*/, ""))}</h4>`);
-    else out.push(`<p>${inline(line)}</p>`);
-  }
-  if (inList) out.push("</ul>");
-  return out.join("");
-}
-
-/* ---------- Отрисовка ---------- */
-function scoreClass(s) { return s >= 7 ? "hi" : s >= 5 ? "md" : "lo"; }
-
-function renderIteration(r) {
-  if (r.unrated) {
-    return `<article class="iter">
-      <img src="${r.image}" alt="Итерация ${r.iteration}" loading="lazy">
-      <div class="body">
-        <div class="top"><span class="num">Итерация ${r.iteration}</span><span class="score none">без оценки</span></div>
-        <p class="unrated">Картина нарисована, но запуск остановился до того, как VLM и эксперт её оценили.</p>
-      </div></article>`;
-  }
-  const img = r.image ? `<img src="${r.image}" alt="Итерация ${r.iteration}" loading="lazy">` : "";
-  return `<article class="iter">
-    ${img}
+/* Карточка картины из основного цикла */
+function workCard(artist, w, { title } = {}) {
+  if (!w) return "";
+  const picture = w.img
+    ? `<div class="pic">${pic(w.img, `${artistName(artist)}, круг ${w.iter}`)}</div>`
+    : `<div class="pic refused">${esc(w.error || "картины нет")}</div>`;
+  const score = w.img && w.score != null ? `<span class="score ${cls(w.score)}">${w.score}/10</span>` : "";
+  const seen = w.seen ? `<div class="label">Слепой зритель назвал картину</div>
+      <div class="seen">«<b>${esc(w.seen.title)}</b>»${w.seen.recognized === true ? " — идею узнал" : w.seen.recognized === false ? " — идею не узнал" : ""}</div>` : "";
+  const problems = w.problems.length ? `<div class="label">Замечания эксперта</div>
+      <ul class="problems">${w.problems.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : "";
+  const more = (w.reasoning || w.instructions) ? `<details class="more"><summary>Что художник учёл и что эксперт велел исправить</summary>
+      ${w.reasoning ? `<div class="label">Художник объясняет</div><div class="txt">${esc(w.reasoning)}</div>` : ""}
+      ${w.instructions ? `<div class="label">Указания эксперта</div><div class="instr">${esc(w.instructions)}</div>` : ""}
+    </details>` : "";
+  return `<article class="card">
+    ${picture}
     <div class="body">
-      <div class="top">
-        <span class="num">Итерация ${r.iteration}</span>
-        <span class="score ${scoreClass(r.score)}">${r.score}/10</span>
-      </div>
-      ${r.error ? `<p class="error">Ошибка генерации: ${esc(r.error)}</p>` : ""}
-      <div class="label">Промпт художника</div>
-      <div class="prompt">${esc(r.prompt)}</div>
-      ${r.reasoning ? `<div class="label">Художник объясняет</div><div class="reason">${esc(r.reasoning)}</div>` : ""}
-      ${r.problems.length ? `<div class="label">Эксперт: что не так</div>
-        <ul class="problems">${r.problems.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
-      ${r.instructions ? `<div class="label">Эксперт: что исправить</div><div class="instr">${esc(r.instructions)}</div>` : ""}
-      ${r.description ? `<details class="sub"><summary>Что увидела VLM</summary>
-        <div class="vlm">${miniMarkdown(r.description)}</div></details>` : ""}
+      <div class="top"><span class="who ${artist}">${title || artistName(artist)} · круг ${w.iter}</span>${score}</div>
+      <div class="label">Промпт</div><div class="prompt">${esc(w.prompt)}</div>
+      ${seen}${problems}${more}
     </div></article>`;
 }
 
-function renderDialogue(run) {
-  if (!run.dialogue.length) return "<p class='chat-note'>Диалог не сохранён.</p>";
-  const note = run.shared
-    ? "Общий контекст: художники видят вопросы друг друга и ответы эксперта на них."
-    : "Раздельный контекст: каждый художник видит только свой разговор с экспертом.";
-  return `<p class="chat-note">${note}</p><div class="chat">` +
-    run.dialogue.map(d => `<div class="qa">
-      <div class="msg artist ${esc(d.artist)}"><div class="who">Художник ${esc(d.artist)}</div>${esc(d.q)}</div>
-      <div class="msg expert"><div class="who">Эксперт</div>${esc(d.a)}</div>
-    </div>`).join("") + "</div>";
+/* ---------- Разделы разных видов ---------- */
+function renderTelephone(sec) {
+  return sec.collages.map(c => {
+    const rows = c.chains.map(ch => `<div class="chainrow">
+        <div class="who ${ch.artist}">${artistName(ch.artist)}<br><span style="color:var(--muted);font-weight:400">${ART[ch.artist].engine}</span></div>
+        <div class="titles">${ch.steps.map((s, i) => (i ? '<span class="arrow">→</span>' : "") + (s.error
+          ? `<span class="tchip lo">отказ модерации</span>`
+          : `<span class="tchip">«${esc(s.title)}»<b class="${cls(s.sim)}">${s.sim}</b></span>`)).join("")}</div>
+      </div>`).join("");
+
+    const details = c.chains.map(ch => drop(`${artistName(ch.artist)}: вся цепочка пересказов`,
+      `<div class="cards">${ch.steps.map(s => `<article class="card">
+          ${s.img ? `<div class="pic">${pic(s.img, `шаг ${s.step}`)}</div>` : `<div class="pic refused">${esc(s.error)}</div>`}
+          <div class="body">
+            <div class="top"><span class="who">Шаг ${s.step}</span>${s.img ? `<span class="score ${cls(s.sim)}">сходство ${s.sim}/10</span>` : ""}</div>
+            ${s.step
+              ? `<details class="more" style="border:0;padding:0;margin-top:12px"><summary>Что художнику рассказали (он не видел ни идеи, ни картины)</summary>
+                  <div class="txt" style="margin-top:6px">${esc(s.told.replace(/^Нарисуй картину по рассказу человека, который её видел:\n?/, ""))}</div></details>`
+              : `<div class="label">Что получил художник</div><div class="txt">${esc(s.told)}</div>`}
+            <div class="label">Промпт</div><div class="prompt">${esc(s.prompt)}</div>
+            ${s.img ? `<div class="label">Зритель назвал картину</div><div class="seen">«<b>${esc(s.title)}</b>»</div>
+            <div class="label">Судья: что потерялось</div><div class="txt">${esc(s.lost)}</div>
+            <details class="more"><summary>Что зритель рассказал следующему художнику</summary><div class="txt" style="margin-top:6px">${esc(s.desc)}</div></details>` : ""}
+          </div></article>`).join("")}</div>`,
+      { sub: artistLine(ch.artist) })).join("");
+
+    return `<figure class="collage"><img src="${MEDIA + c.file}" alt="Испорченный телефон: ${esc(c.idea)}" data-big="1">
+        <figcaption>«${esc(c.idea)}» — строка на художника, слева направо шесть пересказов. Число — сходство с исходной идеей.
+        <span class="zoomhint">Нажмите, чтобы увеличить.</span></figcaption></figure>
+      <div class="chains">${rows}</div>
+      ${details}`;
+  }).join("");
 }
 
-function bestImage(records) {
-  const rated = records.filter(r => !r.unrated && r.image);
-  if (!rated.length) return records.find(r => r.image);
-  return rated.reduce((a, b) => (b.score > a.score ? b : a));
+function renderGallery(sec) {
+  const collage = sec.collages.map(c => `<figure class="collage"><img src="${MEDIA + c.file}" alt="${esc(sec.title)}" data-big="1">
+      <figcaption>Строка — художник, столбец — ${sec.id === "clients" ? "заказчик" : "идея"}. Число — оценка эксперта. <span class="zoomhint">Нажмите, чтобы увеличить.</span></figcaption></figure>`).join("");
+  const tastes = new Set(sec.columns.map(c => c.taste));
+  const sharedTaste = tastes.size === 1 ? tasteBlock(sec.columns[0]) : "";
+  const cols = sec.columns.map(col => {
+    const cards = Object.entries(col.best).map(([a, w]) => workCard(a, w)).join("");
+    const inner = (tastes.size > 1 ? tasteBlock(col) : "")
+      + `<div class="cards">${cards}</div>`
+      + drop("Диалог художников с экспертом", dialogue(col), { sub: `${col.dialogue.length} вопросов` });
+    const label = col.label.charAt(0).toUpperCase() + col.label.slice(1);
+    return drop(esc(label), inner);
+  }).join("");
+  return collage + `${sec.verdictHTML}<div class="details-title">Подробности: картины с коллажа, промпты, оценки и диалоги</div>${sharedTaste}${cols}`;
 }
 
-function renderRun(run, index) {
-  const id = `run-${index + 1}`;
-  const artistIds = Object.keys(run.history);
-  const info = Object.fromEntries(run.artists.map(a => [a.id, a]));
+function renderEvolution(sec) {
+  const run = sec.run;
+  const collages = sec.collages.map(c => `<figure class="collage${c.file.endsWith(".gif") ? " small" : ""}">
+      <img src="${MEDIA + c.file}" alt="${esc(c.caption || run.idea)}" ${c.file.endsWith(".gif") ? "" : 'data-big="1"'}>
+      ${c.caption ? `<figcaption>${esc(c.caption)}</figcaption>` : ""}</figure>`).join("");
+  const nums = sec.numbers ? `<div class="tablewrap"><table class="nums">
+      <thead><tr>${sec.numbers.head.map(h => `<th>${esc(h)}</th>`).join("")}</tr></thead>
+      <tbody>${sec.numbers.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody>
+    </table></div><div class="nums-cap">${esc(sec.numbers.caption)}</div>` : "";
+  const iters = Math.max(...Object.values(run.history).map(h => h.length));
+  let rows = "";
+  for (let i = 0; i < iters; i++) {
+    const cards = Object.entries(run.history).map(([a, h]) => workCard(a, h[i])).join("");
+    rows += `<div class="iter-row"><div class="n">№${i + 1}</div><div class="cards">${cards}</div></div>`;
+  }
+  return collages + nums + sec.verdictHTML
+    + `<div class="details-title">Подробности прогона с коллажа</div>`
+    + tasteBlock(run)
+    + drop("Диалог художников с экспертом", dialogue(run), { sub: `${run.dialogue.length} вопросов` })
+    + drop("Все круги критики: промпты, оценки, замечания", rows, { sub: `${iters} кругов` });
+}
 
-  const covers = artistIds.map(aid => {
-    const best = bestImage(run.history[aid]);
-    if (!best) return "";
-    const s = best.unrated ? "" : ` · лучшая оценка ${best.score}/10`;
-    return `<figure><img src="${best.image}" alt="Художник ${aid}" loading="lazy">
-      <figcaption>Художник ${aid}${s}</figcaption></figure>`;
-  }).join("");
+function renderStory(sec) {
+  return sec.collages.map(c => `<figure class="collage small"><img src="${MEDIA + c.file}" alt="${esc(c.caption)}">
+      <figcaption>${esc(c.caption)}</figcaption></figure>`).join("") + sec.verdictHTML;
+}
 
-  const columns = artistIds.map(aid => {
-    const a = info[aid] || {};
-    return `<div>
-      <div class="col-head ${aid}">
-        <h3>Художник ${aid}</h3>
-        <p>${esc(a.engine || "")}${a.lang ? ` · промпт на ${esc(a.lang)}` : ""}</p>
-        ${a.persona ? `<p><i>${esc(a.persona)}</i></p>` : ""}
-      </div>
-      ${run.history[aid].map(renderIteration).join("")}
-    </div>`;
-  }).join("");
-
-  const mode = run.shared === true
-    ? `<span class="badge shared">общий контекст</span>`
-    : run.shared === false ? `<span class="badge private">раздельный контекст</span>` : "";
-
-  return `<section class="run" id="${id}">
-    <div class="run-head">
-      <div><div class="kicker">Тема ${index + 1}</div><h2>${esc(run.idea)}</h2></div>
-      <div class="badges">${mode}<span class="badge">запуск ${esc(run.dir)}</span></div>
-    </div>
-    <div class="cover">${covers}</div>
-    <details class="block"><summary>Вкусы эксперта</summary><div class="inner"><div class="taste">${esc(run.taste)}</div></div></details>
-    <details class="block"><summary>Диалог: художники расспрашивают эксперта (${run.dialogue.length})</summary>
-      <div class="inner">${renderDialogue(run)}</div></details>
-    <div class="duel">${columns}</div>
+function renderSection(sec, i) {
+  sec.verdictHTML = sec.verdict.length ? `<div class="verdict"><h3>Что получилось</h3><ul>${sec.verdict.map(v => `<li>${esc(v)}</li>`).join("")}</ul></div>` : "";
+  let body;
+  if (sec.kind === "telephone") body = renderTelephone(sec) + sec.verdictHTML;
+  else if (sec.kind === "gallery") body = renderGallery(sec);
+  else if (sec.kind === "evolution") body = renderEvolution(sec);
+  else body = renderStory(sec);
+  return `<section class="exp" id="${sec.id}">
+    <div class="exp-num">${String(i + 1).padStart(2, "0")}</div>
+    <h2>${esc(sec.title)}</h2>
+    <p class="question">${esc(sec.question)}</p>
+    ${sec.how ? `<p class="how">${esc(sec.how)}</p>` : ""}
+    ${body}
   </section>`;
 }
 
-/* Спрашиваем у GitHub, какие папки лежат в runs/ */
-async function listRuns() {
-  try {
-    const resp = await fetch(`https://api.github.com/repos/${REPO}/contents/runs?ref=${BRANCH}`);
-    if (!resp.ok) throw new Error(resp.status);
-    const items = await resp.json();
-    const dirs = items.filter(i => i.type === "dir").map(i => i.name).sort();
-    if (dirs.length) return dirs;
-    throw new Error("пустой список");
-  } catch (e) {
-    console.warn("GitHub API недоступен, беру запасной список:", e);
-    return FALLBACK_RUNS;
-  }
-}
-
+/* ---------- Сборка страницы ---------- */
 async function main() {
-  const container = document.getElementById("runs");
-  const runs = [];
-  for (const dir of await listRuns()) {   // папки без log.json просто пропускаются
-    try {
-      const resp = await fetch(`runs/${dir}/log.json`);
-      if (!resp.ok) throw new Error(resp.status);
-      const run = normalize(await resp.json(), dir);
-      await findUnrated(run);
-      runs.push(run);
-    } catch (e) {
-      console.warn("Не удалось загрузить", dir, e);
-    }
-  }
-  if (!runs.length) {
-    container.innerHTML = `<p class="fail">Не удалось загрузить результаты. Если вы открыли файл прямо с диска,
-      запустите локальный сервер (python -m http.server) — браузер не даёт читать файлы без него.</p>`;
+  let data;
+  try {
+    const r = await fetch(DATA_URL);
+    if (!r.ok) throw new Error(r.status);
+    data = await r.json();
+  } catch (e) {
+    document.getElementById("main").innerHTML = `<p class="fail">Не удалось загрузить ${DATA_URL}.
+      Страницу нужно открывать с сайта (GitHub Pages) или через локальный сервер: <code>python -m http.server</code>.</p>`;
     return;
   }
-  container.innerHTML = runs.map(renderRun).join("");
-  document.getElementById("nav").innerHTML =
-    runs.map((r, i) => `<a href="#run-${i + 1}">${esc(r.idea)}</a>`).join("");
+  ART = data.artists;
+  const names = data.team.map(n => `<b>${esc(n)}</b>`).join(" · ");
+  document.getElementById("team").innerHTML = names;
+  document.getElementById("team-foot").innerHTML = "Работу выполнили: " + names;
+  document.getElementById("legend").innerHTML = Object.entries(ART).map(([id, a]) =>
+    `<span><i class="${id}">Художник ${id}</i> — ${esc(a.engine)}, ${esc(a.lang)}</span>`).join("")
+    + `<span><i style="color:var(--accent)">Эксперт</i> — DeepSeek и Qwen в Yandex AI Studio</span>`;
+
+  document.getElementById("main").innerHTML = data.sections.map(renderSection).join("")
+    + `<section class="extra" id="extra"><h2>Ещё находки</h2><div class="grid4">${
+        data.extra.map(x => `<div class="fact"><b>${esc(x.title)}</b>${esc(x.text)}</div>`).join("")}</div></section>`;
+
+  const toc = document.getElementById("toc");
+  toc.innerHTML = data.sections.map(s => `<a href="#${s.id}">${esc(s.title)}</a>`).join("")
+    + `<a href="#extra">Ещё находки</a>`;
+
+  // Подсветка пункта меню текущего раздела
+  const links = [...toc.querySelectorAll("a")];
+  const observer = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) links.forEach(l => l.classList.toggle("on", l.getAttribute("href") === "#" + en.target.id));
+  }), { rootMargin: "-40% 0px -55% 0px" });
+  document.querySelectorAll("section.exp, section.extra").forEach(s => observer.observe(s));
 }
 
-/* Клик по картинке — показать её крупно */
-const lb = document.getElementById("lightbox");
+/* Просмотр крупно: клик по коллажу или картинке. Коллаж открывается в полном размере с прокруткой */
+const lb = document.getElementById("lb");
 document.addEventListener("click", e => {
-  if (e.target.matches(".iter img, .cover img")) {
-    lb.querySelector("img").src = e.target.src;
+  const img = e.target.closest("figure.collage img, .card .pic img");
+  if (img) {
+    lb.querySelector("img").src = img.currentSrc || img.src;
+    lb.classList.toggle("big", !!img.dataset.big && window.innerWidth < 1600);
     lb.classList.add("on");
-  } else if (e.target.closest("#lightbox")) {
+  } else if (e.target.closest("#lb")) {
     lb.classList.remove("on");
   }
 });
