@@ -9,6 +9,10 @@
 в [`docs/features.md`](docs/features.md), разбор данных — в ноутбуке
 [`Agent_Artist.ipynb`](Agent_Artist.ipynb).
 
+**Материалы для защиты** (приватные ссылки, доступ выдаёт владелец через Share):
+[презентация](https://claude.ai/artifact/Pcir1t4DRNuMDQYxFDSjLa) ·
+[слепое голосование «Две картины, одна идея»](https://claude.ai/artifact/NL9Jn4yeAKQCnpa6X5yAHK).
+
 ## Участники
 
 | Роль | Модель | Где |
