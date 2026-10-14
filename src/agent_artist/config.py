@@ -152,6 +152,9 @@ class Settings:
     # Художник правит лучшую попытку, а не последнюю (элитизм)
     keep_best: bool = False
 
+    # Сколько раз эксперт оценивает каждую картину; итог — медиана (шум одной оценки ±0.9)
+    expert_votes: int = 1
+
     # --- Локальная VLM в Ollama ---
     ollama_host: str = "http://127.0.0.1:11434"
     vision_model_name: str = "qwen3-vl:8b"

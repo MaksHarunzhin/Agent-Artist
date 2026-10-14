@@ -104,6 +104,15 @@ def review_picture(expert: YandexLLM, expert_taste: str, sees_image: bool, idea:
     return parse_review(response)
 
 
+def median_review(reviews: list[Review]) -> Review:
+    """
+    Итог панели экспертов: медианная оценка. Медиана устойчива к выбросам — одна и та же
+    картина у одного эксперта получала 4, 9 и 5. Замечания — у оценки, ближайшей к медиане.
+    """
+    ordered = sorted(reviews, key=lambda review: review.score)
+    return ordered[(len(ordered) - 1) // 2]
+
+
 class ArtStudio:
     """Связывает всех участников и проводит цикл работы над картинами."""
 
@@ -250,11 +259,11 @@ class ArtStudio:
                      description: str) -> Review:
         """Эксперт оценивает картину с учётом всего, что согласовано с художником."""
         sees_image = self.settings.expert_sees_image
-        return review_picture(
+        return median_review([review_picture(
             self.expert_vision_llm if sees_image else self.expert_llm,
             self.settings.expert_taste, sees_image, self.settings.idea, artist.artist_id,
             Dialogue.to_text(self.dialogue.visible_to(artist.artist_id)), prompt, image_path,
-            description)
+            description) for _ in range(self.settings.expert_votes)])
 
     @staticmethod
     def review_for_failed_generation(error: str) -> Review:
@@ -337,6 +346,7 @@ class ArtStudio:
             "expert": self.settings.expert_name,
             "experienced_artists": self.settings.experienced_artists,
             "keep_best": self.settings.keep_best,
+            "expert_votes": self.settings.expert_votes,
             "expert_taste": self.settings.expert_taste,
             "artists": [asdict(artist) for artist in self.artists],
             "dialogue": [asdict(entry) for entry in self.dialogue.entries],

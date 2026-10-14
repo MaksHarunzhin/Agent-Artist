@@ -84,3 +84,12 @@ def test_keep_best_context_returns_to_best_attempt():
     context = studio_with_history(True, records).build_artist_context(ARTIST_PRESETS["A"])
     assert "Твой лучший промпт: good" in context
     assert "Последняя попытка оценена ниже (5/10)" in context
+
+
+def test_median_review_resists_outliers():
+    reviews = [Review(4, ["a"], "x"), Review(9, ["b"], "y"), Review(5, ["c"], "z")]
+    median = studio.median_review(reviews)
+    assert median.score == 5 and median.problems == ["c"]
+    assert studio.median_review([Review(6, [], "")]).score == 6
+    # При чётном числе оценок — нижняя из двух средних: строже, а не мягче
+    assert studio.median_review([Review(3, [], ""), Review(8, [], "")]).score == 3
