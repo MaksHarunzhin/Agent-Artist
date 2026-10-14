@@ -1,0 +1,128 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The image depicts a dramatic scene of a lighthouse standing on a rocky, grassy promontory during a severe thunderstorm. The lighthouse is tall and cylindrical, painted with a distinct pattern of dark (possibly black or dark brown) and white sections, though the upper dark section appears weathered. At the top, the lantern room glows with a warm, intense yellow light, casting a beacon into the gloom. Attached to the base of the tower is a small, white keeper's house with its own windows lit by a similar warm yellow light. To the right, the ocean is turbulent, with white-capped waves crashing against the dark, jagged rocks at the base of the cliff. The sky is filled with heavy, dark grey storm clouds. A jagged bolt of lightning strikes near the base of the lighthouse, illuminating the rain and the immediate area with a stark, electric blue-white flash. The overall palette is dominated by cool, dark tones of grey, blue, and black, sharply contrasted by the warm yellows of the artificial lights and the bright white of the lightning. The composition places the lighthouse on the left, anchoring the scene, while the storm and sea dominate the right side. The mood is intense, dangerous, and atmospheric.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "no",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "partial",
+      "yes"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Грозовая ночь у маяка",
+    "description": "На переднем плане видны крупные темные камни, лежащие у кромки воды. За ними бушует море: белые пенистые волны с силой разбиваются о скалистый мыс. На мысе стоит одинокий каменный маяк, его фонарь ярко светится теплым оранжевым светом, освещая верхнюю часть башни. Небо мрачное, затянуто тяжелыми темно-серыми тучами. Справа в небе видна яркая, изломанная молния, рассекающая мрак. Вдалеке на горизонте виднеются тусклые огни, возможно, города. Композиция сбалансирована: массивный маяк слева и вспышка молнии справа. Настроение драматичное, напряженное и величественное.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": false
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Маяк в шторме",
+    "description": "На изображении запечатлен знаменитый Пори-маяк (Porin majakka) в Финляндии, стоящий на скалистом мысе во время мощного шторма. Небо затянуто тяжелыми тучами темно-фиолетового и серого цвета, из которых справа пробивает яркая, извилистая молния. Сам маяк, окрашенный в красно-белые горизонтальные полосы, освещен теплым желтым светом изнутри, который ярко выделяется на фоне мрачной погоды. Море бурное, с высокими зеленоватыми волнами и обильной белой пеной, которые с силой накатывают на берег и разбиваются о камни. На переднем плане видны темные, мокрые глыбы камней, возможно, часть волнореза или набережной. У подножия маяка стоит небольшой дорожный знак «Въезд запрещен». Композиция передает драматизм момента и силу стихии, противостоящей человеческому творению. Стиль картины напоминает цифровую живопись с яркими акцентами света.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "no",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.3125,
+    "idea_named": true
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Маяк в шторме",
+    "description": "На картине изображен одинокий каменный маяк, стоящий на скалистом мысу в разгар сильной грозы. В верхней части башни, в освещенной фонарной комнате, видна фигура человека в плаще — смотрителя, который стоит у окна. Из маяка бьет мощный конус света, прорезающий темные, тяжелые тучи и направленный вправо. Небо затянуто свинцовыми облаками, идет сильный дождь, изображенный белыми вертикальными линиями. На заднем плане справа видна яркая молния, освещающая небо. Море бурлит, белые гребни волн с силой разбиваются о темные скалы у основания маяка. Палитра картины построена на резком контрасте: теплое желто-оранжевое свечение внутри маяка и луч света противопоставлены холодным сине-серым, черным и фиолетовым тонам штормового неба и воды. Композиция центрирована на башне, которая выглядит устойчивой и надежной посреди хаоса стихии. Стиль исполнения напоминает цифровую живопись с детализированными мазками.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.45,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Beacon in the Storm",
+    "description": "A dramatic scene featuring a stone lighthouse standing firm on a rocky coast during a violent night storm. Heavy rain falls in diagonal streaks across the dark sky. A bright, focused beam of light shoots from the lighthouse lantern room towards the right, cutting through the gloom. A jagged bolt of lightning strikes down in the clouds on the right side, illuminating the turbulent atmosphere. The sea is rough, with white-capped waves crashing against the dark rocks at the base of the tower. A solitary figure, dressed in a dark coat and hat, stands on a metal walkway near the base of the lighthouse, appearing to look out at the sea or brace against the wind. The color palette is dominated by cool dark blues, greys, and blacks, contrasting sharply with the warm yellow glow of the lighthouse lamp and the stark white of the lightning and sea spray. The style is painterly, resembling digital concept art with a moody and atmospheric tone.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.45,
+    "idea_named": true
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен каменный маяк, одиноко стоящий на скалистом берегу посреди мощного шторма. В стеклянной фонарной комнате виден силуэт человека в шляпе — вероятно, часового, который стоит у окна и смотрит наружу или регулирует свет. Изнутри фонаря бьет мощный конус света, прорезающий темноту и ливень. Вокруг бушует стихия: вертикальные линии дождя заполняют пространство, небо затянуто тяжелыми свинцовыми тучами, а на заднем плане видны яркие вспышки молний. Море взволновано, белые гребни волн с пеной разбиваются о темное основание маяка. Освещение драматичное и контрастное: теплое оранжево-желтое свечение внутри маяка резко противопоставлено холодным синим, серым и белым тонам штормового неба и воды. Картина написана мазистым, экспрессивным стилем, где видны фактурные следы кисти, передающие динамику ветра и воды.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "yes",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.55,
+    "idea_named": true
+  }
+}

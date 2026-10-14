@@ -1,0 +1,122 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Маяк в лунную ночь",
+    "description": "На картине изображен высокий маяк с черно-желтой полосой, стоящий на скалистом островке посреди бурного моря. Рядом с башней находится небольшой белый домик с темной крышей. Вокруг острова бушует стихия: темно-зеленые волны с густой белой пеной разбиваются о темные скалы на переднем плане и у основания острова. Небо затянуто тяжелыми темными тучами, создавая атмосферу надвигающегося или разразившегося шторма. В правом верхнем углу висит большая, детализированная полная луна, освещающая сцену холодным светом. В то же время фонарь маяка горит ярко-желтым теплым светом, освещая верхнюю часть башни и ближайшие скалы. Композиция сбалансирована: маяк и луна находятся на одном уровне, создавая визуальный контраст. Палитра состоит из холодных синих, серых и зеленых тонов, разбавленных теплым желтым светом и белым цветом пены и луны. Настроение картины драматичное, величественное и немного мрачное, но свет маяка добавляет ощущение безопасности и надежды.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен высокий цилиндрический маяк с черно-белой полосатой окраской, стоящий на скалистом мысе. Вверху горит яркий желтый свет, освещающий темное небо. У основания маяка виден небольшой белый домик с красной крышей. Вокруг бушует море: высокие белые волны с пеной разбиваются о темные камни. На переднем плане лежат крупные серые валуны. Небо затянуто тяжелыми серыми тучами, создавая атмосферу шторма, но слева на горизонте пробивается золотистый свет заката (или рассвета). В небе справа летит одна птица. Композиция построена на контрасте темного штормового неба и теплого света маяка и заката. Настроение драматичное, величественное, но свет маяка придает ощущение надежности. Стиль реалистичный, напоминающий цифровую живопись или обработанную фотографию.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": true
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Portland Head Light Storm",
+    "description": "The painting depicts the Portland Head Light lighthouse standing resiliently on a rocky promontory during a fierce storm. The lighthouse, painted white with a distinctive red brick section near the top, is illuminated from within, casting a warm glow against the dark, brooding sky. Massive, churning waves crash violently against the rocky breakwater and shore in the foreground, creating a dramatic spray of white foam. The sky is a heavy, ominous grey, suggesting a powerful storm is either approaching or passing. The lighting is dramatic, with the lighthouse beam and the distant horizon providing the only sources of light in an otherwise dark and turbulent scene. The composition places the lighthouse on the right, balancing the chaotic energy of the waves on the left. The mood is one of power, resilience, and the raw force of nature.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": true
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен высокий цилиндрический маяк, стоящий на скалистом утесе посреди бушующего моря. Надвигается сильная гроза: небо затянуто темными облаками, а проливной дождь льется густыми диагональными потоками. В верхней части башни, в фонаре, горит яркий теплый свет, из которого исходит мощный луч, прорезающий темноту и туман в левую сторону. Внутри фонаря виден силуэт человека в шляпе, стоящего у окна. Внизу, у основания маяка, высокие бирюзовые волны с белой пеной разбиваются о темные скалы. Цветовая палитра состоит из холодных темно-синих, серых и бирюзовых тонов, контрастирующих с теплым оранжевым свечением маяка. Стиль изображения — графическая иллюстрация с четкими контурами и плоскими цветовыми пятнами.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Маяк в шторм",
+    "description": "На картине изображен каменный маяк, возвышающийся на темных скалах у кромки бурного моря. В верхней части башни, в освещенной фонарной комнате, видна силуэтная фигура человека в темном одеянии, возможно, смотрителя маяка. Изнутри башни исходит мощный луч теплого желтого света, который прорезает темноту и направляется влево. Вокруг разворачивается сильная гроза: идет обильный дождь, изображенный вертикальными мазками, а высокие волны с белой пеной разбиваются о скалы у основания сооружения. Небо затянуто тяжелыми тучами сине-зеленых и серых оттенков. Композиция построена на контрасте: теплое свечение маяка резко выделяется на фоне холодных, мрачных тонов ночного шторма. Стиль живописный, с заметной фактурой и густыми мазками краски, передающими динамику стихии.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": true
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "The Keeper's Watch",
+    "description": "The painting depicts a lighthouse standing resiliently on a rocky shore during a fierce storm. Heavy rain falls in diagonal streaks across the dark, turbulent sky. In the upper left, a pale moon struggles to shine through the heavy, swirling clouds. The lighthouse itself is illuminated from within, casting a powerful, warm orange beam of light that cuts through the gloom to the left. Inside the lantern room, a solitary figure, likely the keeper, is visible in silhouette, perhaps tending to the lamp. The sea below is churning with white-capped waves crashing against the dark rocks at the base of the tower. The style is impressionistic, characterized by thick, visible brushstrokes that give texture to the water, the stone, and the rain. The color palette is a dramatic contrast between the cool, deep blues and greys of the storm and the warm, golden hues of the lighthouse light. The composition places the lighthouse on the right, anchoring the scene, while the light beam draws the eye across the canvas. The mood is one of isolation, duty, and the raw power of nature.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.6875,
+    "idea_named": false
+  }
+}

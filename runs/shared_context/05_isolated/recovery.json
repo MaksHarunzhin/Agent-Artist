@@ -1,0 +1,143 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Lighthouse in the Storm",
+    "description": "The image depicts the Yaquina Head Lighthouse standing firm on a rocky coast during a fierce storm. The white tower is topped with a black lantern room emitting a bright, warm yellow light. A small yellow building is attached to the base. Enormous waves crash against the dark, jagged rocks and the lighthouse foundation, creating a chaotic spray of white foam. The sky is a heavy, dark grey, indicating a severe weather event. The cool, blue-grey palette of the storm contrasts with the warm light of the beacon. The composition balances the static, vertical structure of the lighthouse against the horizontal, turbulent motion of the sea. The mood is dramatic and solitary.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": true
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Stormy Lighthouse",
+    "description": "The image depicts a solitary white lighthouse standing on a rocky outcrop amidst a turbulent sea. The sky is overcast with heavy, dark grey clouds, suggesting a storm or late evening. The lighthouse is illuminated, casting a warm yellow glow from its lantern room, which contrasts sharply with the cool, muted tones of the surroundings. Large, foamy waves are crashing against the rocks surrounding the base of the lighthouse, creating a sense of motion and power. In the foreground, dark, wet rocks are visible, adding depth to the scene. The overall mood is dramatic and atmospheric, emphasizing the resilience of the structure against the elements.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": true
+  },
+  "artist_A_03.png": {
+    "artist_id": "A",
+    "iteration": 3,
+    "image": "artist_A_03.png",
+    "title": "Portland Head Light",
+    "description": "На картине изображен высокий белый маяк с черным фонарным домиком на вершине. Свет в фонаре горит ярким теплым желтым цветом, освещая верхнюю часть башни. Маяк стоит на скалистом мысе, покрытом желтовато-зеленой травой. Внизу видны крупные темные камни и бьющиеся о них белые волны моря. Небо затянуто серыми облаками, с характерным завитком в правом верхнем углу, что создает ощущение приближающейся бури. Слева у основания маяка видна часть белого забора и крыши небольшого здания. Освещение контрастное: холодный дневной свет неба противопоставлен теплому свету маяка. Композиция вертикальная, акцент на высоте сооружения. Настроение одиночное, величественное и немного тревожное. Стиль живописный, с заметными мазками, особенно в небе и скалах.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Шторм у маяка",
+    "description": "На картине изображена драматичная ночная сцена шторма. В центре композиции стоит каменный маяк с полосатой башней, возвышающийся на скалистом утесе. Вокруг бушует море: огромная волна с белой пеной закручивается и разбивается о скалы у основания башни. Небо затянуто темными, вихревыми облаками, идет сильный ливень, изображенный густыми диагональными белыми линиями. Из фонаря на вершине маяка вырывается мощный конус света, освещающий дождь и волны слева. Справа от башни видна часть конструкции с окном, из которого льется теплый желтый свет. В окне виден четкий силуэт человека в фуражке (похожего на матроса или смотрителя), который стоит в профиль. Цветовая палитра построена на контрасте холодных темно-синих и черных тонов штормовой стихии и яркого теплого оранжево-желтого света маяка и окна. Стиль изображения напоминает графическую иллюстрацию или плакат с высокой контрастностью.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.4,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Маяк против бури",
+    "description": "На картине изображен одинокий маяк, стоящий на скалистом утесе посреди бушующего моря. В верхней части башни, в фонарной комнате, виден силуэт человека (вероятно, смотрителя), который стоит у окна. Изнутри маяк ярко освещен теплым желто-оранжевым светом, который вырывается наружу в виде мощного луча, рассекающего темноту. Сам маяк выглядит старым и потрепанным временем: на белой поверхности видны рыжие потеки ржавчины и облупившаяся краска, а на крыше виден крест. Вокруг бушует стихия: идет сильный ливень, капли дождя изображены белыми вертикальными штрихами. Море неспокойное, огромные волны с белой пеной разбиваются о скалы у основания башни. Небо затянуто тяжелыми темно-синими и черными тучами, но в верхней части просматривается просвет с более светлым, дымчатым оттенком. Палитра картины контрастная: преобладают холодные темно-синие, серые и черные тона, которые резко контрастируют с теплым золотым светом маяка и белыми брызгами воды. Композиция построена на контрасте статичной башни справа и динамичных волн слева. Стиль напоминает живопись маслом или акварелью с заметной фактурой мазков. Настроение картины драматичное, напряженное, но присутствующий свет символизирует надежду и стойкость перед лицом стихии.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "yes",
+      "no",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.5666666666666667,
+    "idea_named": true
+  },
+  "artist_B_03.png": {
+    "artist_id": "B",
+    "iteration": 3,
+    "image": "artist_B_03.png",
+    "title": "The Keeper's Watch",
+    "description": "На картине изображен маяк, стоящий на скалистом берегу во время сильной ночной бури. Небо темное, затянутое тучами, идет сильный дождь, капли которого видны как диагональные полосы. Слева внизу огромная волна с белой пеной разбивается о скалы у основания башни. Сам маяк цилиндрический, выкрашен в горизонтальные полосы (белую и темную), на нем видны следы ржавчины и износа. В верхней части, в фонарной комнате, горит яркий теплый желтый свет. Внутри виден силуэт человека в шляпе, который, вероятно, является смотрителем маяка; он стоит у окна или смотрит наружу. Из фонаря исходит мощный луч света, прорезающий темноту и дождь в левую сторону. Цветовая гамма контрастная: преобладают холодные синие и серые тона бури, которые резко контрастируют с теплым желтым светом маяка и белой пеной волн. Настроение картины драматичное, напряженное, но также и утешительное благодаря свету.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.43333333333333335,
+    "idea_named": false
+  }
+}
