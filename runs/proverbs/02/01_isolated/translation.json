@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly chiaroscuro: huge African elephant with tusks, shoulder striking porcelain étagère, front leg frozen mid-air, trunk curled high, ears spread, guilty eye. Porcelain shop, dusk, warm amber lamp, cool blue rainy window, shards, overturned étagère, low angle, diagonal falling dishes."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly chiaroscuro: huge African elephant mid-shop, shoulder striking tall porcelain shelf, leg frozen mid-air, trunk curled high, ears spread, frightened guilty eye. Falling china, shards, overturned étagère on floor, warm amber lamp, cool blue rainy window, low angle."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly cinematic illustration, low angle: a lone African elephant fills the frame, frozen mid-motion, shoulder striking a tall etagere, blue-white porcelain shards mid-air. Trunk raised and curled, ears fanned wide, big tusks, front leg lifted, eyes on the falling china. Bare grey skin, warm ochre reflections. Foreground: toppled etagere, shattered tea service, dust in backlight. Green walls, walnut shelves, lit glass cases, mirror. Amber lamp glow against cool blue-teal rainy dusk window."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "like a bull in a china shop",
+    "prompt": "Painterly cinematic illustration, extreme low angle from floor: a lone African elephant fills the frame, shoulder striking a tilting etagere mid-fall, porcelain shards flying. Trunk curled up, ears fanned, tusks, front leg lifted, worried eyes on the falling china. Foreground: large shards, scattered tea service, splintered wood, dust and porcelain crumbs. Soft amber lamp glow, cool teal rainy-dusk window light, dust in beams, green walls, walnut shelves, mirror."
+  }
+}

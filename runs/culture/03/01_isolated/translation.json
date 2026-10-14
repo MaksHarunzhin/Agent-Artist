@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "meaning",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic realism: nine-year-old boy, quilted coat, pompom knit hat, mittens, valenki, knee-deep snow, towing snow-tube sled by rope, gazing up at one lit third-floor window. Blue hour, glowing snowflakes, sodium lamp rim light, warm yellow windows, low angle, lower-left."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic realism: boy in quilted coat, knee-deep snow, holding rope of snow-tube sled, gazing up-right at lit third-floor window. Blue hour, sodium lamp rim light, glowing snowflakes, khrushchyovka facade receding, soft blurred background."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic: nine-year-old boy, quilted petrol-blue coat, mustard pom-pom hat, terracotta mittens, valenki, knee-deep in snow, holding a sled-tube rope, three-quarter back view, head tilted up, rosy cheek, expectant eyes, sodium-lamp rim light, gazing up at one amber third-floor window with a blurred woman silhouette. Panel block, poplars, bench, snow-buried Zhiguli, metal slide. Cobalt-lilac twilight, glowing snowflakes, impasto foreground, impressionistic background."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic winter scene: a small child in quilted petrol-blue coat, mustard pom-pom hat, terracotta mittens, felt boots, standing knee-deep in snow, holding a sled rope, three-quarter back view, head tilted up toward one amber third-floor window with a blurred woman silhouette. Sodium lamp rim light. Panel block, poplars, bench, snow-covered Zhiguli, metal slide. Cobalt-lilac twilight, glowing snowflakes, impasto foreground, impressionistic background."
+  }
+}

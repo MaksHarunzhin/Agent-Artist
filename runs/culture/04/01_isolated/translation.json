@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting, impressionist brushwork: peasant man in dark fur coat, fur hat, dark red scarf, mittens, riding wooden sledge drawn by bay horse, snowy field. Low golden sun, long blue shadows, sparkling frost, birch branch with rime framing left."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting, impressionist: man in dark fur coat, soft fur hat, muted burgundy scarf, back view, driving wooden sledge, bay horse, breath vapor, snowy field, low golden sun, long blue shadows, sparkling frost, birch branch with rime framing left, forest edge."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting, Russian style, loose impressionist brushwork: a man in dark fur-lined coat, fur hat and mittens drives a wooden sledge with taut reins, one chestnut horse with black mane, moving away toward the low sun. Low viewpoint, horizon in upper third, sledge on right third, frosted birch branch framing the left edge. Two sledge tracks recede across sparkling snow, breath steam. Golden sun disc at horizon, backlight, long blue-violet shadows, pink cirrus, cold blue snow, warm gold."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Oil painting, Russian style, textured impressionist brushwork: a man in dark fur-lined coat, fur hat and mittens drives a low wooden sledge with taut reins, one bay horse with black mane, moving away toward a small pale sun low at the horizon. Low viewpoint, horizon upper third, sledge on right third, slender frosted birch twigs framing left edge. Two crisp narrow tracks recede to the sun, faint breath steam, long blue-violet shadows, pink cirrus, cold blue snow against warm gold light."
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Hunters with a Bear",
+    "description": "The image depicts a realistic scene in an autumn birch forest, bathed in warm, golden light. The ground is covered with fallen orange and yellow leaves. Three men are the main subjects. Two men in the center and on the right are carrying a large brown bear on a long pole; the bear appears to be dead or unconscious, with its legs dragging on the ground. The man in the center wears a brown coat and a hat, gripping the pole, while the man on the right, wearing glasses and a brown coat, supports the other end. To the left, a third hunter with a thick beard, wearing a green coat and hat, walks alongside holding a shotgun. The composition and the poses of the three men strongly resemble the famous painting 'The Three Bogatyrs' by Viktor Vasnetsov, creating a humorous parallel between epic knights and modern hunters.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.15,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "The Bear Hunt",
+    "description": "The painting depicts a tense and dramatic scene in a forest where three hunters are attacking a large brown bear. The men are dressed in rugged, earth-toned hunting gear, including olive-green jackets, trousers, and caps. They are wielding long spears, thrusting them towards the bear in an attempt to subdue it. The bear, positioned centrally, appears aggressive and fierce, with its mouth open and claws visible. The background features a forest of tall, slender trees, likely birches, with a warm, glowing sunset sky in shades of orange and pink. The lighting suggests late afternoon, casting a golden hue over the scene and highlighting the texture of the bear's fur and the hunters' clothing. The ground is covered in green grass and scattered branches. The composition is dynamic, with the spears creating diagonal lines that draw the eye to the struggle. The mood is dangerous and intense, capturing a moment of high action. The style is realistic and detailed, typical of classic wildlife or hunting illustrations.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "no",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.1,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Снять шкуру с живого",
+    "description": "На картине изображены четыре мужчины в традиционной русской одежде (ушанки, длинные пальто) в лесу. Они держат сидящего медведя, и один из них режет ему шкуру ножом. Сзади стоит второй, огромный медведь, наблюдающий за происходящим. Солнечный свет пробивается сквозь деревья, создавая золотистое освещение. Палитра теплая, преобладают коричневые и зеленые тона. Композиция центрирована на группе людей и медведя. Настроение кажется странным, почти комичным, несмотря на жестокость действия. Стиль реалистичный, с элементами цифровой живописи.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.3,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Снять шкуру с медведя",
+    "description": "На картине изображена сцена, иллюстрирующая русскую пословицу. Три мужчины в военной форме стоят в лесной чаще. Слева пожилой мужчина с белой бородой держит нож и гневно указывает пальцем на огромного бурого медведя. Два молодых солдата в центре и справа радостно держат в руках большую шкуру медведя. При этом сам медведь стоит живой и здоровый справа, также держа в пасти кусок шкуры. На заднем плане видна деревянная телега и голые ветви деревьев. Небо пасмурное, освещение драматичное. Стиль напоминает масляную живопись.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.4,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "The Bear's Judgment",
+    "description": "На картине изображены три охотника в традиционной русской одежде XIX века (тулупы, шапки-ушанки, сапоги) в осеннем лесу. Два охотника держат растянутую шкуру медведя, а третий, пожилой мужчина с белой бородой, торжественно поднимает вверх нож. На заднем плане, возвышаясь над ними, стоит гигантский живой бурый медведь, спокойно наблюдающий за сценой. Вокруг осенний лес с березами и желтой листвой, идет дождь. Справа видна часть деревянной телеги. Освещение золотистое, напоминающее закат, создающее драматичную атмосферу.",
+    "idea_recognized": false,
+    "details": [
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  }
+}

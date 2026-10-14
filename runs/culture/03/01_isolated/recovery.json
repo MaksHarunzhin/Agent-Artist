@@ -1,0 +1,72 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Зимнее ожидание",
+    "description": "На картине изображен мальчик, сидящий на желтых санках на заснеженном крыльце или веранде. Он одет в теплый синий пуховик, коричневые брюки, ботинки и яркую желтую шапку-бини. Мальчик смотрит в сторону, его выражение лица спокойное, возможно, задумчивое или ожидающее. За ним находится большое окно с деревянной рамой. В окне виден зимний пейзаж: крыша соседнего дома, покрытая снегом, и теплое желтое освещение изнутри дома, которое создает уютный контраст с холодной улицей. За окном также видны голые ветви деревьев. Идет снег, снежинки видны в воздухе. Небо имеет синеватый оттенок, что указывает на сумерки или поздний день. Освещение мягкое, рассеянное. Палитра картины сочетает холодные синие и белые тона с теплыми желтыми и оранжевыми акцентами. Композиция сфокусирована на фигуре мальчика, который занимает центральную часть кадра. Ракурс на уровне глаз. Настроение картины тихое, немного меланхоличное, но уютное. Стиль изображения реалистичный, с элементами цифровой живописи.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.625,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Зимний вечер",
+    "description": "На переднем плане стоит мальчик в тёмно-синем пуховике и перчатках, держась за деревянные полозья санок. Вокруг него падает снег. На заднем плане видна стена здания с большим окном в синей раме, из которого пробивается тёплый жёлтый свет. Мальчик смотрит в сторону, его лицо освещено мягким светом. Композиция сбалансирована, преобладают холодные синие и белые тона, разбавленные тёплым светом в окне. Настроение спокойное, зимнее.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Ребенок ждет тепла",
+    "description": "На картине изображен зимний вечер в городском дворе. На переднем плане стоит маленький мальчик в ярко-красном пальто и желтой шапке с помпоном, стоящий на деревянных санках. Он смотрит вверх, на окно многоэтажного панельного дома. В этом окне горит теплый желтый свет, и виден силуэт человека (вероятно, женщины), стоящего внутри. Вокруг идет снег, земля покрыта глубокими сугробами. Справа припаркована старая синяя машина, рядом стоит скамейка и голые деревья. Небо темно-синее, вечернее. Освещение построено на контрасте холодных сине-фиолетовых тонов улицы и теплого оранжевого света из окна. Стиль картины живописный, с заметными мазками. Настроение уютное, ностальгическое и немного грустное.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5714285714285714,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Winter Evening in the Courtyard",
+    "description": "The painting depicts a cold winter evening in a residential courtyard. In the foreground, a young boy stands in the snow wearing a yellow knit hat, a heavy green coat, and orange mittens. He holds a spool of string or rope in his hand, and his breath is visible as a cloud of vapor, indicating the freezing temperature. He is looking slightly upward. Behind him stands a large, multi-story apartment building painted in cool blue tones. Several windows are illuminated with warm, yellow light, creating a contrast with the cold exterior. In one of the lit windows on the second floor, the silhouette of a person is visible looking out. To the right, a vintage blue car (resembling a Lada) is parked near two pigeons pecking at the snow. In the background on the left, an older person is walking a dog, and a clothesline with colorful laundry hangs between poles. The scene is rendered in a painterly style with visible brushstrokes, capturing the quiet, nostalgic atmosphere of a Soviet-era winter evening.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "yes",
+      "partial"
+    ],
+    "details_conveyed": 0.5714285714285714,
+    "idea_named": true
+  }
+}

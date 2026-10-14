@@ -1,0 +1,79 @@
+{
+  "idea": "Маяк в шторм",
+  "artist": {
+    "artist_id": "C",
+    "persona": "Ты особенно тщательно продумываешь композицию, ракурс и свет.",
+    "generator": "yandex_art",
+    "image_model": "aliceai-image-art-3.0",
+    "prompt_language": "английском",
+    "max_prompt_words": 60
+  },
+  "steps": [
+    {
+      "step": 0,
+      "told": "Идея картины: Маяк в шторм",
+      "prompt": "Dramatic oil painting: a tall stone lighthouse on jagged black rocks in a violent storm, huge waves crashing into white foam, slanting rain, dark churning clouds split by the warm amber beam of the lantern sweeping over the sea. Low dramatic angle, strong rim light, deep blues and greys, thick expressive brushstrokes.",
+      "image": "step_00.png",
+      "seen_title": "Маяк в бушующем море",
+      "seen_description": "На картине изображен каменный маяк, возвышающийся над скалистым берегом посреди штормового моря. Вокруг него разворачивается жестокая стихия: небо затянуто темными, свинцово-синими тучами, идет сильный дождь, видимый как частые диагональные линии. Огромные волны с густой белой пеной с силой разбиваются о черные скалы у основания башни, поднимая брызги высоко вверх.\n\nВ верхней части маяка горит фонарь, излучающий яркий теплый янтарный свет. Из него вырывается мощный конус света, прорезающий темноту и дождь в левую сторону. В тучах на заднем плане угадываются слабые вспышки молний.\n\nКартина написана в импрессионистической манере с использованием густого, фактурного мазка, что придает изображению динамику. Палитра состоит преимущественно из холодных темных оттенков (глубокий синий, серый, черный), которые резко контрастируют с ярким белым цветом пены и теплым оранжево-желтым светом маяка. Настроение произведения драматичное, напряженное, но присутствие света добавляет ощущение стойкости.",
+      "similarity": 10,
+      "lost": "ничего",
+      "error": null
+    },
+    {
+      "step": 1,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображен каменный маяк, возвышающийся над скалистым берегом посреди штормового моря. Вокруг него разворачивается жестокая стихия: небо затянуто темными, свинцово-синими тучами, идет сильный дождь, видимый как частые диагональные линии. Огромные волны с густой белой пеной с силой разбиваются о черные скалы у основания башни, поднимая брызги высоко вверх.\n\nВ верхней части маяка горит фонарь, излучающий яркий теплый янтарный свет. Из него вырывается мощный конус света, прорезающий темноту и дождь в левую сторону. В тучах на заднем плане угадываются слабые вспышки молний.\n\nКартина написана в импрессионистической манере с использованием густого, фактурного мазка, что придает изображению динамику. Палитра состоит преимущественно из холодных темных оттенков (глубокий синий, серый, черный), которые резко контрастируют с ярким белым цветом пены и теплым оранжево-желтым светом маяка. Настроение произведения драматичное, напряженное, но присутствие света добавляет ощущение стойкости.",
+      "prompt": "Impressionistic oil painting, thick impasto brushstrokes: a stone lighthouse on a rocky shore in a violent storm. Dark leaden-blue clouds, heavy diagonal rain, huge waves with thick white foam crashing against black rocks, spray flying high. Amber lantern at the top casts a bright cone of light to the left. Faint lightning in the clouds. Cold dark palette, dramatic.",
+      "image": "step_01.png",
+      "seen_title": "Буря у маяка",
+      "seen_description": "На картине изображен одинокий маяк, стоящий на скалистом утесе посреди бушующего моря. Вокруг него разворачивается мощная стихия: огромные волны с густой белой пеной разбиваются о темные камни у основания башни. Небо затянуто тяжелыми, зловещими тучами темно-синего и серого цвета. Справа видна вспышка молнии, а по всему полотну спускаются косые линии дождя. Единственный источник тепла — теплый желтый свет, исходящий из окна маяка, который ярко выделяется на фоне холодной палитры. Картина написана густым слоем краски (импасто), видны мощные мазки и следы от шпателя, создающие фактурную поверхность. Композиция передает динамику и напряжение шторма.",
+      "similarity": 10,
+      "lost": "ничего существенного — маяк, шторм и атмосфера переданы полностью",
+      "error": null
+    },
+    {
+      "step": 2,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображен одинокий маяк, стоящий на скалистом утесе посреди бушующего моря. Вокруг него разворачивается мощная стихия: огромные волны с густой белой пеной разбиваются о темные камни у основания башни. Небо затянуто тяжелыми, зловещими тучами темно-синего и серого цвета. Справа видна вспышка молнии, а по всему полотну спускаются косые линии дождя. Единственный источник тепла — теплый желтый свет, исходящий из окна маяка, который ярко выделяется на фоне холодной палитры. Картина написана густым слоем краски (импасто), видны мощные мазки и следы от шпателя, создающие фактурную поверхность. Композиция передает динамику и напряжение шторма.",
+      "prompt": "Solitary lighthouse on a rocky cliff amid a raging stormy sea. Huge waves with thick white foam crash against dark rocks at the tower's base. Heavy ominous dark blue and grey clouds, lightning flash on the right, diagonal rain streaks. Warm yellow light glows from the lighthouse window against the cold palette. Impasto painting, bold palette-knife strokes, thick textured surface, dynamic composition.",
+      "image": "step_02.png",
+      "seen_title": "Beacon in the Tempest",
+      "seen_description": "The painting depicts a solitary lighthouse standing firm on a rocky outcrop amidst a violent ocean storm. Massive waves, rendered with thick, textured strokes of white, teal, and deep blue, crash against the base of the tower and surrounding rocks, sending spray high into the air. The sky is dark and turbulent, filled with heavy, swirling clouds in shades of slate grey and midnight blue. A jagged bolt of lightning strikes down on the right side, illuminating the clouds with a pale white light. Rain is depicted as sharp white streaks falling diagonally across the canvas. The lighthouse itself is a tall, cylindrical structure with a lantern room at the top emitting a warm, golden beam of light that cuts horizontally across the dark sky, contrasting with the cool tones of the storm. The style is highly impressionistic, likely oil paint applied with a palette knife, creating a sense of rough movement and intensity. The composition centers the lighthouse, emphasizing its resilience against the chaotic elements of nature.",
+      "similarity": 10,
+      "lost": "ничего — маяк, шторм и его свет переданы полностью",
+      "error": null
+    },
+    {
+      "step": 3,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nThe painting depicts a solitary lighthouse standing firm on a rocky outcrop amidst a violent ocean storm. Massive waves, rendered with thick, textured strokes of white, teal, and deep blue, crash against the base of the tower and surrounding rocks, sending spray high into the air. The sky is dark and turbulent, filled with heavy, swirling clouds in shades of slate grey and midnight blue. A jagged bolt of lightning strikes down on the right side, illuminating the clouds with a pale white light. Rain is depicted as sharp white streaks falling diagonally across the canvas. The lighthouse itself is a tall, cylindrical structure with a lantern room at the top emitting a warm, golden beam of light that cuts horizontally across the dark sky, contrasting with the cool tones of the storm. The style is highly impressionistic, likely oil paint applied with a palette knife, creating a sense of rough movement and intensity. The composition centers the lighthouse, emphasizing its resilience against the chaotic elements of nature.",
+      "prompt": "Impressionistic oil painting, thick palette-knife strokes: a solitary lighthouse on a rocky outcrop amid a violent ocean storm. Massive teal, deep blue and white waves crash against the tower and rocks, spray flying high. Slate grey and midnight blue swirling clouds, a jagged lightning bolt on the right, diagonal white rain streaks, and a warm golden beam from the lantern room.",
+      "image": "step_03.png",
+      "seen_title": "Lighthouse in the Storm",
+      "seen_description": "The painting depicts a solitary lighthouse standing firm on a rocky outcrop amidst a violent ocean storm at night. The sky is filled with heavy, dark grey and blue clouds, suggesting a severe tempest. Rain falls in diagonal white streaks across the canvas. To the right, a jagged bolt of lightning flashes down from the clouds. The sea is turbulent, with large, churning waves in shades of teal, deep blue, and white foam crashing against the rocks at the base of the tower. The lighthouse itself is cylindrical with earthy tones, and its lantern room glows with a warm yellow light. A distinct beam of golden light shoots horizontally from the lighthouse to the right, cutting through the darkness and rain. The style is impressionistic with thick, visible impasto brushstrokes, giving the water and clouds a sense of heavy texture and movement. The mood is dramatic and intense, contrasting the danger of the storm with the steady light of the beacon.",
+      "similarity": 9,
+      "lost": "ничего существенного — ядро идеи (маяк, противостоящий шторму) сохранено, лишь добавлены детали вроде ночи и молнии",
+      "error": null
+    },
+    {
+      "step": 4,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nThe painting depicts a solitary lighthouse standing firm on a rocky outcrop amidst a violent ocean storm at night. The sky is filled with heavy, dark grey and blue clouds, suggesting a severe tempest. Rain falls in diagonal white streaks across the canvas. To the right, a jagged bolt of lightning flashes down from the clouds. The sea is turbulent, with large, churning waves in shades of teal, deep blue, and white foam crashing against the rocks at the base of the tower. The lighthouse itself is cylindrical with earthy tones, and its lantern room glows with a warm yellow light. A distinct beam of golden light shoots horizontally from the lighthouse to the right, cutting through the darkness and rain. The style is impressionistic with thick, visible impasto brushstrokes, giving the water and clouds a sense of heavy texture and movement. The mood is dramatic and intense, contrasting the danger of the storm with the steady light of the beacon.",
+      "prompt": "Impressionistic painting with thick impasto brushstrokes: solitary cylindrical lighthouse in earthy tones on a rocky outcrop, warm yellow lantern glow, golden beam cutting horizontally right through night rain. Violent ocean storm, heavy dark grey and blue clouds, diagonal white rain streaks, jagged lightning bolt from the right, turbulent teal and deep blue waves, white foam crashing against rocks. Dramatic, intense mood.",
+      "image": "step_04.png",
+      "seen_title": "Маяк в шторме",
+      "seen_description": "На картине изображен одинокий маяк, стоящий на скалистом утесе посреди бурного моря. Над ним разразился сильный шторм: небо затянуто тяжелыми темно-серыми и синими тучами, идет проливной дождь, а справа видна яркая молния, рассекающая тьму. Сам маяк освещен изнутри, его теплый желто-оранжевый свет вырывается наружу, создавая мощный луч, который прорезает темноту и подсвечивает часть облаков. Вокруг скал разбиваются высокие волны с белой пеной, окрашенные в оттенки бирюзового, изумрудного и темно-синего. Картина написана густым масляным слоем с выраженным мазком (импасто), что придает изображению фактурность и передает динамику стихии. Настроение картины драматичное и напряженное, но свет маяка выглядит устойчивым и надежным.",
+      "similarity": 10,
+      "lost": "ничего — маяк, шторм и его драматизм переданы полностью",
+      "error": null
+    },
+    {
+      "step": 5,
+      "told": "Нарисуй картину по рассказу человека, который её видел:\nНа картине изображен одинокий маяк, стоящий на скалистом утесе посреди бурного моря. Над ним разразился сильный шторм: небо затянуто тяжелыми темно-серыми и синими тучами, идет проливной дождь, а справа видна яркая молния, рассекающая тьму. Сам маяк освещен изнутри, его теплый желто-оранжевый свет вырывается наружу, создавая мощный луч, который прорезает темноту и подсвечивает часть облаков. Вокруг скал разбиваются высокие волны с белой пеной, окрашенные в оттенки бирюзового, изумрудного и темно-синего. Картина написана густым масляным слоем с выраженным мазком (импасто), что придает изображению фактурность и передает динамику стихии. Настроение картины драматичное и напряженное, но свет маяка выглядит устойчивым и надежным.",
+      "prompt": "Lonely lighthouse on a rocky cliff in a stormy sea, thick oil impasto brushstrokes. Heavy dark grey-blue clouds, pouring rain, bright lightning splitting the sky on the right. Warm yellow-orange glow inside the tower, a powerful beam cutting the darkness and lighting the clouds. Turquoise, emerald and deep blue waves with white foam crashing on the rocks. Dramatic, tense mood.",
+      "image": "step_05.png",
+      "seen_title": "Beacon in the Storm",
+      "seen_description": "The painting depicts a dramatic seascape during a severe thunderstorm. On the left, a lighthouse with red and white horizontal stripes stands atop a rugged, dark rocky cliff. Beside it is a small, simple house with a red roof. The lighthouse is active, projecting a strong, warm beam of yellow and orange light that cuts through the gloom towards the right side of the canvas. The sea is turbulent and choppy, rendered in shades of teal, deep blue, and white foam as waves crash against the rocks in the foreground. The sky is filled with heavy, dark grey and blue storm clouds. A jagged bolt of white lightning strikes down in the background on the right, illuminating the rain, which is depicted as diagonal streaks across the entire scene. The style is highly textured, using thick impasto brushstrokes or palette knife techniques, giving the painting a rough, tactile quality. The mood is intense and chaotic, contrasting the violence of the weather with the steady light of the beacon.",
+      "similarity": 9,
+      "lost": "ничего существенного — маяк, штормовое море и луч света переданы полностью, добавлены лишь не противоречащие детали",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Winter Evening Ride",
+    "description": "The painting depicts a winter landscape scene in a forest. A man wearing a dark coat and a hat is driving a horse-drawn sleigh along a snow-covered path. Two brown horses are harnessed to the sleigh, moving from left to right. The trees are tall and covered in snow, framing the path. The sky in the background is illuminated with warm hues of orange, yellow, and pink, suggesting a sunset or sunrise. The foreground snow is painted in cool tones of blue and white, contrasting with the warm light of the sky. The distant trees have a purple tint. The overall mood is serene and cold, with a touch of warmth from the sunset. The style is realistic with visible brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Зимний путь",
+    "description": "На картине изображена зимняя сцена в лесу. Четверо бурых лошадей с белыми отметинами на мордах и ногах в упряжи тянут синюю повозку или сани на больших деревянных колесах. В повозке сидит кучер, укутанный в теплую одежду и плед, он держит вожжи. Они движутся по заснеженной дороге слева направо. Слева видны высокие ели, покрытые снегом, справа — стволы голых деревьев. Небо на заднем плане окрашено в мягкие пастельные тона заката или рассвета: розовые, оранжевые и фиолетовые оттенки. Освещение мягкое, исходящее сзади, создает теплое свечение на снегу и боках лошадей. Палитра картины сочетает холодные белые и голубые тона снега с теплыми коричневыми, оранжевыми и желтыми оттенками. Композиция динамичная, акцент на движущихся лошадях. Настроение спокойное, умиротворенное, немного ностальгическое. Стиль живописный, реалистичный.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Winter Sleigh Ride",
+    "description": "The painting depicts a lively winter scene featuring a man driving a decorated sleigh pulled by two brown horses. The horses are galloping energetically along a snow-covered path, kicking up snow. The driver, an older man with a beard wearing a thick coat and hat, holds the reins and looks ahead. The sleigh is colorful with bells attached. In the background, a snowy forest with tall pine trees frames a small village with wooden houses, from which smoke is rising, suggesting warmth. The sun is setting or rising low in the sky, casting a warm, golden glow through the trees and illuminating the snow, creating a strong contrast with the cool blue shadows. The mood is cheerful and brisk, capturing the essence of a winter journey home.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Winter Journey Home",
+    "description": "На картине изображен зимний пейзаж: мужчина в теплой одежде управляет запряженными двумя бурыми лошадьми санями. Они мчатся по заснеженной дороге, проходя под высокой деревянной аркой, увенчанной крестом и украшенной колоколами. На столбах арки закреплены большие медные рупоры или колокола. На заднем плане видны деревянные избы и ели, покрытые снегом, на фоне заката или рассвета с теплым оранжевым светом. Снег блестит от солнечных лучей, от лошадей поднимается пар. Композиция динамичная, с акцентом на движение слева направо. Цветовая палитра сочетает холодные синие и белые тона снега с теплыми коричневыми и золотистыми оттенками неба и лошадей. Стиль реалистичный, с элементами иллюстрации.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "yes",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.4375,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Winter Sleigh Ride",
+    "description": "A bearded man wearing a fur hat and a thick brown coat with a fur collar sits in a wooden sleigh, holding the reins. He is driving two horses—a chestnut one and a black one—harnessed together with red straps and bells. The horses are trotting on a snow-covered path or frozen river. The background is a dense forest of pine trees covered in white snow and frost. The sun is low in the sky, positioned behind the trees, emitting a bright golden light and a starburst effect. The lighting creates a contrast between the warm sunlight and the cool blue and white shadows of the snow. The mood is serene and cold.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Troika in the Snow",
+    "description": "The painting depicts a classic Russian troika scene. Three horses—two dark and one chestnut—are galloping through a snow-covered forest, pulling a wooden sleigh. Their harnesses are adorned with large golden bells. A bearded driver wearing a fur hat and a thick coat sits in the sleigh, holding the reins. The setting is a winter landscape with tall pine trees covered in snow. The sun is low in the sky, casting a warm, golden light through the trees and backlighting the horses' manes. The palette contrasts the cool blues and whites of the snow with the warm browns and golds. The composition is dynamic, suggesting speed and energy. The style is realistic with visible brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5625,
+    "idea_named": false
+  }
+}

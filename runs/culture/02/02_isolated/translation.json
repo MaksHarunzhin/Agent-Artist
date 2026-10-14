@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Baba Yaga, wiry old woman, hooked nose, headscarf, crimson sarafan, rope belt, bast shoes, staff, hand on open door, eyes at viewer; hut on scaly chicken legs, dusk autumn bog, ravens, black cat, warm window light, low angle, painterly fairytale realism"
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Baba Yaga old wiry hunched, hooked nose, headscarf, crimson sarafan, bast shoes, staff, hand on doorframe, standing on moss, glaring; hut on scaly chicken legs, black cat on step, ravens, low angle, foggy autumn bog, warm window glow, painterly brushstrokes"
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly fairytale-realism: Baba Yaga, wiry old crone, hooked nose, headscarf, dark crimson sarafan, stands full-length at the log hut's porch, one hand on staff, other on the ajar door, sly wary gaze at viewer. Chicken-legged mossy hut towering, low angle, glowing window, skull fence, mortar and broom, black cat on steps, ravens. Twilight after rain, warm rim light against cold misty swamp."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly fairytale-realism: wiry weathered old Baba Yaga, hooked nose, headscarf, dark crimson sarafan, worn boots, full-length at the porch, hand on staff, other on ajar door, sly wary gaze. Chicken-legged mossy log hut on giant clawed bird legs towers above, low angle, glowing window, skulls on fence posts, black cat, ravens. Wet ground, puddles, thick fog, twilight after rain, warm sunset rim light, cold shadows."
+  }
+}

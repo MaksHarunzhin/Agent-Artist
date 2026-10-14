@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "disservice",
+    "prompt": "Painterly illustration, golden hour: huge brown bear mid-swing with branch, left; waking lumberjack in linen shirt and vest, right lower, head by fallen log, straw hat, axe, grass; fly on his forehead; warm ochre amber palette, backlit rim light."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic golden-hour illustration: natural brown bear left swinging branch toward forehead of waking lumberjack lying by fallen log right; tiny fly on his brow; startled face; linen shirt, vest, straw hat, axe; warm ochre amber, backlit rim light."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "disservice",
+    "prompt": "Painterly cinematic illustration: a large brown bear at left proudly raises a thick branch to swing, focused simple face. A tired lumberjack in linen shirt, dark vest, boots lies on his back against a fallen trunk, eyes half-open in dawning alarm, one fly on his forehead. Fallen straw hat and axe nearby. Forest-edge camp, golden hour, long warm shadows, backlit halo, ochres, amber, deep greens, cool blue-violet shadows. Medium shot at his head level, branch diagonal toward his forehead."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly cinematic illustration: a large brown bear at left, solemn focused muzzle, one paw gripping the base of a smooth straight branch raised high, its tip in a clear diagonal aimed at the fly on the sleeping lumberjack's forehead. The man lies on his back against a fallen trunk, eyes half-open, dawning alarm, straw hat and axe nearby. Forest edge, golden hour, backlit halo, warm fill light on his face, ochres, amber, deep greens, blue-violet shadows. Medium shot at head level."
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "A_ball_cube_0": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет"
+    ]
+  },
+  "A_ball_cube_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "A_apples_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет"
+    ]
+  },
+  "A_apples_1": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет"
+    ]
+  },
+  "A_cat_gaze_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет"
+    ]
+  },
+  "A_cat_gaze_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "A_sun_house_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "A_sun_house_1": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет"
+    ]
+  },
+  "A_vase_light_0": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет"
+    ]
+  },
+  "A_vase_light_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "A_car_house_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет"
+    ]
+  },
+  "A_car_house_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет"
+    ]
+  },
+  "A_dogs_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "A_dogs_1": {
+    "error": null,
+    "answers": [
+      "нет",
+      "да",
+      "да"
+    ]
+  },
+  "A_lamp_night_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "A_lamp_night_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_ball_cube_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_ball_cube_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_apples_0": {
+    "error": null,
+    "answers": [
+      "нет",
+      "нет"
+    ]
+  },
+  "B_apples_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_cat_gaze_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет"
+    ]
+  },
+  "B_cat_gaze_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_sun_house_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_sun_house_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_vase_light_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_vase_light_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_car_house_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_car_house_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_dogs_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_dogs_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "B_lamp_night_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "B_lamp_night_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_ball_cube_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_ball_cube_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_apples_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_apples_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_cat_gaze_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_cat_gaze_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "нет"
+    ]
+  },
+  "C_sun_house_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_sun_house_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_vase_light_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_vase_light_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_car_house_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_car_house_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_dogs_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_dogs_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да",
+      "да"
+    ]
+  },
+  "C_lamp_night_0": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  },
+  "C_lamp_night_1": {
+    "error": null,
+    "answers": [
+      "да",
+      "да"
+    ]
+  }
+}

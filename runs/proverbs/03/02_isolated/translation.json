@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly cinematic illustration: realistic river crayfish on lone rocky peak, whistling, raised claws, thin steam wisp, ripple rings, stormy dusk, heavy clouds, one diagonal amber light shaft, sea of clouds, low angle, copper-green chitin, amber rim light, fog, rock shards."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly brushwork illustration, realistic river crayfish, raised claws, whistling, mouth steam, ripple rings, lone rocky peak over cloud sea, stormy dusk, single amber backlight upper right, low angle, crayfish upper third, copper-green chitin, copper-rust highlights, cold teal shadows, rock shards, fog."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly cinematic illustration: one enlarged realistic river crayfish on a dry bare granite summit, raised claws, tense body, faint steam wisp, subtle ripples. Low angle, crayfish large in the upper third; sea of clouds, distant ridges, foreground rock shards, creeping fog. Storm twilight, heavy clouds, slanting amber beam. Brownish-olive shell, cool blue-grey shadows, copper-amber rim light, cracked granite, dark lichens."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "when pigs fly",
+    "prompt": "Painterly cinematic illustration, visible brushstrokes: one enlarged realistic river crayfish on dry granite summit, raised claws, tense body, thin translucent steam wisp. Low angle, crayfish large in upper third; sea of clouds, distant ridges, two sharp rock shards, creeping fog. Dramatic storm twilight, heavy blue-grey clouds, sharp-edged amber beam. Matte rough brownish-olive chitin, copper rim light, cracked granite, dark lichen, shallow focus."
+  }
+}

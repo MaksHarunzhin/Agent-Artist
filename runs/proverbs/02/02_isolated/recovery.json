@@ -1,0 +1,106 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Слон за покупками",
+    "description": "На картине изображен большой серый азиатский слон, стоящий внутри помещения, напоминающего продуктовый магазин или хорошо укомплектованную кладовую. Слон занимает центральную часть композиции, его хобот тянется к деревянному столу, на котором лежат хлебные палочки. Слева видны деревянные полки, заставленные синими и белыми керамическими кувшинами и банками в стиле дelfтской керамики. На заднем плане полки заполнены бутылками с разноцветными жидкостями (красными, желтыми, синими), что создает ощущение ассортимента товаров. Освещение теплое и мягкое, исходит от подвесных желтых ламп, видимых в верхней части. Палитра картины сочетает серые тона кожи слона и коричневые оттенки дерева с яркими акцентами синего, белого и красного цветов. Ракурс немного снизу, что подчеркивает внушительные размеры животного в тесном пространстве. Настроение сюрреалистичное, тихое и немного забавное, так как дикое животное ведет себя как обычный покупатель. Стиль исполнения реалистичный, с гладкими текстурами, напоминающими цифровую живопись.",
+    "idea_recognized": false,
+    "details": [
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Elephant in the pantry",
+    "description": "The painting depicts a surreal scene inside a well-stocked pantry or storeroom. A large, grey elephant stands prominently in the center, its trunk curled around a stack of white plates resting on a wooden table. The elephant appears to be interacting with the food or dishes. The background is filled with wooden shelves densely packed with various items: blue and white porcelain jars, glass bottles with labels, and stacks of plates. In the foreground, to the left, are large blue ceramic jugs. On the table, next to the plates, lies a loaf of bread and a large blue bowl filled with what looks like potato chips or crackers. The lighting is warm and diffuse, suggesting an indoor setting, possibly illuminated by a lamp or window light from the right. The color palette is dominated by the warm browns of the wood, the cool greys of the elephant, and the striking blue and white of the ceramics. The style is painterly and realistic, with attention to the texture of the elephant's skin and the glaze of the pottery. The mood is quiet and slightly humorous due to the unexpected presence of the animal in a domestic setting.",
+    "idea_recognized": false,
+    "details": [
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "partial",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Как слон в посудной лавке",
+    "description": "На картине изображен огромный серый слон, который находится внутри деревянной лавки, уставленной голубой и белой посудой. Слон выглядит крупным и массивным, его хобот изогнут, а бивни видны. Он наступает на пол, разбивая множество тарелок и ваз, осколки которых летят в воздухе. На заднем плане за прилавком стоит пожилой мужчина в очках и фартуке; он выглядит испуганным и поднял руку, словно пытаясь остановить слона или защищаясь. Вокруг много полок с красивыми керамическими изделиями. Свет падает из окна слева, освещая сцену и создавая контраст с тенями. Стиль изображения напоминает книжную иллюстрацию с четкими линиями и насыщенными цветами.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Elephant in a china shop",
+    "description": "The painting depicts a chaotic scene inside a room with wooden walls and floors. A large, grey elephant with long white tusks is the central figure, captured mid-stride with its trunk curled upwards. It appears to be stepping onto a wooden shelf on the left, causing a cascade of blue and white porcelain—plates, teapots, and cups—to shatter and fly into the air. The shards are frozen in motion. In the background on the right, an older man with white hair, a mustache, and glasses stands near a bright window, raising his hand in a gesture of alarm or surprise. The lighting is warm and golden, streaming from the window on the right, creating strong highlights on the elephant's back and the floor. The color palette features rich browns and ambers for the interior, contrasting with the cool grey of the elephant and the blue and white of the ceramics. The style is illustrative with visible brushwork, giving it a textured, painterly look.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Слон в посудной лавке",
+    "description": "На картине изображен интерьер помещения, похожего на лавку или кладовую, где на деревянных полках аккуратно расставлена голубая и белая посуда. В комнату вошел огромный слон, который своим весом или неосторожным движением разбил несколько предметов на полу — осколки разлетелись вокруг. Старик в очках, фартуке и жилете, стоящий слева, с испуганным и возмущенным выражением лица поднял руку, словно пытаясь остановить животное. Из окна слева бьет яркий солнечный луч, освещая пыль и осколки, создавая драматический контраст с тенями. Палитра теплая, с преобладанием коричневых, золотистых тонов и холодного синего цвета фарфора. Стиль живописный, с четкими контурами и детализацией текстуры кожи слона и керамики. Настроение комичное и хаотичное, иллюстрирующее известную идиому.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Слон в посудной лавке",
+    "description": "На картине изображен интерьер магазина или лавки, стены которой увешаны полками, плотно уставленными сине-белой фарфоровой посудой — тарелками и вазами. Справа в помещение влезает огромный серый слон, его передние ноги стоят на деревянном прилавке, ломая посуду. Хобот слона поднят вверх, из-под ног сыплются осколки разбитых тарелок. Слева стоит пожилой мужчина с седыми волосами и очками, одетый в жилет и рубашку; он выражает крайнее удивление и испуг, прижав одну руку к груди и подняв другую ладонью вперед, словно пытаясь остановить зверя. Светлый солнечный свет льется из окна за спиной слона, создавая эффект золотистой пыли и бликов на осколках. Композиция динамична, стиль напоминает яркую книжную иллюстрацию с четкими контурами и выразительной мимикой персонажей.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  }
+}

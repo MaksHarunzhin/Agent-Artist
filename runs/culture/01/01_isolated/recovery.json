@@ -1,0 +1,106 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Winter Market Day",
+    "description": "The painting depicts a lively winter street scene in a town square. In the foreground, a woman in a bright red coat and green headscarf is tending to a small cart laden with loaves of bread. To her right, a man in a brown coat and cap holds a wicker basket filled with vegetables, possibly carrots. Standing between them is a woman wrapped in a long blue coat and headscarf. The background features a church with distinctive blue onion domes and a bell tower, set against a pale sky. Red pennant flags are strung across the street above. The ground is covered in snow, and the scene is bathed in warm, golden sunlight, casting long shadows and highlighting the cold but bright atmosphere.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "Winter Meeting in the Snow",
+    "description": "The painting depicts a winter scene in a snowy village. In the foreground, four people and a dog are gathered. On the left, a man in a brown coat and blue hat holds a dark object, possibly a book or case. Next to him, a woman with her back to the viewer wears a bright red skirt, a blue coat with a fur collar, and a yellow hat, carrying a woven basket. Facing her is a woman in a blue coat with a red fur collar and a red hat. To the right, a man in a dark coat and blue hat holds a leash attached to a medium-sized dog. The background features snow-covered ground, bare trees, and a church with a green spire. The sun is low, casting long shadows and bathing the scene in warm, golden light, suggesting late afternoon. The palette combines cool blues and whites of the snow with warm oranges and reds of the clothing and sunlight.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.25,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "Maslenitsa in the Village",
+    "description": "The image depicts a festive winter scene, clearly illustrating the Russian holiday Maslenitsa. In the foreground, a smiling woman wearing a red patterned headscarf holds a plate of steaming pancakes. Behind her, a group of villagers celebrates in the snow: a straw scarecrow stands next to an older woman holding a bowl, while a girl and a boy play balalaikas. A man plays an accordion, and a child in a fur hat holds up a pancake. The background features traditional wooden houses with snow-covered roofs and a white church with a golden dome and cross. The sky is painted in warm pink and orange hues, suggesting a sunset, and steam rises from the pancakes and chimneys.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial",
+      "no"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": true
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Maslenitsa Festival",
+    "description": "The painting depicts a vibrant and joyful scene of the Russian holiday Maslenitsa. In the foreground, a smiling woman wearing a red floral headscarf and a warm coat holds a large plate piled high with steaming pancakes (blini). To her left, a young boy in a traditional ushanka hat and brown coat waves enthusiastically. Behind them, a festive gathering is underway: a girl in a blue headscarf plays a balalaika, a man in a top hat plays another balalaika, and a bearded man plays an accordion. An older woman sits at a table in the middle ground. A straw scarecrow with a crown and red scarf stands with arms outstretched near a large, radiant yellow sun in the upper left. The ground is covered in white snow, and the sky has a soft, pinkish hue. The style is expressive with thick, visible brushstrokes and a warm, lively palette.",
+    "idea_recognized": true,
+    "details": [
+      "yes",
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "no"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "Масленица в деревне",
+    "description": "На картине изображена яркая зимняя сцена празднования Масленицы в русской деревне. На переднем плане справа стоит молодая женщина в красном платке и тёплой куртке, она широко улыбается и держит большую тарелку с стопкой золотистых блинов. Слева от неё двое мальчиков в традиционной одежде и шапках-ушанках играют на музыкальных инструментах: один на балалайке, другой на аккордеоне. Рядом с ними стоит девочка в синем платке, держащая в руках миску. За музыкантами на деревянном шесте закреплено соломенное чучело с нарисованным лицом — символ Масленицы. На заднем плане видны деревянные избы, покрытые снегом, и церковная колокольня с крестом. Небо окрашено в розовые, оранжевые и голубые тона, что указывает на закат или рассвет. Снег на земле освещён мягким светом, отбрасывая синие тени. Общая атмосфера весёлая, жизнерадостная и праздничная.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Масленица в деревне",
+    "description": "На картине изображена яркая зимняя сцена в русской деревне, посвященная празднику Масленица. На переднем плане справа улыбается женщина в красном платке и теплой одежде, держащая большое блюдо с высокой стопкой золотистых блинов. За ней, в центре и слева, дети играют на народных инструментах: мальчик в синей куртке играет на балалайке, мальчик в центре — на аккордеоне, а девочка в синем платке — на балалайке. Рядом с музыкантами стоит соломенное чучело (масленица) с раскинутыми руками и красной лентой. На заднем плане видны деревянные избы, покрытые снегом, и церковь с колокольней и крестом. Справа стоит ларек с разноцветным навесом, где женщина продает блины. Небо яркое, с розовыми и желтыми оттенками, освещая снежный пейзаж. Стиль картины импрессионистический, с заметными густыми мазками краски.",
+    "idea_recognized": true,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "artist_A_01.png": {
+    "artist_id": "A",
+    "iteration": 1,
+    "image": "artist_A_01.png",
+    "title": "Dinner with the Don",
+    "description": "Two men are seated at a wooden table for a meal. The man on the left is older, with grey hair and a mustache, wearing a striking red jacket and matching tie. He holds a fork with a strand of spaghetti. The man on the right is seen in profile, wearing a dark suit, and appears to be interacting with the pasta or the other man's fork. A large plate of spaghetti sits in the center. To the left, a green glass bottle and a small glass with amber liquid are visible. The room is bathed in a greenish light from a hanging lamp above. The background features a green wall and a window showing a dark blue exterior, suggesting it is nighttime. The style is realistic and illustrative.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.35714285714285715,
+    "idea_named": false
+  },
+  "artist_A_02.png": {
+    "artist_id": "A",
+    "iteration": 2,
+    "image": "artist_A_02.png",
+    "title": "The Spaghetti Dinner",
+    "description": "The image depicts a realistic, painterly portrait of a man seated at a wooden table, eating a large plate of spaghetti. The man has dark, wavy hair with prominent sideburns and is wearing a maroon suit jacket, a white shirt, and a matching maroon tie. He holds a fork and knife, twirling the pasta, and looks directly at the viewer with an intense, slightly smiling expression. He sits in a plush, dark red leather armchair. Behind him is a large window with a grid of panes, showing a view of a city street with brick buildings, suggesting an urban setting during the day. The lighting is natural, coming from the window on the right, casting soft shadows and highlighting the man's face and the food. The color palette is dominated by warm burgundy, brown, and cream tones, contrasting with the cooler blues and greys of the exterior. The composition places the man slightly to the left, with the plate of spaghetti prominent in the foreground. The style mimics an oil painting with visible brushstrokes, creating a textured, cinematic atmosphere.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial",
+      "no",
+      "no",
+      "partial"
+    ],
+    "details_conveyed": 0.2857142857142857,
+    "idea_named": false
+  },
+  "artist_B_01.png": {
+    "artist_id": "B",
+    "iteration": 1,
+    "image": "artist_B_01.png",
+    "title": "The Spaghetti Offer",
+    "description": "Two middle-aged men sit opposite each other at a small wooden table near a window. It is raining heavily outside, and the blue light from the window illuminates the city buildings in the background. The man on the left, wearing a maroon jacket, holds a fork with a long strand of spaghetti, offering it towards the man on the right. The man on the right, dressed in a grey suit, stares at the pasta with a wide-eyed, shocked expression. A plate of steaming spaghetti sits on the table between them. A green pendant lamp hangs above the table, casting a warm, yellow glow on the scene, contrasting with the cool tones of the rainy day. The painting style is realistic with visible brushstrokes.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_B_02.png": {
+    "artist_id": "B",
+    "iteration": 2,
+    "image": "artist_B_02.png",
+    "title": "Ужин под дождем",
+    "description": "На картине изображены два мужчины, сидящие за деревянным столом. Мужчина слева в бордовой куртке держит вилку над тарелкой со спагетти и слегка улыбается. Мужчина справа в серой одежде смотрит на блюдо с серьезным выражением лица. Над столом висит зеленая настольная лампа, создающая теплый желтый свет. На заднем плане видно окно, за которым идет сильный дождь, капли воды стекают по стеклу. Освещение контрастное: теплое внутри и холодное снаружи. Стиль живописный, с заметными мазками.",
+    "idea_recognized": false,
+    "details": [
+      "partial",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.5,
+    "idea_named": false
+  },
+  "artist_C_01.png": {
+    "artist_id": "C",
+    "iteration": 1,
+    "image": "artist_C_01.png",
+    "title": "The Spicy Dinner",
+    "description": "A painterly scene depicts two men seated at a table with a white tablecloth. The man on the left, wearing a maroon velvet jacket, leans forward to feed spaghetti to the man on the right, who is dressed in a grey suit. The man on the right looks distressed or shocked, with a stream of bright orange fire erupting from his ear. On the table, there is a plate of spaghetti with red sauce, a glass of red wine, a green-shaded lamp, and a piece of paper. The background features a window showing a rainy night with blue tones, contrasting with the warm, golden interior lighting.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  },
+  "artist_C_02.png": {
+    "artist_id": "C",
+    "iteration": 2,
+    "image": "artist_C_02.png",
+    "title": "Spaghetti Western",
+    "description": "На картине изображены два мужчины в помещении, освещенном теплым светом настольной лампы и холодным светом из окна, где идет дождь. Сидящий мужчина в сером костюме и галстуке выглядит испуганным и приподнимает руку в защитном жесте. Стоящий за ним мужчина в бордовом бархатном пиджаке с серьезным выражением лица держит в левой руке вилку с большим количеством спагетти, а в правой руке прикладывает горящую свечу к уху сидящего мужчины. На столе перед ними лежит тарелка со спагетти, бокал с красным вином и зеленая настольная лампа в стиле банкира. Композиция сфокусирована на взаимодействии двух персонажей, создавая напряженную, но абсурдную атмосферу. Стиль живописный, с детальной проработкой лиц и тканей.",
+    "idea_recognized": false,
+    "details": [
+      "no",
+      "partial",
+      "partial",
+      "partial"
+    ],
+    "details_conveyed": 0.375,
+    "idea_named": false
+  }
+}

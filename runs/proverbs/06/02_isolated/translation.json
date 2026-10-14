@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly oil illustration, mystical realism: elderly writer, dark coat, burning gaze, holding manuscript into fireplace flames, glowing pages. Study, quill, inkwell, fallen pages, rain-streaked window. Caravaggio chiaroscuro, amber firelight, cold blue shadows, low three-quarter angle, waist-up composition."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly oil illustration: elderly Master, dark coat, holds thick manuscript into fireplace flames, smoldering glowing edges, luminous lines, gaze fixed on it. Rain-streaked window, fallen pages, long wall shadow. Caravaggio chiaroscuro, amber firelight below, cold blue rim light, three-quarter view."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly oil illustration, mystical realism, thick impasto. Diagonal composition: a weary grey-bearded man in a dark grey-black frock coat holds a thick stitched manuscript deep in fireplace flames; burnt edges glow, lines inside shine through intact pages. Face upper third, hand at center. Firelight from below, cold rim light, Caravaggio chiaroscuro, amber-ochre against blue-black shadows, rain-streaked window, long wall shadow."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "manuscripts don't burn",
+    "prompt": "Painterly oil illustration, mystical realism, thick impasto. Diagonal: weary grey-bearded Master in dark frock coat grips a thick stitched manuscript, lowering it into fireplace flames; tense forearm, white knuckles, sleeve pulled back. Burnt edges glow, lines shine through intact pages. Face upper third, hand center. Firelight below, cold rim light, rain-streaked window slit, book shelves, heavy curtains. Caravaggio chiaroscuro, amber-ochre against blue-black."
+  }
+}

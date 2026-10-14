@@ -1,0 +1,22 @@
+{
+  "A_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly Maslenitsa square, golden backlight, frost: woman scarlet shawl, fur coat, laughing over shoulder, steaming blins; boy reaching; girl blue shawl; balalaika skomorokh; vendor; straw scarecrow left; izbas, balagan, bell tower, diagonal composition."
+  },
+  "A_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly, golden-hour backlight: young woman scarlet shawl, fur coat, laughing over shoulder, blins plate; boy reaching; girl blue shawl; balalaika skomorokh; accordion man; straw scarecrow left center; izbas, bell tower, frost haze, rose snow, long shadows."
+  },
+  "C_01": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly illustration, cinematic golden-hour: Maslenitsa on a snowy village square. Young woman in scarlet shawl, laughing over her shoulder, plate of steaming pancakes, right third. With her: boy in ushanka, girl in blue shawl, skomorokh with balalaika in yellow-red kaftan, vendor, man with accordion. Rag-and-straw scarecrow left of center. Trodden snow, tipped plate; izbas, striped-awning booth, bell tower in frosty haze. Thick strokes, warm rim light, honey-pink snow, blue-violet shadows."
+  },
+  "C_02": {
+    "strategy": "literal",
+    "english_equivalent": "",
+    "prompt": "Painterly illustration, thick impasto brushstrokes: golden-hour Maslenitsa, snowy square. Woman in scarlet shawl laughing over shoulder, plate of steaming pancakes, right third. Boy in ushanka, girl in blue shawl, skomorokh with balalaika, vendor woman behind counter, man with accordion. Straw scarecrow left of center. Foreground: tipped plate, pancakes. Izbas left, striped booth right, hazy bell tower. Honey-pink snow, blue-violet shadows, warm rim light."
+  }
+}

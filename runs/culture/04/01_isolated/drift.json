@@ -1,0 +1,32 @@
+{
+  "A_first": {
+    "iteration": 1,
+    "original": 6,
+    "final_context": 5
+  },
+  "A_last": {
+    "iteration": 2,
+    "original": 7,
+    "final_context": 7
+  },
+  "B_first": {
+    "iteration": 1,
+    "original": 7,
+    "final_context": 8
+  },
+  "B_last": {
+    "iteration": 2,
+    "original": 4,
+    "final_context": 5
+  },
+  "C_first": {
+    "iteration": 1,
+    "original": 6,
+    "final_context": 7
+  },
+  "C_last": {
+    "iteration": 2,
+    "original": 8,
+    "final_context": 8
+  }
+}
