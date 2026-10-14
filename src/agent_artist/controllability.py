@@ -84,12 +84,45 @@ TASKS = [
           Fact("light", "Левая часть картины темнее правой?")]),
 ]
 
+# Кривая сложности: одна сцена, в промпте первые k указаний. Растёт ли доля промахов с k?
+ROOM_CONSTRAINTS = [
+    ("красное кресло стоит у левой стены", "a red armchair stands by the left wall",
+     Fact("placement", "Красное кресло находится в левой части комнаты?")),
+    ("синяя настольная лампа справа", "a blue table lamp on the right",
+     Fact("placement", "Синяя лампа находится в правой части комнаты?")),
+    ("окно в центре задней стены", "a window in the center of the back wall",
+     Fact("placement", "Окно находится в центре задней стены?")),
+    ("на подоконнике ровно три горшка с цветами", "exactly three flower pots on the windowsill",
+     Fact("count", "На подоконнике ровно три горшка с цветами?")),
+    ("свет падает из окна, тени тянутся к зрителю", "light falls from the window, shadows stretch toward the viewer",
+     Fact("light", "Свет падает из окна, а тени тянутся к зрителю?")),
+    ("на кресле спит серая кошка", "a grey cat sleeps in the armchair",
+     Fact("placement", "На кресле спит серая кошка?")),
+]
+COMPLEXITY_LEVELS = (1, 3, 6)
+
+
+def complexity_tasks() -> list[Task]:
+    tasks = []
+    for level in COMPLEXITY_LEVELS:
+        constraints = ROOM_CONSTRAINTS[:level]
+        tasks.append(Task(
+            f"room_{level}",
+            "Уютная комната, живопись: " + ", ".join(ru for ru, _, _ in constraints) + ".",
+            "A cozy room, painting: " + ", ".join(en for _, en, _ in constraints) + ".",
+            [fact for _, _, fact in constraints]))
+    return tasks
+
+
 ANSWER_SCORES = {"да": 1.0, "нет": 0.0, "не видно": 0.0}
 KIND_NAMES = {"placement": "расположение", "count": "количество", "direction": "направление взгляда",
               "light": "свет и тень", "depth": "передний и задний план"}
 
 
-def run_benchmark(settings: Settings, artist_ids: list[str], repeats: int, root: Path) -> str:
+def run_benchmark(settings: Settings, artist_ids: list[str], repeats: int, root: Path,
+                  complexity: bool = False) -> str:
+    """Простые сцены (по умолчанию) или кривая сложности (complexity=True)."""
+    tasks = complexity_tasks() if complexity else TASKS
     client = create_yandex_client(settings.yandex_api_key, settings.yandex_folder_id)
     checker = YandexLLM(client, settings.yandex_folder_id, settings.expert_vision_llm_name)
     root.mkdir(parents=True, exist_ok=True)
@@ -101,7 +134,7 @@ def run_benchmark(settings: Settings, artist_ids: list[str], repeats: int, root:
         english = artist.prompt_language == "английском"
         label = f"{artist.artist_id} ({'SDXL' if artist.generator == 'local' else 'Yandex ART'}, " \
                 f"{'англ.' if english else 'рус.'})"
-        for task in TASKS:
+        for task in tasks:
             for attempt in range(repeats):
                 key = f"{artist.artist_id}_{task.task_id}_{attempt}"
                 image_path = root / f"{key}.png"
@@ -126,17 +159,21 @@ def run_benchmark(settings: Settings, artist_ids: list[str], repeats: int, root:
                 if entry["error"]:
                     continue
                 for fact, answer in zip(task.facts, entry["answers"]):
-                    results.append((label, fact.kind, ANSWER_SCORES.get(answer, 0.0)))
+                    group = f"{len(task.facts)} указ." if complexity else fact.kind
+                    results.append((label, group, ANSWER_SCORES.get(answer, 0.0)))
 
     labels = sorted({label for label, _, _ in results})
+    groups = [f"{level} указ." for level in COMPLEXITY_LEVELS] if complexity else list(KIND_NAMES)
     rows = []
-    for kind in list(KIND_NAMES) + ["all"]:
-        row = [KIND_NAMES.get(kind, "все указания")]
+    for kind in groups + ["all"]:
+        row = [KIND_NAMES.get(kind, kind) if kind != "all" else "все указания"]
         for label in labels:
             values = [score for lbl, k, score in results if lbl == label and (kind == "all" or k == kind)]
             row.append(f"{100 * statistics.mean(values):.0f}% (n={len(values)})" if values else "—")
         rows.append(row)
-    return ("## Управляемость генераторов\n\n"
-            f"{len(TASKS)} сцен с проверяемыми фактами, по {repeats} картины. В ячейке — доля "
+    title = "Кривая сложности" if complexity else "Управляемость генераторов"
+    first_column = "Указаний в промпте" if complexity else "Тип указания"
+    return (f"## {title}\n\n"
+            f"{len(tasks)} сцен с проверяемыми фактами, по {repeats} картины. В ячейке — доля "
             "выполненных указаний.\n\n"
-            + markdown_table(["Тип указания"] + labels, rows) + "\n")
+            + markdown_table([first_column] + labels, rows) + "\n")

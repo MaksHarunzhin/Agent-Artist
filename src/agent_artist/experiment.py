@@ -130,6 +130,8 @@ def main(argv: list[str] | None = None) -> None:
     control_parser.add_argument("--artists", default="A,B,C")
     control_parser.add_argument("--repeats", type=int, default=2)
     control_parser.add_argument("--output-dir", type=Path, default=Path("runs") / "controllability")
+    control_parser.add_argument("--complexity", action="store_true",
+                                help="кривая сложности: одна сцена с 1, 3 и 6 указаниями")
 
     noise_parser = commands.add_parser(
         "noise", help="шумовой пол: разброс оценок той же картины и того же промпта")
@@ -147,7 +149,7 @@ def main(argv: list[str] | None = None) -> None:
     if args.command == "control":
         load_environment()
         print(run_benchmark(keys_only_settings(), args.artists.split(","), args.repeats,
-                            args.output_dir))
+                            args.output_dir, args.complexity))
         return
 
     if args.command == "noise":
