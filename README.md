@@ -57,6 +57,7 @@ agent-artist --idea "Маяк в шторм" --max-iter 3              # худ�
 agent-artist --idea "Масленица" --artists A,B,C --shared     # общий контекст
 agent-artist --idea "Маяк в шторм" --expert child           # другой заказчик: minimalist, baroque, child, peredvizhnik
 agent-artist --idea "Масленица" --no-describe --experienced   # без локальной VLM; художник знает слабости генератора
+agent-artist --idea "Маяк в шторм" --expert-votes 3           # панель экспертов: медиана из трёх оценок
 agent-artist --help                                           # все параметры
 ```
 
@@ -76,6 +77,7 @@ agent-artist-experiment limits runs/…        # карта непосильны
 agent-artist-experiment gallery runs/… --label expert --output gallery.png   # лучшие картины сеткой
 agent-artist-experiment drift runs/…         # движущаяся мишень: первая и последняя картина под одним контекстом
 agent-artist-experiment noise runs/…         # шумовой пол: разброс оценок той же картины и того же промпта
+agent-artist-experiment control [--complexity]   # управляемость генераторов: выполняют ли прямые указания
 agent-artist-experiment timelapse runs/…     # таймлапсы для готовых прогонов
 ```
 
@@ -122,6 +124,7 @@ src/agent_artist/
   limits.py        карта непосильных деталей
   drift.py         движущаяся мишень
   noise.py         шумовой пол
+  controllability.py  тест управляемости генераторов
   summary.py       сводка оценок эксперта
   analysis.py      прогоны → таблицы pandas для ноутбука
   runlogs.py       чтение логов, кеши, markdown-таблицы
